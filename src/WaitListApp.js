@@ -9,6 +9,7 @@ import {
 
 import Tables from './Tables'
 import Waitlist from './Waitlist'
+import Settings from './Settings'
 
 class WaitListApp extends Component {
   render() {
@@ -20,10 +21,12 @@ class WaitListApp extends Component {
             <Link to='/'>Home</Link>{'    '}
             <Link to='/tables'>Tables</Link>{'    '}
             <Link to='/waitlist'>WaitList</Link>{'    '}
+            <Link to='/settings'>Settings</Link>{'    '}
           </nav>
 
           <Route path='/tables' component={Tables} />
           <Route path='/waitlist' component={Waitlist} />
+          <Route path='/settings' component={Settings} />
 
         </div>
       </Router>
