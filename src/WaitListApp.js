@@ -12,7 +12,9 @@ class WaitListApp extends Component {
     return (
       <Router>
         <div>
-          <h2>Sup</h2>
+          <h1>Your Restaurant Name</h1>
+
+
         </div>
       </Router>
     )
