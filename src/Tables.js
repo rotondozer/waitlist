@@ -39,6 +39,11 @@ class Tables extends Component {
           In Queue (unavailable and assigned),
           History
            */}
+        <h2>Sign Up:</h2>
+        <form onSubmit={this.handleSubmit}>
+          <input placeholder='Email' value={this.state.value} onChange={this.handleChange}></input>
+          <button>Get Table</button>
+        </form>
         <h3>Table Number:</h3>
         <h3>Max Occupancy:</h3>
         <h3>Min Occupancy:</h3>
