@@ -1,4 +1,6 @@
 ## WaitList
+by Nick Rotondo
+
 An app for a restaurant host to organize and prioritize guests on a waitlist and tables in the restaurant. This app also aims to track and calculate data to pertaining to wait times and turnover rate to provide a better customer experience and a deeper understanding of your restaurant's turnover efficiency.
 
 # Wireframes
