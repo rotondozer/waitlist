@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Login from './Login.js'
+import Register from './Register.js'
 const $ = require('jquery')
 const api = require('./auth/api.js')
 
@@ -33,14 +34,7 @@ class Settings extends Component {
           In Queue (unavailable and assigned),
           History
            */}
-        <h2>Sign Up:</h2>
-        <form>
-          <input placeholder='Email' onChange={this.handleChange} id='email'></input>
-          <input placeholder='Password' type='password' onChange={this.handleChange} id='password'></input>
-          <input placeholder='Confirm Password' type='password' onChange={this.handleChange} id='pwConfirm'></input>
-
-          <button>Sign Up</button>
-        </form>
+        <Register />
 
         <Login />
       </div>

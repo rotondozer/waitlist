@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
-class Login extends Component {
+class Register extends Component {
   constructor (props) {
     super (props)
     this.state = {
       email: '',
       password: '',
+      pwConfirm: '',
       user: ''
     }
   }
@@ -17,7 +18,7 @@ class Login extends Component {
     const self = this
 
     axios({
-      url: apiBaseUrl + '/sign-in',
+      url: apiBaseUrl + '/sign-up',
       method: 'POST',
       headers: {
         'content-type': 'application/json'
@@ -25,7 +26,8 @@ class Login extends Component {
       data: {
         'credentials': {
           'email': self.state.email,
-          'password': self.state.password
+          'password': self.state.password,
+          'password_confirmation': self.state.pwConfirm
         }
       }
     })
@@ -38,24 +40,26 @@ class Login extends Component {
       .catch((error) => console.log(error))
     this.setState({
       email: '',
-      password: ''
+      password: '',
+      pwConfirm: ''
     })
   }
 
   render () {
     return (
       <div>
-        <h2>Sign In</h2>
+        <h2>Sign Up</h2>
         <form onSubmit={(event) => this.handleSubmit(event)}>
           {/* Storing username and password values in state variables which change on each keystroke in onClick (onChange?) */}
           <input placeholder='Email' onChange={(event) => this.setState({email: event.target.value})} value={this.state.email}></input>
           <input placeholder='Password' type='password' onChange={(event) => this.setState({password: event.target.value})} value={this.state.password}></input>
+          <input placeholder='Confirm Password' type='password' onChange={(event) => this.setState({pwConfirm: event.target.value})} value={this.state.pwConfirm}></input>
 
-          <button type='submit'>Sign In</button>
+          <button type='submit'>Sign Up</button>
         </form>
       </div>
     )
   }
 }
 
-export default Login
+export default Register
