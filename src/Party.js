@@ -8,7 +8,7 @@ const Party = props => (
     <p>Time Checked In: {props.checkedIn}</p>
     <p>Notes: {props.notes}</p>
     <input type='button' value='edit' id={props.id}/>
-    <input type='button' value='delete' id={props.id}/>
+    <input onClick={(event) => props.onDeleteProp(event)} type='button' value='delete' id={props.id}/>
   </div>
 )
 

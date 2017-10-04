@@ -9,6 +9,7 @@ class Waitlist extends Component {
       partiesArray: [{name: 'placeholder'}, {name: 'placeholder'}]
     }
     this.componentDidMount = this.componentDidMount.bind(this)
+    this.deleteParty = this.deleteParty.bind(this)
   }
 
   updateState (data) {
@@ -17,7 +18,29 @@ class Waitlist extends Component {
     })
   }
 
-  componentDidMount () {
+  deleteParty (event) {
+    const baseUrl = 'http://localhost:4741'
+    const self = this
+    const partyId = event.target.id
+    // const partyIndex = event.target.index
+    // debugger
+    // let tempArr = self.state.partiesArray
+    // tempArr.splice(partyIndex, 1)
+    event.preventDefault()
+    console.log('calling deleteParty with id ' + event.target.id)
+    axios({
+      url: `${baseUrl}/parties/${partyId}`,
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+      .then(() => this.getAllParties())
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error))
+  }
+
+  getAllParties () {
     const baseUrl = 'http://localhost:4741'
     const self = this
     axios({
@@ -34,21 +57,37 @@ class Waitlist extends Component {
       .catch((error) => console.log(error))
   }
 
+  componentDidMount () {
+    this.getAllParties()
+  }
+
   render () {
-    const parties = this.state.partiesArray.map((party, index) => <Party
-      name={party.name}
-      size={party.size}
-      estWait={party.est_wait}
-      checkedIn={party.checked_in}
-      notes={party.notes}
-      key={index}
-      id={index}
-    />)
-    return (
-      <div>
-        {parties}
-      </div>
-    )
+    // debugger
+    const self = this
+    if (this.state.partiesArray.length > 0) {
+      const parties = this.state.partiesArray.map((party, index) => <Party
+        name={party.name}
+        size={party.size}
+        estWait={party.est_wait}
+        checkedIn={party.checked_in}
+        notes={party.notes}
+        key={index}
+        id={party.id}
+        onDeleteProp={this.deleteParty}
+      />)
+      return (
+        <div>
+          <h2>Waitlist</h2>
+          {parties}
+        </div>
+      )
+    } else {
+      return (
+        <p>'No Parties Waiting'</p>
+      )
+
+    }
+
   }
 }
 
