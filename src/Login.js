@@ -31,8 +31,8 @@ class Login extends Component {
     })
       .then((response) => {
         console.log(response)
-        this.setState({
-          user: response.user
+        self.setState({
+          user: response.data.user
         })
       })
       .catch((error) => console.log(error))
@@ -40,6 +40,22 @@ class Login extends Component {
       email: '',
       password: ''
     })
+  }
+
+  signOut (event) {
+    event.preventDefault()
+    const apiBaseUrl = 'http://localhost:4741'
+    const self = this
+    axios({
+      url: apiBaseUrl + '/sign-out/' + self.state.user.id,
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': 'Token token=' + self.state.user.token
+      }
+    })
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error))
   }
 
   render () {
@@ -53,6 +69,8 @@ class Login extends Component {
 
           <button type='submit'>Sign In</button>
         </form>
+
+        <input type='button' onClick={(event) => this.signOut(event)} value={'Sign Out'}/>
       </div>
     )
   }

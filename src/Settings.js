@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import Login from './Login.js'
 import Register from './Register.js'
-const $ = require('jquery')
-const api = require('./auth/api.js')
-
 
 class Settings extends Component {
   constructor (props) {
@@ -11,7 +8,8 @@ class Settings extends Component {
     this.state = {
       email: '',
       password: '',
-      passwordConfirmation: ''
+      passwordConfirmation: '',
+      user: ''
     }
     this.handleChange = this.handleChange.bind(this)
     // this.handleSubmit = this.handleSubmit.bind(this)
