@@ -7,6 +7,8 @@ const Party = props => (
     <p>Estimated Wait: {props.estWait}</p>
     <p>Time Checked In: {props.checkedIn}</p>
     <p>Notes: {props.notes}</p>
+    <input type='button' value='edit' id={props.id}/>
+    <input type='button' value='delete' id={props.id}/>
   </div>
 )
 

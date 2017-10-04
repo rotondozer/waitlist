@@ -6,19 +6,15 @@ class Waitlist extends Component {
   constructor (props) {
     super (props)
     this.state = {
-      temp: '',
-      partiesArray: [{name: 'placeholder'}]
+      partiesArray: [{name: 'placeholder'}, {name: 'placeholder'}]
     }
     this.componentDidMount = this.componentDidMount.bind(this)
   }
 
   updateState (data) {
-
     this.setState({
-      temp: 'farts',
       partiesArray: data
     })
-
   }
 
   componentDidMount () {
@@ -39,16 +35,18 @@ class Waitlist extends Component {
   }
 
   render () {
+    const parties = this.state.partiesArray.map((party, index) => <Party
+      name={party.name}
+      size={party.size}
+      estWait={party.est_wait}
+      checkedIn={party.checked_in}
+      notes={party.notes}
+      key={index}
+      id={index}
+    />)
     return (
       <div>
-        {/**/}
-        <Party
-          name={this.state.partiesArray[0].name}
-          size={this.state.partiesArray[0].size}
-          estWait={this.state.partiesArray[0].estWait}
-          checkedIn={this.state.partiesArray[0].checked_in}
-          notes={this.state.partiesArray[0].notes}
-        />
+        {parties}
       </div>
     )
   }
