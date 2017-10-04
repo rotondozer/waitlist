@@ -55,6 +55,9 @@ class Login extends Component {
       }
     })
       .then((response) => console.log(response))
+      .then(self.setState({
+        user: ''
+      }))
       .catch((error) => console.log(error))
   }
 
