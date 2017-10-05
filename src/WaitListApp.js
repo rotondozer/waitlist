@@ -11,6 +11,7 @@ import Tables from './Tables'
 import Waitlist from './Waitlist'
 import Settings from './Settings'
 import AddParty from './AddParty'
+import EditParty from './EditParty'
 
 class WaitListApp extends Component {
   constructor (props) {
