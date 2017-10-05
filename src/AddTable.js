@@ -1,23 +1,23 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router'
 import axios from 'axios'
 
-class EditTable extends Component {
+class AddTable extends Component {
   constructor (props) {
     super (props)
     this.state = {
       max_seat: '',
       min_seat: ''
     }
-    this.editTable = this.editTable.bind(this)
+    this.createTable = this.createTable.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
 
-  editTable (event) {
+  createTable (event) {
     event.preventDefault()
+    console.log(this.state)
     axios({
-      url: 'http://localhost:4741/tables/' + this.props.id,
-      method: 'PATCH',
+      url: 'http://localhost:4741/tables',
+      method: 'POST',
       headers: {
         'content-type': 'application/json'
       },
@@ -30,10 +30,10 @@ class EditTable extends Component {
         }
       }
     })
-      .then(() => this.props.callback())
+      .then(() => this.getAllTables())
       .then((response) => console.log(response))
-      .then(this.props.onGetAllTables)
       .catch((error) => console.log(error))
+      {/*PLACE USER MESSAGE HERE*/}
   }
 
   handleChange (event) {
@@ -47,18 +47,18 @@ class EditTable extends Component {
   render () {
     return (
       <div>
-        <form onSubmit={this.editParty}>
-          <h1>Edit Table Number {this.props.id}</h1>
+        <form onSubmit={this.createTable}>
+          <h1>Add a Party to the WaitList</h1>
 
           <input name='max_seat' placeholder='Max Guests' onChange={this.handleChange} value={this.state.max_seat}></input>
 
           <input name='min_seat' placeholder='Minimum Guests' onChange={this.handleChange} value={this.state.min_seat}></input>
 
-          <button type='submit'>Edit Table {this.props.id}</button>
+          <button type='submit'>Add Table</button>
         </form>
       </div>
     )
   }
 }
 
-export default EditTable
+export default AddTable

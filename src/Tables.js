@@ -93,10 +93,10 @@ class Tables extends Component {
     const self = this
     if (this.state.tablesArray.length > 0) {
       const tables = this.state.tablesArray.map((table, index) => <Table
-        id={party.id}
+        id={table.id}
         key={index}
-        max_seat={party.max_seat}
-        min_seat={party.min_seat}
+        max_seat={table.max_seat}
+        min_seat={table.min_seat}
         onDeleteTable={this.deleteTable}
         onGetAllTables={this.getAllTables}
       />)
