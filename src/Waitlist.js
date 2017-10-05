@@ -13,6 +13,7 @@ class Waitlist extends Component {
     this.componentDidMount = this.componentDidMount.bind(this)
     this.deleteParty = this.deleteParty.bind(this)
     this.handleOnClick = this.handleOnClick.bind(this)
+    this.getAllParties = this.getAllParties.bind(this)
   }
 
   updateState (data) {
@@ -29,13 +30,9 @@ class Waitlist extends Component {
   }
 
   deleteParty (event) {
-    const baseUrl = 'https://waitlist-api.herokuapp.com'
+    const baseUrl = 'http://localhost:4741'
     const self = this
     const partyId = event.target.id
-    // const partyIndex = event.target.index
-    // debugger
-    // let tempArr = self.state.partiesArray
-    // tempArr.splice(partyIndex, 1)
     event.preventDefault()
     console.log('calling deleteParty with id ' + event.target.id)
     axios({
@@ -51,7 +48,7 @@ class Waitlist extends Component {
   }
 
   getAllParties () {
-    const baseUrl = 'https://waitlist-api.herokuapp.com'
+    const baseUrl = 'http://localhost:4741'
     const self = this
     axios({
       url: baseUrl + '/parties',
@@ -62,7 +59,7 @@ class Waitlist extends Component {
     })
       .then((response) => {
         console.log(response.data.parties)
-        this.updateState(response.data.parties)
+        self.updateState(response.data.parties)
       })
       .catch((error) => console.log(error))
   }
@@ -87,6 +84,7 @@ class Waitlist extends Component {
         key={index}
         id={party.id}
         onDeleteProp={this.deleteParty}
+        onGetAllParties={this.getAllParties}
       />)
       return (
         <div>

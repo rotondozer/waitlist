@@ -23,7 +23,7 @@ class Party extends Component {
   render () {
     if (this.state.editParty) {
       return <Route push to='/edit_parties' render={() => (
-        <EditParty id={this.state.editPartyId} callback={this.updatePartyState}/>
+        <EditParty id={this.state.editPartyId} callback={this.updatePartyState} onGetAllParties={this.props.onGetAllParties}/>
       )}/>
 
     }
@@ -35,7 +35,9 @@ class Party extends Component {
         <p>Estimated Wait: {this.props.estWait}</p>
         <p>Time Checked In: {this.props.checkedIn}</p>
         <p>Notes: {this.props.notes}</p>
-        <input onClick={(event) => this.setState({editParty:true, editPartyId:event.target.id})} type='button' value='edit' id={this.props.id}/>
+
+        <input onClick={(event) => this.setState({editParty:true, editPartyId:event.target.id})} type='button' value='edit' id={this.props.id} />
+
         <input onClick={(event) => this.props.onDeleteProp(event)} type='button' value='delete' id={this.props.id}/>
       </div>
     )
