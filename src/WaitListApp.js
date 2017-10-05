@@ -13,6 +13,7 @@ import Settings from './Settings'
 import AddParty from './AddParty'
 import EditParty from './EditParty'
 import AddTable from './AddTable'
+import Home from './Home'
 
 class WaitListApp extends Component {
   constructor (props) {
@@ -46,6 +47,8 @@ class WaitListApp extends Component {
             <Link to='/waitlist'>WaitList</Link>{'    '}
             <Link to='/settings'>Settings</Link>{'    '}
           </nav>
+
+          <Route exact path='/' component={Home}/>
 
           <Route path='/tables' render={() => (
             <Tables user_id={this.state.user_id} token={this.state.token} />
