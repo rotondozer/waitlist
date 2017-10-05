@@ -25,7 +25,7 @@ class Tables extends Component {
   }
 
   handleOnClick (event) {
-    console.log('handleOnClick')
+    console.log('handleOnClick ' + event.target.name)
     this.setState({
       [event.target.name]: true
     })
@@ -104,7 +104,7 @@ class Tables extends Component {
         <div>
           <h2>Tables</h2>
 
-          <input name='editParty' onClick={this.handleOnClick} type='button' value={'Add Table'} />
+          <input name='addTable' onClick={this.handleOnClick} type='button' value={'Add Table'} />
 
           {tables}
         </div>
