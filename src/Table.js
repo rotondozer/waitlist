@@ -24,7 +24,8 @@ class Table extends Component {
       return <Route push to='/edit_tables' render={() => (
         <EditTable id={this.state.editTableId}
           callback={this.updateTableState}
-          onGetAllTables={this.props.onGetAllTables} />
+          onGetAllTables={this.props.onGetAllTables}
+          token={this.props.token} />
       )}/>
     }
 

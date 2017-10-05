@@ -96,6 +96,7 @@ class Tables extends Component {
         min_seat={table.min_seat}
         onDeleteTable={this.deleteTable}
         onGetAllTables={this.getAllTables}
+        token={this.props.token}
       />)
       return (
         <div>

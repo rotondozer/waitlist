@@ -14,6 +14,7 @@ class EditTable extends Component {
   }
 
   editTable (event) {
+    console.log('edit table props ' + this.props)
     event.preventDefault()
     axios({
       url: 'http://localhost:4741/tables/' + this.props.id,
