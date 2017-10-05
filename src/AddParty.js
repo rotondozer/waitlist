@@ -42,12 +42,7 @@ class AddParty extends Component {
       .then((response) => console.log(response))
       .then(() => this.setState({addedParty:true}))
       .catch((error) => console.log(error))
-      {/*PLACE USER MESSAGE HERE*/}
   }
-
-  // redirectToWaitlist () {
-  //   return <Redirect push to='/waitlist' />
-  // }
 
   handleChange (event) {
     let attribute = event.target.name

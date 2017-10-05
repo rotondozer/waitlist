@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { Redirect } from 'react-router'
 
 class AddTable extends Component {
   constructor (props) {
     super (props)
     this.state = {
       max_seat: '',
-      min_seat: ''
+      min_seat: '',
+      addedTable: false
     }
     this.createTable = this.createTable.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -31,8 +33,8 @@ class AddTable extends Component {
         }
       }
     })
-      .then(() => this.getAllTables())
       .then((response) => console.log(response))
+      .then(() => this.setState({addedTable:true}))
       .catch((error) => console.log(error))
       {/*PLACE USER MESSAGE HERE*/}
   }
@@ -46,6 +48,10 @@ class AddTable extends Component {
   }
 
   render () {
+    if (this.state.addedTable) {
+      this.setState({addedTable:false})
+      return <Redirect push to='/tables'/>
+    }
     return (
       <div>
         <form onSubmit={this.createTable}>
