@@ -9,7 +9,7 @@ class Tables extends Component {
     super (props)
     console.log(props)
     this.state = {
-      tablesArray: [{id: 'placeholder'},{id: 'placeholder'}]
+      tablesArray: []
     }
     // this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
