@@ -29,7 +29,7 @@ class Waitlist extends Component {
   }
 
   deleteParty (event) {
-    const baseUrl = 'http://localhost:4741'
+    const baseUrl = 'https://waitlist-api.herokuapp.com'
     const self = this
     const partyId = event.target.id
     // const partyIndex = event.target.index
@@ -51,7 +51,7 @@ class Waitlist extends Component {
   }
 
   getAllParties () {
-    const baseUrl = 'http://localhost:4741'
+    const baseUrl = 'https://waitlist-api.herokuapp.com'
     const self = this
     axios({
       url: baseUrl + '/parties',

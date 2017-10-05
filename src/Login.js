@@ -13,7 +13,7 @@ class Login extends Component {
 
   handleSubmit (event) {
     event.preventDefault()
-    const apiBaseUrl = 'http://localhost:4741'
+    const apiBaseUrl = 'https://waitlist-api.herokuapp.com'
     const self = this
 
     axios({
@@ -44,7 +44,7 @@ class Login extends Component {
 
   signOut (event) {
     event.preventDefault()
-    const apiBaseUrl = 'http://localhost:4741'
+    const apiBaseUrl = 'https://waitlist-api.herokuapp.com'
     const self = this
     axios({
       url: apiBaseUrl + '/sign-out/' + self.state.user.id,

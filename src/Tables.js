@@ -22,7 +22,7 @@ class Tables extends Component {
     event.preventDefault()
     let base = this
     let tableNum = this.state.tableNum
-    fetch(`http://localhost:4741/tables/${tableNum}`)
+    fetch(`https://waitlist-api.herokuapp.com/tables/${tableNum}`)
       .then((response) => response.json())
       .then((json) => {
         console.log(json)

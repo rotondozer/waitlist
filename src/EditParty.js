@@ -19,7 +19,7 @@ class EditParty extends Component {
   editParty (event) {
     event.preventDefault()
     axios({
-      url: 'http://localhost:4741/parties/' + this.props.id,
+      url: 'https://waitlist-api.herokuapp.com/parties/' + this.props.id,
       method: 'PATCH',
       headers: {
         'content-type': 'application/json'
