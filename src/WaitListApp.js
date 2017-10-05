@@ -54,7 +54,7 @@ class WaitListApp extends Component {
             <Waitlist user_id={this.state.user_id} token={this.state.token} />
           )} />
           <Route path='/settings' render={() => (
-            <Settings setAuthInfo={this.setAuthInfo}/>
+            <Settings setAuthInfo={this.setAuthInfo} user_id={this.state.user_id} token={this.state.token} />
           )} />
           <Route path='/add_parties' render={() => (
             <AddParty user_id={this.state.user_id} token={this.state.token} />
