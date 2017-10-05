@@ -21,7 +21,7 @@ class AddParty extends Component {
     event.preventDefault()
     console.log(this.state)
     axios({
-      url: 'http://localhost:4741/parties',
+      url: 'https://waitlist-api.herokuapp.com/parties',
       method: 'POST',
       headers: {
         'content-type': 'application/json',

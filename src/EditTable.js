@@ -17,7 +17,7 @@ class EditTable extends Component {
     console.log('edit table props ' + this.props)
     event.preventDefault()
     axios({
-      url: 'http://localhost:4741/tables/' + this.props.id,
+      url: 'https://waitlist-api.herokuapp.com/tables/' + this.props.id,
       method: 'PATCH',
       headers: {
         'content-type': 'application/json',
