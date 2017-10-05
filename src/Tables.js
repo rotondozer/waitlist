@@ -16,6 +16,7 @@ class Tables extends Component {
     this.getAllTables = this.getAllTables.bind(this)
     this.handleOnClick = this.handleOnClick.bind(this)
     this.deleteTable = this.deleteTable.bind(this)
+    this.componentWillMount = this.componentWillMount.bind(this)
   }
 
   updateState (data) {
@@ -65,7 +66,7 @@ class Tables extends Component {
       .catch((error) => console.log(error))
   }
 
-  componentDidMount () {
+  componentWillMount () {
     this.getAllTables()
   }
 

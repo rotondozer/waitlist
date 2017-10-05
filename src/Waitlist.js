@@ -8,9 +8,9 @@ class Waitlist extends Component {
   constructor (props) {
     super (props)
     this.state = {
-      partiesArray: [{name: 'placeholder'}, {name: 'placeholder'}]
+      partiesArray: []
     }
-    this.componentDidMount = this.componentDidMount.bind(this)
+    this.componentWillMount = this.componentWillMount.bind(this)
     this.deleteParty = this.deleteParty.bind(this)
     this.handleOnClick = this.handleOnClick.bind(this)
     this.getAllParties = this.getAllParties.bind(this)
@@ -64,7 +64,7 @@ class Waitlist extends Component {
       .catch((error) => console.log(error))
   }
 
-  componentDidMount () {
+  componentWillMount () {
     this.getAllParties()
   }
 
