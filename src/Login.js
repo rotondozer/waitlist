@@ -30,10 +30,9 @@ class Login extends Component {
       }
     })
       .then((response) => {
-        console.log(response)
-        self.setState({
-          user: response.data.user
-        })
+        this.props.setAuthInfo(response.data.user.token, response.data.user.id)
+        console.log('ID: '+ response.data.user.id)
+        console.log('TOKEN: '+ response.data.user.token)
       })
       .catch((error) => console.log(error))
     this.setState({

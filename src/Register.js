@@ -16,7 +16,6 @@ class Register extends Component {
     event.preventDefault()
     const apiBaseUrl = 'http://localhost:4741'
     const self = this
-
     axios({
       url: apiBaseUrl + '/sign-up',
       method: 'POST',
@@ -31,12 +30,7 @@ class Register extends Component {
         }
       }
     })
-      .then((response) => {
-        console.log(response)
-        this.setState({
-          user: response.user
-        })
-      })
+      .then((response) => console.log(response))
       .catch((error) => console.log(error))
     this.setState({
       email: '',
@@ -52,7 +46,9 @@ class Register extends Component {
         <form onSubmit={(event) => this.handleSubmit(event)}>
           {/* Storing username and password values in state variables which change on each keystroke in onClick (onChange?) */}
           <input placeholder='Email' onChange={(event) => this.setState({email: event.target.value})} value={this.state.email}></input>
+
           <input placeholder='Password' type='password' onChange={(event) => this.setState({password: event.target.value})} value={this.state.password}></input>
+
           <input placeholder='Confirm Password' type='password' onChange={(event) => this.setState({pwConfirm: event.target.value})} value={this.state.pwConfirm}></input>
 
           <button type='submit'>Sign Up</button>

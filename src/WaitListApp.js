@@ -43,8 +43,12 @@ class WaitListApp extends Component {
             <Link to='/settings'>Settings</Link>{'    '}
           </nav>
 
-          <Route something={'this'} path='/tables' component={Tables} />
-          <Route path='/waitlist' component={Waitlist} />
+          <Route path='/tables' render={() => (
+            <Tables user_id={this.state.user_id} token={this.state.token} />
+          )} />
+          <Route path='/waitlist' render={() => (
+            <Waitlist user_id={this.state.user_id} token={this.state.token} />
+          )} />
           <Route path='/settings' render={() => (
             <Settings setAuthInfo={this.setAuthInfo}/>
           )} />

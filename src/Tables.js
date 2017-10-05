@@ -39,7 +39,8 @@ class Tables extends Component {
       url: 'http://localhost:4741/tables/' + tableId,
       method: 'DELETE',
       headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'Authorization': 'Token token=' + this.props.token
       }
     })
       .then(() => this.getAllTables())
@@ -53,7 +54,8 @@ class Tables extends Component {
       url: 'http://localhost:4741/tables',
       method: 'GET',
       headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'Authorization': 'Token token=' + this.props.token
       }
     })
       .then((response) => {
@@ -66,13 +68,6 @@ class Tables extends Component {
   componentDidMount () {
     this.getAllTables()
   }
-
-  // handleChange (event) {
-  //   this.setState({
-  //     tableNum: event.target.value
-  //   })
-  //   // console.log(this.state.tableNum)
-  // }
 
   handleSubmit (event) {
     event.preventDefault()
@@ -87,6 +82,7 @@ class Tables extends Component {
   }
 
   render () {
+    debugger
     if (this.state.addTable) {
       return <Redirect push to='/add_tables' />
     }

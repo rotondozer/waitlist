@@ -11,15 +11,6 @@ class Settings extends Component {
       passwordConfirmation: '',
       user: ''
     }
-    this.handleChange = this.handleChange.bind(this)
-    // this.handleSubmit = this.handleSubmit.bind(this)
-  }
-
-  handleChange (event) {
-    this.setState({
-
-    })
-    // console.log(this.state.tableNum)
   }
 
   render () {
@@ -32,9 +23,9 @@ class Settings extends Component {
           In Queue (unavailable and assigned),
           History
            */}
-        <Register />
+        <Register setAuthInfo={this.props.setAuthInfo}/>
 
-        <Login />
+        <Login setAuthInfo={this.props.setAuthInfo}/>
       </div>
     )
   }
