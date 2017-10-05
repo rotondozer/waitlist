@@ -10,12 +10,20 @@ class Party extends Component {
       editParty: false,
       editPartyId: ''
     }
+    this.updatePartyState = this.updatePartyState.bind(this)
+  }
+
+  updatePartyState () {
+    this.setState({
+      editParty: false
+    })
+
   }
 
   render () {
     if (this.state.editParty) {
       return <Route push to='/edit_parties' render={() => (
-        <EditParty id={this.state.editPartyId}/>
+        <EditParty id={this.state.editPartyId} callback={this.updatePartyState}/>
       )}/>
 
     }

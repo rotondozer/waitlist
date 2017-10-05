@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router'
 import axios from 'axios'
 
 class EditParty extends Component {
@@ -35,7 +36,7 @@ class EditParty extends Component {
         }
       }
     })
-      .then(() => this.getAllParties())
+      .then(() => this.props.callback())
       .then((response) => console.log(response))
       .catch((error) => console.log(error))
       {/*PLACE USER MESSAGE HERE*/}
