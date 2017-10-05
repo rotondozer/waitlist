@@ -10,8 +10,24 @@ import {
 import Tables from './Tables'
 import Waitlist from './Waitlist'
 import Settings from './Settings'
+import AddParty from './AddParty'
 
 class WaitListApp extends Component {
+  constructor (props) {
+    super (props)
+    this.state = {
+      token: '',
+      user_id: ''
+    }
+  }
+
+  setAuthInfo (token, user_id) {
+    this.setState({
+      token,
+      user_id
+    })
+  }
+
   render() {
     return (
       <Router>
@@ -24,14 +40,18 @@ class WaitListApp extends Component {
             <Link to='/settings'>Settings</Link>{'    '}
           </nav>
 
-          <Route path='/tables' component={Tables} />
+          <Route something={'this'} path='/tables' component={Tables} />
           <Route path='/waitlist' component={Waitlist} />
           <Route path='/settings' component={Settings} />
-
+          <Route path='/add_parties' component={AddParty} />
         </div>
       </Router>
     )
   }
 }
+
+const withRouteProps = (...props) => (
+  <Route {...props} {...props.route.props} />
+)
 
 export default WaitListApp

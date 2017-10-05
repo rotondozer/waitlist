@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 class Tables extends Component {
   constructor (props) {
     super (props)
+    console.log(props)
     this.state = {
       tableNum: ''
     }
@@ -30,6 +31,7 @@ class Tables extends Component {
   }
 
   render () {
+    console.log(this.props)
     return (
       <div>
         {/* Add navbar with links to:

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router'
 import Party from './Party.js'
 import axios from 'axios'
 
@@ -10,12 +11,18 @@ class Waitlist extends Component {
     }
     this.componentDidMount = this.componentDidMount.bind(this)
     this.deleteParty = this.deleteParty.bind(this)
+    this.handleOnClick = this.handleOnClick.bind(this)
   }
 
   updateState (data) {
     this.setState({
       partiesArray: data
     })
+  }
+
+  handleOnClick () {
+    console.log('Yooooooooooo')
+    this.setState({redirect: true})
   }
 
   deleteParty (event) {
@@ -62,6 +69,9 @@ class Waitlist extends Component {
   }
 
   render () {
+    if (this.state.redirect) {
+      return <Redirect push to="/add_parties" />
+    }
     // debugger
     const self = this
     if (this.state.partiesArray.length > 0) {
@@ -78,12 +88,17 @@ class Waitlist extends Component {
       return (
         <div>
           <h2>Waitlist</h2>
+          <input onClick={this.handleOnClick} type='button' value={'Add Party'} />
           {parties}
         </div>
       )
     } else {
       return (
-        <p>'No Parties Waiting'</p>
+        <div>
+          <h2>Waitlist</h2>
+          <input onClick={this.handleOnClick} type='button' value={'Add Party'} />
+          <p>'No Parties Waiting'</p>
+        </div>
       )
 
     }
