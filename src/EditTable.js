@@ -19,7 +19,8 @@ class EditTable extends Component {
       url: 'http://localhost:4741/tables/' + this.props.id,
       method: 'PATCH',
       headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'Authorization': 'Token token=' + this.props.token
       },
       data: {
         table: {

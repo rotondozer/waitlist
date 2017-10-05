@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Login from './Login.js'
 import Register from './Register.js'
+import ChangePassword from './ChangePassword'
 import axios from 'axios'
 
 class Settings extends Component {
@@ -44,6 +45,8 @@ class Settings extends Component {
         <Register setAuthInfo={this.props.setAuthInfo}/>
 
         <Login setAuthInfo={this.props.setAuthInfo}/>
+
+        <ChangePassword setAuthInfo={this.props.setAuthInfo} user_id={this.props.user_id} token={this.props.token}/>
 
         <input type='button' onClick={(event) => this.signOut(event)} value={'Sign Out'}/>
       </div>
