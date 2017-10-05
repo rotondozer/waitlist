@@ -21,6 +21,7 @@ class WaitListApp extends Component {
       token: '',
       user_id: ''
     }
+    this.setAuthInfo = this.setAuthInfo.bind(this)
   }
 
   setAuthInfo (token, user_id) {
@@ -44,7 +45,9 @@ class WaitListApp extends Component {
 
           <Route something={'this'} path='/tables' component={Tables} />
           <Route path='/waitlist' component={Waitlist} />
-          <Route path='/settings' component={Settings} />
+          <Route path='/settings' render={() => (
+            <Settings setAuthInfo={this.setAuthInfo}/>
+          )} />
           <Route path='/add_parties' component={AddParty}/>
           <Route path='/add_tables' component={AddTable}/>
           {/*<Route path='/edit_parties' component={EditParty} />*/}
@@ -53,9 +56,5 @@ class WaitListApp extends Component {
     )
   }
 }
-
-const withRouteProps = (...props) => (
-  <Route {...props} {...props.route.props} />
-)
 
 export default WaitListApp
