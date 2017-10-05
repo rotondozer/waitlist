@@ -47,7 +47,7 @@ class EditTable extends Component {
   render () {
     return (
       <div>
-        <form onSubmit={this.editParty}>
+        <form onSubmit={this.editTable}>
           <h1>Edit Table Number {this.props.id}</h1>
 
           <input name='max_seat' placeholder='Max Guests' onChange={this.handleChange} value={this.state.max_seat}></input>
