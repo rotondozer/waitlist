@@ -72,7 +72,7 @@ class Waitlist extends Component {
     if (this.state.addParty) {
       return <Redirect push to="/add_parties" />
     }
-    // debugger
+
     const self = this
     if (this.state.partiesArray.length > 0) {
       const parties = this.state.partiesArray.map((party, index) => <Party

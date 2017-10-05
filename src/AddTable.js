@@ -49,7 +49,7 @@ class AddTable extends Component {
     return (
       <div>
         <form onSubmit={this.createTable}>
-          <h1>Add a Party to the WaitList</h1>
+          <h1>Add a Table to the Dining Area</h1>
 
           <input name='max_seat' placeholder='Max Guests' onChange={this.handleChange} value={this.state.max_seat}></input>
 

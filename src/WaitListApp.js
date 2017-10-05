@@ -18,6 +18,7 @@ class WaitListApp extends Component {
   constructor (props) {
     super (props)
     this.state = {
+      user: 'Not Signed In',
       token: '',
       user_id: ''
     }
@@ -25,8 +26,9 @@ class WaitListApp extends Component {
   }
 
   // This is more of a GET auth info
-  setAuthInfo (token, user_id) {
+  setAuthInfo (user, token, user_id) {
     this.setState({
+      user,
       token,
       user_id
     })
@@ -37,6 +39,7 @@ class WaitListApp extends Component {
       <Router>
         <div>
           <h1>Your Restaurant Name</h1>
+          <h4>{this.state.user}</h4>
           <nav>
             <Link to='/'>Home</Link>{'    '}
             <Link to='/tables'>Tables</Link>{'    '}
