@@ -20,9 +20,11 @@ class Waitlist extends Component {
     })
   }
 
-  handleOnClick () {
+  handleOnClick (event) {
     console.log('Yooooooooooo')
-    this.setState({redirect: true})
+    this.setState({
+      [event.target.name]: true
+    })
   }
 
   deleteParty (event) {
@@ -69,8 +71,10 @@ class Waitlist extends Component {
   }
 
   render () {
-    if (this.state.redirect) {
+    if (this.state.addParty) {
       return <Redirect push to="/add_parties" />
+    } else if (this.state.editParty) {
+      return <Redirect push to='/edit_parties' />
     }
     // debugger
     const self = this
@@ -88,7 +92,8 @@ class Waitlist extends Component {
       return (
         <div>
           <h2>Waitlist</h2>
-          <input onClick={this.handleOnClick} type='button' value={'Add Party'} />
+          <input name='addParty' onClick={this.handleOnClick} type='button' value={'Add Party'} />
+          <input name='editParty' onClick={this.handleOnClick} type='button' value={'Edit Party'} />
           {parties}
         </div>
       )
@@ -96,7 +101,8 @@ class Waitlist extends Component {
       return (
         <div>
           <h2>Waitlist</h2>
-          <input onClick={this.handleOnClick} type='button' value={'Add Party'} />
+          <input name='addParty' onClick={this.handleOnClick} type='button' value={'Add Party'} />
+          <input name='editParty' onClick={this.handleOnClick} type='button' value={'Edit Party'} />
           <p>'No Parties Waiting'</p>
         </div>
       )

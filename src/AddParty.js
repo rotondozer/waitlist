@@ -39,6 +39,7 @@ class AddParty extends Component {
       .then(() => this.getAllParties())
       .then((response) => console.log(response))
       .catch((error) => console.log(error))
+      {/*PLACE USER MESSAGE HERE*/}
   }
 
   handleChange (event) {
