@@ -69,6 +69,7 @@ class Tables extends Component {
     this.getAllTables()
   }
 
+  // This isn't doing anything...
   handleSubmit (event) {
     event.preventDefault()
     let base = this
@@ -82,7 +83,6 @@ class Tables extends Component {
   }
 
   render () {
-    debugger
     if (this.state.addTable) {
       return <Redirect push to='/add_tables' />
     }

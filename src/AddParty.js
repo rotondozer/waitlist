@@ -22,7 +22,8 @@ class AddParty extends Component {
       url: 'http://localhost:4741/parties',
       method: 'POST',
       headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'Authorization': 'Token token=' + this.props.token
       },
       data: {
         party: {
@@ -32,7 +33,7 @@ class AddParty extends Component {
           est_wait: this.state.estWait,
           notes: this.state.notes,
           // TODO: pass user_id down from container component
-          user_id: 1
+          user_id: this.props.user_id
         }
       }
     })

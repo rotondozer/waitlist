@@ -24,6 +24,7 @@ class WaitListApp extends Component {
     this.setAuthInfo = this.setAuthInfo.bind(this)
   }
 
+  // This is more of a GET auth info
   setAuthInfo (token, user_id) {
     this.setState({
       token,
@@ -52,8 +53,12 @@ class WaitListApp extends Component {
           <Route path='/settings' render={() => (
             <Settings setAuthInfo={this.setAuthInfo}/>
           )} />
-          <Route path='/add_parties' component={AddParty}/>
-          <Route path='/add_tables' component={AddTable}/>
+          <Route path='/add_parties' render={() => (
+            <AddParty user_id={this.state.user_id} token={this.state.token} />
+          )} />
+          <Route path='/add_tables' render={() => (
+            <AddTable user_id={this.state.user_id} token={this.state.token} />
+          )} />
           {/*<Route path='/edit_parties' component={EditParty} />*/}
         </div>
       </Router>

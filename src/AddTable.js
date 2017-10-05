@@ -19,14 +19,15 @@ class AddTable extends Component {
       url: 'http://localhost:4741/tables',
       method: 'POST',
       headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'Authorization': 'Token token=' + this.props.token
       },
       data: {
         table: {
           max_seat: this.state.max_seat,
           min_seat: this.state.min_seat,
           // TODO: pass user_id down from container component
-          user_id: 1
+          user_id: this.props.user_id
         }
       }
     })
