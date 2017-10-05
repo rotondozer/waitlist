@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router'
 import axios from 'axios'
 
 class Login extends Component {
@@ -7,8 +8,17 @@ class Login extends Component {
     this.state = {
       email: '',
       password: '',
-      user: ''
+      user: '',
+      signedIn: false
     }
+  }
+
+  onSuccessUpdateState () {
+    this.setState({
+      email: '',
+      password: '',
+      signedIn: true
+    })
   }
 
   handleSubmit (event) {
@@ -35,14 +45,16 @@ class Login extends Component {
         console.log('ID: '+ response.data.user.id)
         console.log('TOKEN: '+ response.data.user.token)
       })
+      .then(() => this.onSuccessUpdateState())
       .catch((error) => console.log(error))
-    this.setState({
-      email: '',
-      password: ''
-    })
+
   }
 
   render () {
+    if (this.state.signedIn) {
+      this.setState({signedIn: false})
+      return <Redirect push to='/' />
+    }
     return (
       <div>
         <h2>Sign In</h2>
