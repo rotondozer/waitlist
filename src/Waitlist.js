@@ -39,7 +39,8 @@ class Waitlist extends Component {
       url: `${baseUrl}/parties/${partyId}`,
       method: 'DELETE',
       headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'Authorization': 'Token token=' + this.props.token
       }
     })
       .then(() => this.getAllParties())
@@ -54,7 +55,8 @@ class Waitlist extends Component {
       url: baseUrl + '/parties',
       method: 'GET',
       headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'Authorization': 'Token token=' + this.props.token
       }
     })
       .then((response) => {
@@ -85,6 +87,7 @@ class Waitlist extends Component {
         id={party.id}
         onDeleteProp={this.deleteParty}
         onGetAllParties={this.getAllParties}
+        token={this.props.token}
       />)
       return (
         <div>
