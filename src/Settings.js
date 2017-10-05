@@ -27,7 +27,7 @@ class Settings extends Component {
       }
     })
       .then((response) => console.log(response))
-      .then(self.props.setAuthInfo('','',''))
+      .then(self.props.setAuthInfo('Not Signed In','',''))
       .catch((error) => console.log(error))
   }
 
