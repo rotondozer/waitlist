@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { Redirect } from 'react-router'
 
 class AddParty extends Component {
   constructor (props) {
@@ -9,7 +10,8 @@ class AddParty extends Component {
       size: '',
       estWait: '',
       timeIn: '',
-      notes: ''
+      notes: '',
+      addedParty: false,
     }
     this.createParty = this.createParty.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -37,11 +39,15 @@ class AddParty extends Component {
         }
       }
     })
-      .then(() => this.getAllParties())
       .then((response) => console.log(response))
+      .then(() => this.setState({addedParty:true}))
       .catch((error) => console.log(error))
       {/*PLACE USER MESSAGE HERE*/}
   }
+
+  // redirectToWaitlist () {
+  //   return <Redirect push to='/waitlist' />
+  // }
 
   handleChange (event) {
     let attribute = event.target.name
@@ -52,6 +58,10 @@ class AddParty extends Component {
   }
 
   render () {
+    if (this.state.addedParty) {
+      this.setState({addedParty:false})
+      return <Redirect push to='/waitlist' />
+    }
     return (
       <div>
         <form onSubmit={this.createParty}>
