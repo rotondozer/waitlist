@@ -1,22 +1,78 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router'
+import Table from './Table.js'
+import EditTable from './EditTable'
+import axios from 'axios'
 
 class Tables extends Component {
   constructor (props) {
     super (props)
     console.log(props)
     this.state = {
-      tableNum: ''
+      tablesArray: [{id: 'placeholder'},{id: 'placeholder'}]
     }
-    this.handleChange = this.handleChange.bind(this)
+    // this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.getAllTables = this.getAllTables.bind(this)
+    this.handleOnClick = this.handleOnClick.bind(this)
+    this.deleteTable = this.deleteTable.bind(this)
   }
 
-  handleChange (event) {
+  updateState (data) {
     this.setState({
-      tableNum: event.target.value
+      tablesArray: data
     })
-    // console.log(this.state.tableNum)
   }
+
+  handleOnClick (event) {
+    console.log('handleOnClick')
+    this.setState({
+      [event.target.name]: true
+    })
+  }
+
+  deleteTable (event) {
+    event.preventDefault()
+    const tableId = event.target.id
+    console.log('calling deleteTable with id ' + tableId)
+    axios({
+      url: 'http://localhost:4741/tables/' + tableId,
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+      .then(() => this.getAllTables())
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error))
+  }
+
+  getAllTables () {
+    const self = this
+    axios({
+      url: 'http://localhost:4741/tables',
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+      .then((response) => {
+        console.log(response.data.tables)
+        self.updateState(response.data.tables)
+      })
+      .catch((error) => console.log(error))
+  }
+
+  componentDidMount () {
+    this.getAllTables()
+  }
+
+  // handleChange (event) {
+  //   this.setState({
+  //     tableNum: event.target.value
+  //   })
+  //   // console.log(this.state.tableNum)
+  // }
 
   handleSubmit (event) {
     event.preventDefault()
@@ -31,30 +87,38 @@ class Tables extends Component {
   }
 
   render () {
-    console.log(this.props)
-    return (
-      <div>
-        {/* Add navbar with links to:
-          All,
-          Available,
-          Ready to Queue (unavailable but unassigned)
-          In Queue (unavailable and assigned),
-          History
-           */}
-        <h2>Sign Up:</h2>
-        <form onSubmit={this.handleSubmit}>
-          <input placeholder='Email' value={this.state.value} onChange={this.handleChange}></input>
-          <button>Get Table</button>
-        </form>
-        <h3>Table Number:</h3>
-        <h3>Max Occupancy:</h3>
-        <h3>Min Occupancy:</h3>
-        <form onSubmit={this.handleSubmit}>
-          <input placeholder='Enter table number' value={this.state.value} onChange={this.handleChange}></input>
-          <button>Get Table</button>
-        </form>
-      </div>
-    )
+    if (this.state.addTable) {
+      return <Redirect push to='/add_tables' />
+    }
+    const self = this
+    if (this.state.tablesArray.length > 0) {
+      const tables = this.state.tablesArray.map((table, index) => <Table
+        id={party.id}
+        key={index}
+        max_seat={party.max_seat}
+        min_seat={party.min_seat}
+        onDeleteTable={this.deleteTable}
+        onGetAllTables={this.getAllTables}
+      />)
+      return (
+        <div>
+          <h2>Tables</h2>
+
+          <input name='editParty' onClick={this.handleOnClick} type='button' value={'Add Table'} />
+
+          {tables}
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <h2>Tables</h2>
+          <input name='addTable' onClick={this.handleOnClick} type='button' value={'Add Table'} />
+
+          <p>"You haven't created any tables yet!"</p>
+        </div>
+      )
+    }
   }
 }
 

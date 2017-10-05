@@ -103,9 +103,7 @@ class Waitlist extends Component {
           <p>'No Parties Waiting'</p>
         </div>
       )
-
     }
-
   }
 }
 

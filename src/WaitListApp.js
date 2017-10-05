@@ -45,6 +45,7 @@ class WaitListApp extends Component {
           <Route path='/waitlist' component={Waitlist} />
           <Route path='/settings' component={Settings} />
           <Route path='/add_parties' component={AddParty}/>
+          <Route path='/add_tables' component={AddTable}/>
           {/*<Route path='/edit_parties' component={EditParty} />*/}
         </div>
       </Router>
