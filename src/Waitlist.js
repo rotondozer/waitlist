@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router'
 import Party from './Party.js'
+import EditParty from './EditParty'
 import axios from 'axios'
 
 class Waitlist extends Component {
@@ -73,8 +74,6 @@ class Waitlist extends Component {
   render () {
     if (this.state.addParty) {
       return <Redirect push to="/add_parties" />
-    } else if (this.state.editParty) {
-      return <Redirect push to='/edit_parties' />
     }
     // debugger
     const self = this
@@ -93,7 +92,7 @@ class Waitlist extends Component {
         <div>
           <h2>Waitlist</h2>
           <input name='addParty' onClick={this.handleOnClick} type='button' value={'Add Party'} />
-          <input name='editParty' onClick={this.handleOnClick} type='button' value={'Edit Party'} />
+
           {parties}
         </div>
       )
@@ -102,7 +101,7 @@ class Waitlist extends Component {
         <div>
           <h2>Waitlist</h2>
           <input name='addParty' onClick={this.handleOnClick} type='button' value={'Add Party'} />
-          <input name='editParty' onClick={this.handleOnClick} type='button' value={'Edit Party'} />
+
           <p>'No Parties Waiting'</p>
         </div>
       )
