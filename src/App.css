@@ -1,28 +1,41 @@
-.App {
+body {
+  font-family: 'Dosis', sans-serif;
+}
+
+header {
+  /*border-bottom: 1px solid black;*/
+  background-color: rgb(130, 136, 167);
+}
+
+input[type="button"] {
+  background-color: rgb(245, 240, 204);
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.restaurant-name {
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.username {
+  text-align: center;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.navbar {
+  background-color: rgb(212, 198, 176);
+  text-align: center;
 }
 
-.App-title {
-  font-size: 1.5em;
+.navlinks {
+  /*border: 3px solid green;*/
+  margin: 20px;
+  padding: 5px;
+  text-decoration: none;
+  font-size: 28px;
+  color: black;
+  border-radius: 5px;
 }
 
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.navlinks:hover {
+  background-color: rgb(245, 240, 204);
 }

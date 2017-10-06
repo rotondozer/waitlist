@@ -39,14 +39,18 @@ class WaitListApp extends Component {
     return (
       <Router>
         <div>
-          <h1>Your Restaurant Name</h1>
-          <h4>{this.state.user}</h4>
-          <nav>
-            <Link to='/'>Home</Link>{'    '}
-            <Link to='/tables'>Tables</Link>{'    '}
-            <Link to='/waitlist'>WaitList</Link>{'    '}
-            <Link to='/settings'>Settings</Link>{'    '}
-          </nav>
+          <header>
+            <h1 className='restaurant-name' >Your Restaurant Name</h1>
+            <h4 className='username' >{this.state.user}</h4>
+            <div className='navbar'>
+              <nav>
+                <Link className='navlinks' to='/'>Home</Link>{'    '}
+                <Link className='navlinks' to='/tables'>Tables</Link>{'    '}
+                <Link className='navlinks' to='/waitlist'>WaitList</Link>{'    '}
+                <Link className='navlinks' to='/settings'>Settings</Link>{'    '}
+              </nav>
+            </div>
+          </header>
 
           <Route exact path='/' component={Home}/>
 

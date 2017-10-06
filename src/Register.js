@@ -51,7 +51,7 @@ class Register extends Component {
 
           <input placeholder='Confirm Password' type='password' onChange={(event) => this.setState({pwConfirm: event.target.value})} value={this.state.pwConfirm}></input>
 
-          <button type='submit'>Sign Up</button>
+          <button type='submit'>Create Account</button>
         </form>
       </div>
     )

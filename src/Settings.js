@@ -48,7 +48,7 @@ class Settings extends Component {
 
         <ChangePassword setAuthInfo={this.props.setAuthInfo} user_id={this.props.user_id} token={this.props.token}/>
 
-        <input type='button' onClick={(event) => this.signOut(event)} value={'Sign Out'}/>
+        <input type='button' onClick={(event) => this.signOut(event)} value={'Logout'}/>
       </div>
     )
   }

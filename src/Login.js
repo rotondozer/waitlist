@@ -65,7 +65,7 @@ class Login extends Component {
           <input placeholder='Email' onChange={(event) => this.setState({email: event.target.value})} value={this.state.email}></input>
           <input placeholder='Password' type='password' onChange={(event) => this.setState({password: event.target.value})} value={this.state.password}></input>
 
-          <button type='submit'>Sign In</button>
+          <button type='submit'>Employee Login</button>
         </form>
       </div>
     )
