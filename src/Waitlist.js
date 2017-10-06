@@ -103,7 +103,7 @@ class Waitlist extends Component {
           <h2>Waitlist</h2>
           <input name='addParty' onClick={this.handleOnClick} type='button' value={'Add Party'} />
 
-          <p>'No Parties Waiting'</p>
+          <p>No Parties Waiting</p>
         </div>
       )
     }

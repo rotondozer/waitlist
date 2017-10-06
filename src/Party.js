@@ -30,15 +30,25 @@ class Party extends Component {
 
     return (
       <div>
-        <p>Name: {this.props.name}</p>
-        <p>Size: {this.props.size}</p>
-        <p>Estimated Wait: {this.props.estWait}</p>
-        <p>Time Checked In: {this.props.checkedIn}</p>
-        <p>Notes: {this.props.notes}</p>
+        <div>
+          <span className='field'>Name:</span> <span>{this.props.name}</span>
+        </div>
+        <div>
+          <span className='field'>Size:</span> <span>{this.props.size}</span>
+        </div>
+        <div>
+          <span className='field'>Estimated Wait:</span> <span>{this.props.estWait}</span>
+        </div>
+        <div>
+          <span className='field'>Time Checked In:</span> <span>{this.props.checkedIn}</span>
+        </div>
+        <div>
+          <span className='field'>Notes:</span> <span>{this.props.notes}</span>
+        </div>
 
-        <input onClick={(event) => this.setState({editParty:true, editPartyId:event.target.id})} type='button' value='edit' id={this.props.id} />
+        <input onClick={(event) => this.setState({editParty:true, editPartyId:event.target.id})} type='button' value='Edit' id={this.props.id} />
 
-        <input onClick={(event) => this.props.onDeleteProp(event)} type='button' value='delete' id={this.props.id}/>
+        <input onClick={(event) => this.props.onDeleteProp(event)} type='button' value='Delete' id={this.props.id}/>
       </div>
     )
   }

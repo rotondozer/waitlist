@@ -7,10 +7,19 @@ header {
   background-color: rgb(130, 136, 167);
 }
 
-input[type="button"] {
+input[type="button"], button[type="submit"] {
   background-color: rgb(245, 240, 204);
   border-radius: 5px;
   font-size: 14px;
+}
+
+.field {
+  border-bottom: 1px solid black;
+  margin: 5px;
+}
+
+.waitlist-party {
+  margin: 50px;
 }
 
 .restaurant-name {
