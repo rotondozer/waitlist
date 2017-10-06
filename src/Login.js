@@ -11,6 +11,8 @@ class Login extends Component {
       user: '',
       signedIn: false
     }
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.onSuccessUpdateState = this.onSuccessUpdateState.bind(this)
   }
 
   onSuccessUpdateState () {
