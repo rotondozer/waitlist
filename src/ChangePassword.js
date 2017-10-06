@@ -38,7 +38,7 @@ class ChangePassword extends Component {
     const self = this
     event.preventDefault()
     axios({
-      url: 'http://localhost:4741/change-password/' + self.props.user_id,
+      url: 'https://waitlist-api.herokuapp.com/change-password/' + self.props.user_id,
       method: 'PATCH',
       headers: {
         'content-type': 'application/json',
