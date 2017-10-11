@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './App.css'
+// import './App.css'
 
 import {
   BrowserRouter as Router,
@@ -14,6 +14,8 @@ import AddParty from './AddParty'
 import EditParty from './EditParty'
 import AddTable from './AddTable'
 import Home from './Home'
+import Login from './Login'
+import Register from './Register'
 
 class WaitListApp extends Component {
   constructor (props) {
@@ -21,9 +23,11 @@ class WaitListApp extends Component {
     this.state = {
       user: 'Not Signed In',
       token: '',
-      user_id: ''
+      user_id: '',
+      signed_in: false
     }
     this.setAuthInfo = this.setAuthInfo.bind(this)
+    this.changeSignedInStatus = this.changeSignedInStatus.bind(this)
   }
 
   // This is more of a GET auth info
@@ -35,7 +39,27 @@ class WaitListApp extends Component {
     })
   }
 
+  changeSignedInStatus () {
+    this.setState({
+      signed_in: true
+    })
+  }
+
   render() {
+
+    console.log('WaitListApp.state.signedIn ' + this.state.signed_in)
+
+    let homeOrLogin
+    if (this.state.signed_in) {
+      homeOrLogin = <Route exact path='/' render={() => (
+        <Home />
+      )}/>
+    } else {
+      homeOrLogin = <Route exact path='/' render={() => (
+        <Login setAuthInfo={this.setAuthInfo} changeSignedInStatus={this.changeSignedInStatus}/>
+      )}/>
+    }
+
     return (
       <Router>
         <div>
@@ -52,7 +76,11 @@ class WaitListApp extends Component {
             </div>
           </header>
 
-          <Route exact path='/' component={Home}/>
+          {homeOrLogin}
+
+          <Route path='/create_account' render={() => (
+            <Register setAuthInfo={this.setAuthInfo}/>
+          )} />
 
           <Route path='/tables' render={() => (
             <Tables user_id={this.state.user_id} token={this.state.token} />

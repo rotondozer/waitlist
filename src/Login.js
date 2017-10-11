@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
+import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 
 class Login extends Component {
   constructor (props) {
@@ -18,8 +20,7 @@ class Login extends Component {
   onSuccessUpdateState () {
     this.setState({
       email: '',
-      password: '',
-      signedIn: true
+      password: ''
     })
   }
 
@@ -47,26 +48,64 @@ class Login extends Component {
         console.log('ID: '+ response.data.user.id)
         console.log('TOKEN: '+ response.data.user.token)
       })
+      .then(() => this.props.changeSignedInStatus())
       .then(() => this.onSuccessUpdateState())
       .catch((error) => console.log(error))
 
   }
 
   render () {
-    if (this.state.signedIn) {
-      this.setState({signedIn: false})
-      return <Redirect push to='/' />
-    }
-    return (
-      <div>
-        <h2>Sign In</h2>
-        <form className='ui form' onSubmit={(event) => this.handleSubmit(event)}>
-          {/* Storing username and password values in state variables which change on each keystroke in onClick (onChange?) */}
-          <input placeholder='Email' onChange={(event) => this.setState({email: event.target.value})} value={this.state.email}></input>
-          <input placeholder='Password' type='password' onChange={(event) => this.setState({password: event.target.value})} value={this.state.password}></input>
 
-          <button type='submit'>Employee Login</button>
-        </form>
+    return (
+      <div className='login-form'>
+        <style>{`
+          body > div,
+          body > div > div,
+          body > div > div > div.login-form {
+            height: 100%;
+          }
+        `}</style>
+        <Grid
+          textAlign='center'
+          style={{ height: '100%' }}
+          verticalAlign='middle'
+        >
+          <Grid.Column style={{ maxWidth: 450 }}>
+            <Header as='h2' color='teal' textAlign='center'>
+              <Image src='/logo.png' />
+              {' '}Employee Log-in
+            </Header>
+            <Form size='large' onSubmit={(event) => this.handleSubmit(event)}>
+              <Segment stacked>
+                {/* Storing username and password values in state variables which change on each keystroke in onClick (onChange?) */}
+                <Form.Input
+                  fluid
+                  icon='user'
+                  iconPosition='left'
+                  placeholder='E-mail'
+                  onChange={(event) => this.setState({email: event.target.value})}
+                  value={this.state.email}
+                />
+                <Form.Input
+                  fluid
+                  icon='lock'
+                  iconPosition='left'
+                  placeholder='Password'
+                  type='password'
+                  onChange={(event) => this.setState({password: event.target.value})}
+                  value={this.state.password}
+                />
+                {/*<input placeholder='Email' onChange={(event) => this.setState({email: event.target.value})} value={this.state.email}></input>
+                <input placeholder='Password' type='password' onChange={(event) => this.setState({password: event.target.value})} value={this.state.password}></input>*/}
+
+                <Button color='teal' fluid size='lage' type='submit'>Employee Login</Button>
+              </Segment>
+            </Form>
+            <Message>
+              New to us? <Link to='/create_account'>Sign Up</Link>
+            </Message>
+          </Grid.Column>
+        </Grid>
       </div>
     )
   }
