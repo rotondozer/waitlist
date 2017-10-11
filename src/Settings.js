@@ -29,23 +29,17 @@ class Settings extends Component {
     })
       .then((response) => console.log(response))
       .then(self.props.setAuthInfo('Not Signed In','',''))
+      .then(self.props.changeSignedInStatus(false))
       .catch((error) => console.log(error))
   }
 
   render () {
     return (
       <div>
-        {/* Add navbar with links to:
-          All,
-          Available,
-          Ready to Queue (unavailable but unassigned)
-          In Queue (unavailable and assigned),
-          History
-           */}
-        <Register setAuthInfo={this.props.setAuthInfo}/>
 
         <ChangePassword setAuthInfo={this.props.setAuthInfo} user_id={this.props.user_id} token={this.props.token}/>
 
+        {/* LOG OUT BUTTON */}
         <input type='button' onClick={(event) => this.signOut(event)} value={'Logout'}/>
       </div>
     )

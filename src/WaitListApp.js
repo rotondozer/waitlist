@@ -39,9 +39,9 @@ class WaitListApp extends Component {
     })
   }
 
-  changeSignedInStatus () {
+  changeSignedInStatus (value) {
     this.setState({
-      signed_in: true
+      signed_in: value
     })
   }
 
@@ -89,7 +89,10 @@ class WaitListApp extends Component {
             <Waitlist user_id={this.state.user_id} token={this.state.token} />
           )} />
           <Route path='/settings' render={() => (
-            <Settings setAuthInfo={this.setAuthInfo} user_id={this.state.user_id} token={this.state.token} />
+            <Settings changeSignedInStatus={this.changeSignedInStatus}
+              setAuthInfo={this.setAuthInfo}
+              user_id={this.state.user_id}
+              token={this.state.token} />
           )} />
           <Route path='/add_parties' render={() => (
             <AddParty user_id={this.state.user_id} token={this.state.token} />

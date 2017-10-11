@@ -48,7 +48,7 @@ class Login extends Component {
         console.log('ID: '+ response.data.user.id)
         console.log('TOKEN: '+ response.data.user.token)
       })
-      .then(() => this.props.changeSignedInStatus())
+      .then(() => this.props.changeSignedInStatus(true))
       .then(() => this.onSuccessUpdateState())
       .catch((error) => console.log(error))
 
@@ -98,7 +98,7 @@ class Login extends Component {
                 {/*<input placeholder='Email' onChange={(event) => this.setState({email: event.target.value})} value={this.state.email}></input>
                 <input placeholder='Password' type='password' onChange={(event) => this.setState({password: event.target.value})} value={this.state.password}></input>*/}
 
-                <Button color='teal' fluid size='lage' type='submit'>Employee Login</Button>
+                <Button color='teal' fluid size='large' type='submit'>Employee Login</Button>
               </Segment>
             </Form>
             <Message>

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
+import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 
 class Register extends Component {
   constructor (props) {
@@ -41,18 +43,61 @@ class Register extends Component {
 
   render () {
     return (
-      <div>
-        <h2>Sign Up</h2>
-        <form onSubmit={(event) => this.handleSubmit(event)}>
-          {/* Storing username and password values in state variables which change on each keystroke in onClick (onChange?) */}
-          <input placeholder='Email' onChange={(event) => this.setState({email: event.target.value})} value={this.state.email}></input>
+      <div className='login-form'>
+        <style>{`
+          body > div,
+          body > div > div,
+          body > div > div > div.login-form {
+            height: 100%;
+          }
+        `}</style>
+        <Grid
+          textAlign='center'
+          style={{ height: '100%' }}
+          verticalAlign='middle'
+        >
+          <Grid.Column style={{ maxWidth: 450 }}>
+            <Header as='h2' color='orange' textAlign='center'>
+              <Image src='/logo.png' />
+              {' '}Employee New Account
+            </Header>
+            <Form size='large' onSubmit={(event) => this.handleSubmit(event)}>
+              <Segment stacked>
+                {/* Storing username and password values in state variables which change on each keystroke in onClick (onChange?) */}
+                <Form.Input
+                  fluid
+                  icon='user'
+                  iconPosition='left'
+                  placeholder='E-mail'
+                  onChange={(event) => this.setState({email: event.target.value})}
+                  value={this.state.email}
+                />
+                <Form.Input
+                  fluid
+                  icon='lock'
+                  iconPosition='left'
+                  placeholder='Password'
+                  type='password'
+                  onChange={(event) => this.setState({password: event.target.value})}
+                  value={this.state.password}
+                />
+                <Form.Input
+                  fluid
+                  icon='lock'
+                  iconPosition='left'
+                  placeholder='Confirm Password'
+                  type='password'
+                  onChange={(event) => this.setState({pwConfirm: event.target.value})}
+                  value={this.state.pwConfirm}
+                />
+                {/*<input placeholder='Email' onChange={(event) => this.setState({email: event.target.value})} value={this.state.email}></input>
+                <input placeholder='Password' type='password' onChange={(event) => this.setState({password: event.target.value})} value={this.state.password}></input>*/}
 
-          <input placeholder='Password' type='password' onChange={(event) => this.setState({password: event.target.value})} value={this.state.password}></input>
-
-          <input placeholder='Confirm Password' type='password' onChange={(event) => this.setState({pwConfirm: event.target.value})} value={this.state.pwConfirm}></input>
-
-          <button type='submit'>Create Account</button>
-        </form>
+                <Button color='orange' fluid size='large' type='submit'>Create Account</Button>
+              </Segment>
+            </Form>
+          </Grid.Column>
+        </Grid>
       </div>
     )
   }
