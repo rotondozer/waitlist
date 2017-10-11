@@ -60,7 +60,7 @@ class Login extends Component {
     return (
       <div>
         <h2>Sign In</h2>
-        <form onSubmit={(event) => this.handleSubmit(event)}>
+        <form className='ui form' onSubmit={(event) => this.handleSubmit(event)}>
           {/* Storing username and password values in state variables which change on each keystroke in onClick (onChange?) */}
           <input placeholder='Email' onChange={(event) => this.setState({email: event.target.value})} value={this.state.email}></input>
           <input placeholder='Password' type='password' onChange={(event) => this.setState({password: event.target.value})} value={this.state.password}></input>
