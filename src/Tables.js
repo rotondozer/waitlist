@@ -37,7 +37,7 @@ class Tables extends Component {
     const tableId = event.target.id
     console.log('calling deleteTable with id ' + tableId)
     axios({
-      url: 'https://waitlist-api.herokuapp.com/tables/' + tableId,
+      url: 'http://localhost:4741/tables/' + tableId,
       method: 'DELETE',
       headers: {
         'content-type': 'application/json',
@@ -52,7 +52,7 @@ class Tables extends Component {
   getAllTables () {
     const self = this
     axios({
-      url: 'https://waitlist-api.herokuapp.com/tables',
+      url: 'http://localhost:4741/tables',
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -75,7 +75,7 @@ class Tables extends Component {
     event.preventDefault()
     let base = this
     let tableNum = this.state.tableNum
-    fetch(`https://waitlist-api.herokuapp.com/tables/${tableNum}`)
+    fetch(`http://localhost:4741/tables/${tableNum}`)
       .then((response) => response.json())
       .then((json) => {
         console.log(json)

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { Redirect } from 'react-router'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 
 class Register extends Component {
@@ -10,13 +11,23 @@ class Register extends Component {
       email: '',
       password: '',
       pwConfirm: '',
+      has_account: false,
+      // is user being used?
       user: ''
     }
+
+    this.changeHasAccountStatus = this.changeHasAccountStatus.bind(this)
+  }
+
+  changeHasAccountStatus () {
+    this.setState({
+      has_account: !(this.state.has_account)
+    })
   }
 
   handleSubmit (event) {
     event.preventDefault()
-    const apiBaseUrl = 'https://waitlist-api.herokuapp.com'
+    const apiBaseUrl = 'http://localhost:4741'
     const self = this
     axios({
       url: apiBaseUrl + '/sign-up',
@@ -33,6 +44,7 @@ class Register extends Component {
       }
     })
       .then((response) => console.log(response))
+      .then(this.changeHasAccountStatus)
       .catch((error) => console.log(error))
     this.setState({
       email: '',
@@ -42,6 +54,10 @@ class Register extends Component {
   }
 
   render () {
+    // TODO replace this with ternary
+    if (this.state.has_account) {
+      return <Redirect to='/' />
+    }
     return (
       <div className='login-form'>
         <style>{`
