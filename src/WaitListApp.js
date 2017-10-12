@@ -16,6 +16,7 @@ import AddTable from './AddTable'
 import Home from './Home'
 import Login from './Login'
 import Register from './Register'
+import MenuExampleTabularOnTop from './Tmp'
 
 class WaitListApp extends Component {
   constructor (props) {
@@ -66,6 +67,7 @@ class WaitListApp extends Component {
           <header>
             <h1 className='restaurant-name' >Your Restaurant Name</h1>
             <h4 className='username' >{this.state.user}</h4>
+            <MenuExampleTabularOnTop />
             <div className='navbar'>
               <nav>
                 <Link className='navlinks' to='/'>Home</Link>{'    '}
