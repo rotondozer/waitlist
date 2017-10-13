@@ -16,6 +16,7 @@ class Tables extends Component {
     super (props)
     this.state = {
       menuItem: 'all'
+      // redirectMenuItem: false
     }
     this.getActiveMenuItem = this.getActiveMenuItem.bind(this)
   }
