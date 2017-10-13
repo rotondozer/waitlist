@@ -101,7 +101,7 @@ class AllTables extends Component {
       />)
       return (
         <div>
-          <h2>Tables</h2>
+          <h2>All Tables</h2>
 
           <input name='addTable' onClick={this.handleOnClick} type='button' value={'Add Table'} />
           {tables}
