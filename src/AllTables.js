@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
+import { Table as TableUI } from 'semantic-ui-react'
 import axios from 'axios'
 
 import Table from './Table.js'
@@ -105,8 +106,21 @@ class AllTables extends Component {
         <div>
           <h2>All Tables</h2>
 
+          <TableUI celled>
+            <TableUI.Header>
+              <TableUI.Row>
+                <TableUI.Cell>Number</TableUI.Cell>
+                <TableUI.Cell>Max Guests</TableUI.Cell>
+                <TableUI.Cell>Min Guests</TableUI.Cell>
+              </TableUI.Row>
+            </TableUI.Header>
+
+            <TableUI.Body>
+              {tables}
+            </TableUI.Body>
+          </TableUI>
+
           <input name='addTable' onClick={this.handleOnClick} type='button' value={'Add Table'} />
-          {tables}
         </div>
       )
     } else {

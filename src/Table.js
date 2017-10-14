@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router'
+// import { Redirect } from 'react-router'
 import { Route } from 'react-router-dom'
+import { Table as TableUI } from 'semantic-ui-react'
 import EditTable from './EditTable'
 
 class Table extends Component {
@@ -28,8 +29,7 @@ class Table extends Component {
           token={this.props.token} />
       )}/>
     }
-    let time_sat
-    let time_up
+    let time_sat, time_up
     if (this.props.history) {
       time_sat = <p>Time Sat: {this.props.time_sat}</p>
       time_up = <p>Time Up: {this.props.time_up}</p>
@@ -38,18 +38,20 @@ class Table extends Component {
     // Add same conditional for party/part_id
 
     return (
-      <div>
-        <p>Number (id): {this.props.id}</p>
-        <p>Max Guests: {this.props.max_seat}</p>
-        <p>Min Guests: {this.props.min_seat}</p>
-        {time_sat}
-        {time_up}
 
-        <input onClick={(event) => this.setState({editTable:true, editTableId:event.target.id})} type='button' value='edit' id={this.props.id}/>
-
-        <input onClick={(event) => this.props.onDeleteTable(event)} type='button' value='delete' id={this.props.id}/>
-
-      </div>
+      <TableUI.Row>
+        <TableUI.Cell>{this.props.id}</TableUI.Cell>
+        <TableUI.Cell>{this.props.max_seat}</TableUI.Cell>
+        <TableUI.Cell>{this.props.min_seat}</TableUI.Cell>
+        <TableUI.Cell>
+          <input onClick={(event) => this.setState({editTable:true, editTableId:event.target.id})} type='button' value='edit' id={this.props.id}/>
+        </TableUI.Cell>
+        <TableUI.Cell>
+          <input onClick={(event) => this.props.onDeleteTable(event)} type='button' value='delete' id={this.props.id}/>
+        </TableUI.Cell>
+        <TableUI.Cell>{time_sat}</TableUI.Cell>
+        <TableUI.Cell>{time_up}</TableUI.Cell>
+      </TableUI.Row>
     )
   }
 

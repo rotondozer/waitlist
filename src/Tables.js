@@ -29,13 +29,13 @@ class Tables extends Component {
   render () {
     return (
       <Router>
-        <Grid>
+        <Grid divided relaxed='very'>
           <Grid.Row>
-            <Grid.Column width={3}>
+            <Grid.Column computer={3} tablet={5} mobile={16}>
               <TablesVertMenu getActiveMenuItem={this.getActiveMenuItem}/>
             </Grid.Column>
 
-            <Grid.Column width={8}>
+            <Grid.Column computer={10} tablet={8} mobile={16}>
               <Route path='/all_tables' render={() => (
                 <AllTables user_id={this.props.user_id} token={this.props.token} />
               )} />
