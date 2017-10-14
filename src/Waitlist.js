@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router'
-import Party from './Party.js'
-import EditParty from './EditParty'
 import axios from 'axios'
+
+import Party from './Party.js'
 
 class Waitlist extends Component {
   constructor (props) {
@@ -31,7 +31,6 @@ class Waitlist extends Component {
 
   deleteParty (event) {
     const baseUrl = 'http://localhost:4741'
-    const self = this
     const partyId = event.target.id
     event.preventDefault()
     console.log('calling deleteParty with id ' + event.target.id)

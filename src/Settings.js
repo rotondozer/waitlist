@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import Login from './Login.js'
-import Register from './Register.js'
-import ChangePassword from './ChangePassword'
 import axios from 'axios'
+
+import ChangePassword from './ChangePassword'
+
 
 class Settings extends Component {
   constructor (props) {

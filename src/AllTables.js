@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router'
 import { Route } from 'react-router-dom'
-import Table from './Table.js'
-import TablesVertMenu from './TablesVertMenu'
-import AddTable from './AddTable'
-import EditTable from './EditTable'
 import axios from 'axios'
+
+import Table from './Table.js'
+import AddTable from './AddTable'
+
+
 
 class AllTables extends Component {
   constructor (props) {
@@ -13,7 +13,7 @@ class AllTables extends Component {
     this.state = {
       tablesArray: []
     }
-    this.handleSubmit = this.handleSubmit.bind(this)
+    // this.handleSubmit = this.handleSubmit.bind(this)
     this.getAllTables = this.getAllTables.bind(this)
     this.handleOnClick = this.handleOnClick.bind(this)
     this.deleteTable = this.deleteTable.bind(this)
@@ -72,17 +72,17 @@ class AllTables extends Component {
   }
 
   // This isn't doing anything...
-  handleSubmit (event) {
-    event.preventDefault()
-    let base = this
-    let tableNum = this.state.tableNum
-    fetch(`http://localhost:4741/tables/${tableNum}`)
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json)
-      })
-      .catch((error) => console.log('something went wrong', error))
-  }
+  // handleSubmit (event) {
+  //   event.preventDefault()
+  //   let base = this
+  //   let tableNum = this.state.tableNum
+  //   fetch(`http://localhost:4741/tables/${tableNum}`)
+  //     .then((response) => response.json())
+  //     .then((json) => {
+  //       console.log(json)
+  //     })
+  //     .catch((error) => console.log('something went wrong', error))
+  // }
 
   render () {
     if (this.state.addTable) {

@@ -1,17 +1,13 @@
 import React, { Component } from 'react'
 import {
   BrowserRouter as Router,
-  Route,
-  Link
+  Route
 } from 'react-router-dom'
-import { Redirect } from 'react-router'
-import Table from './Table.js'
+
 import AllTables from './AllTables.js'
 import AvailableTables from './AvailableTables.js'
 import AllTableHistory from './AllTableHistory.js'
 import TablesVertMenu from './TablesVertMenu'
-import EditTable from './EditTable'
-import axios from 'axios'
 
 class Tables extends Component {
   constructor (props) {

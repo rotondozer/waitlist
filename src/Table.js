@@ -28,12 +28,20 @@ class Table extends Component {
           token={this.props.token} />
       )}/>
     }
+    let time_sat
+    let time_up
+    if (this.props.history) {
+      time_sat = <p>Time Sat: {this.props.time_sat}</p>
+      time_up = <p>Time Up: {this.props.time_up}</p>
+    }
 
     return (
       <div>
         <p>Number (id): {this.props.id}</p>
         <p>Max Guests: {this.props.max_seat}</p>
         <p>Min Guests: {this.props.min_seat}</p>
+        {time_sat}
+        {time_up}
 
         <input onClick={(event) => this.setState({editTable:true, editTableId:event.target.id})} type='button' value='edit' id={this.props.id}/>
 
