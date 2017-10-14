@@ -10,11 +10,9 @@ import axios from 'axios'
 class AllTables extends Component {
   constructor (props) {
     super (props)
-    console.log(props)
     this.state = {
       tablesArray: []
     }
-    // this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.getAllTables = this.getAllTables.bind(this)
     this.handleOnClick = this.handleOnClick.bind(this)
