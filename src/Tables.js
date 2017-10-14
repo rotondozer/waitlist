@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Grid } from 'semantic-ui-react'
 import {
   BrowserRouter as Router,
   Route
@@ -28,22 +29,27 @@ class Tables extends Component {
   render () {
     return (
       <Router>
-        <div>
-          <TablesVertMenu getActiveMenuItem={this.getActiveMenuItem}/>
+        <Grid>
+          <Grid.Row>
+            <Grid.Column width={3}>
+              <TablesVertMenu getActiveMenuItem={this.getActiveMenuItem}/>
+            </Grid.Column>
 
-          <Route path='/all_tables' render={() => (
-            <AllTables user_id={this.props.user_id} token={this.props.token} />
-          )} />
+            <Grid.Column width={8}>
+              <Route path='/all_tables' render={() => (
+                <AllTables user_id={this.props.user_id} token={this.props.token} />
+              )} />
 
-          <Route path='/available_tables' render={() => (
-            <AvailableTables user_id={this.props.user_id} token={this.props.token} />
-          )} />
+              <Route path='/available_tables' render={() => (
+                <AvailableTables user_id={this.props.user_id} token={this.props.token} />
+              )} />
 
-          <Route path='/all_table_history' render={() => (
-            <AllTableHistory user_id={this.props.user_id} token={this.props.token} />
-          )} />
-
-        </div>
+              <Route path='/all_table_history' render={() => (
+                <AllTableHistory user_id={this.props.user_id} token={this.props.token} />
+              )} />
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
       </Router>
     )
   }

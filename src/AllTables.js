@@ -87,7 +87,7 @@ class AllTables extends Component {
   render () {
     if (this.state.addTable) {
       return <Route push to='/add_tables' render={() => (
-        <AddTable />
+        <AddTable user_id={this.props.user_id} token={this.props.token} />
       )}/>
     }
     const self = this
