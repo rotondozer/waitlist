@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Table from './Table.js'
 import axios from 'axios'
 
 class AvailableTables extends Component {
@@ -33,9 +34,29 @@ class AvailableTables extends Component {
   }
 
   render () {
-    return (
-      <h1>AVAILABLE TABLES</h1>
-    )
+    if (this.state.availableTablesArray.length > 0) {
+      const availableTables = this.state.availableTablesArray.map((activity, index) => <Table
+        id={activity.table_id}
+        key={index}
+        max_seat={activity.table.max_seat}
+        min_seat={activity.table.min_seat}
+
+        token={this.props.token}
+      />)
+      return (
+        <div>
+          <h1>AVAILABLE TABLES</h1>
+          {availableTables}
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <h1>AVAILABLE TABLES</h1>
+          <p>No available tables</p>
+        </div>
+      )
+    }
   }
 }
 
