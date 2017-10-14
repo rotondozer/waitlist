@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import { Input, Label, Menu } from 'semantic-ui-react'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
 
 class TablesVertMenu extends Component {
   constructor (props) {
     super (props)
     this.state = {
-      activeItem: 'all'
+      activeItem: 'AllTables'
     }
     this.handleItemClick = this.handleItemClick.bind(this)
   }
@@ -20,23 +25,21 @@ class TablesVertMenu extends Component {
 
     return (
       <Menu vertical>
-        <Menu.Item name='all' active={activeItem === 'all'} onClick={this.handleItemClick}>
+        <Menu.Item as={Link} to='/all_tables' name='AllTables' active={activeItem === 'AllTables'} onClick={this.handleItemClick}>
           <Label color='teal'>1</Label>
           All Tables
         </Menu.Item>
 
-        <Menu.Item name='available' active={activeItem === 'available'} onClick={this.handleItemClick}>
+        <Menu.Item as={Link} to='/available_tables' name='AvailableTables' active={activeItem === 'AvailableTables'} onClick={this.handleItemClick}>
           <Label>51</Label>
           Avaialable
         </Menu.Item>
 
-        <Menu.Item name='history' active={activeItem === 'history'} onClick={this.handleItemClick}>
+        <Menu.Item as={Link} to='/all_table_history' name='AllTableHistory' active={activeItem === 'AllTableHistory'} onClick={this.handleItemClick}>
           <Label>1</Label>
           All Table History
         </Menu.Item>
-        <Menu.Item>
-          <Input icon='search' placeholder='Search mail...' />
-        </Menu.Item>
+
       </Menu>
     )
   }

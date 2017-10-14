@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router'
+import { Route } from 'react-router-dom'
 import Table from './Table.js'
 import TablesVertMenu from './TablesVertMenu'
+import AddTable from './AddTable'
 import EditTable from './EditTable'
 import axios from 'axios'
 
@@ -86,7 +88,9 @@ class AllTables extends Component {
 
   render () {
     if (this.state.addTable) {
-      return <Redirect push to='/add_tables' />
+      return <Route push to='/add_tables' render={() => (
+        <AddTable />
+      )}/>
     }
     const self = this
     if (this.state.tablesArray.length > 0) {
@@ -110,7 +114,7 @@ class AllTables extends Component {
     } else {
       return (
         <div>
-          <h2>Tables</h2>
+          <h2>All Tables</h2>
           <input name='addTable' onClick={this.handleOnClick} type='button' value={'Add Table'} />
 
           <p>"You haven't created any tables yet!"</p>

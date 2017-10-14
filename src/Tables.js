@@ -25,24 +25,26 @@ class Tables extends Component {
     console.log('Input = ' + activeMenuItem)
     this.setState({
       menuItem: activeMenuItem
+      // redirectMenuItem: true
     })
   }
 
-  redirectToActiveMenuItem () {
-    console.log('render ' + this.state.menuItem)
-    const redirect = <Redirect to={'/'+this.state.menuItem+'_tables'} />
-    return redirect
-  }
+  // redirectToActiveMenuItem () {
+  //   console.log('render ' + this.state.menuItem)
+  //
+  //   const redirect = <Redirect to={'/'+this.state.menuItem+'_tables'} />
+  //   return redirect
+  // }
 
   render () {
-    const redirect = this.redirectToActiveMenuItem()
-
-    console.log(redirect)
+    // const redirect = this.redirectToActiveMenuItem()
+    //
+    // console.log(redirect)
     return (
       <Router>
         <div>
           <TablesVertMenu getActiveMenuItem={this.getActiveMenuItem}/>
-          {redirect}
+          {/* redirect */}
 
           <Route path='/all_tables' render={() => (
             <AllTables user_id={this.props.user_id} token={this.props.token} />

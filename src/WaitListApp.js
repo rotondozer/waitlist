@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-// import './App.css'
-
 import {
   BrowserRouter as Router,
   Route,
   Link
 } from 'react-router-dom'
+import { Input, Menu, Segment } from 'semantic-ui-react'
 
 import Tables from './Tables'
 import Waitlist from './Waitlist'
@@ -16,12 +15,12 @@ import AddTable from './AddTable'
 import Home from './Home'
 import Login from './Login'
 import Register from './Register'
-import MenuExampleTabularOnTop from './Tmp'
 
 class WaitListApp extends Component {
   constructor (props) {
     super (props)
     this.state = {
+      activeItem: 'Home',
       user: 'Not Signed In',
       token: '',
       user_id: '',
@@ -30,6 +29,8 @@ class WaitListApp extends Component {
     this.setAuthInfo = this.setAuthInfo.bind(this)
     this.changeSignedInStatus = this.changeSignedInStatus.bind(this)
   }
+
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   // This is more of a GET auth info
   setAuthInfo (user, token, user_id) {
@@ -47,9 +48,9 @@ class WaitListApp extends Component {
   }
 
   render() {
+    const { activeItem } = this.state
 
-    console.log('WaitListApp.state.signedIn ' + this.state.signed_in)
-
+    // pull this out into seperate function?
     let homeOrLogin
     if (this.state.signed_in) {
       homeOrLogin = <Route exact path='/' render={() => (
@@ -64,45 +65,52 @@ class WaitListApp extends Component {
     return (
       <Router>
         <div>
-          <header>
-            <h1 className='restaurant-name' >Your Restaurant Name</h1>
-            <h4 className='username' >{this.state.user}</h4>
-            <MenuExampleTabularOnTop />
-            <div className='navbar'>
-              <nav>
-                <Link className='navlinks' to='/'>Home</Link>{'    '}
-                <Link className='navlinks' to='/tables'>Tables</Link>{'    '}
-                <Link className='navlinks' to='/waitlist'>WaitList</Link>{'    '}
-                <Link className='navlinks' to='/settings'>Settings</Link>{'    '}
-              </nav>
-            </div>
-          </header>
 
-          {homeOrLogin}
+          <h1 className='restaurant-name' >Your Restaurant Name</h1>
+          <h4 className='username' >{this.state.user}</h4>
 
-          <Route path='/create_account' render={() => (
-            <Register setAuthInfo={this.setAuthInfo}/>
-          )} />
+          <Menu attached='top' tabular>
+            <Menu.Item as={Link} to='/' name='Home' active={activeItem === 'Home'} onClick={this.handleItemClick} />
 
-          <Route path='/tables' render={() => (
-            <Tables user_id={this.state.user_id} token={this.state.token} />
-          )} />
-          <Route path='/waitlist' render={() => (
-            <Waitlist user_id={this.state.user_id} token={this.state.token} />
-          )} />
-          <Route path='/settings' render={() => (
-            <Settings changeSignedInStatus={this.changeSignedInStatus}
-              setAuthInfo={this.setAuthInfo}
-              user_id={this.state.user_id}
-              token={this.state.token} />
-          )} />
-          <Route path='/add_parties' render={() => (
-            <AddParty user_id={this.state.user_id} token={this.state.token} />
-          )} />
-          <Route path='/add_tables' render={() => (
-            <AddTable user_id={this.state.user_id} token={this.state.token} />
-          )} />
-          {/*<Route path='/edit_parties' component={EditParty} />*/}
+            <Menu.Item as={Link} to='/tables' name='Tables' active={activeItem === 'Tables'} onClick={this.handleItemClick} />
+
+            <Menu.Item as={Link} to='/waitlist' name='Waitlist' active={activeItem === 'Waitlist'} onClick={this.handleItemClick} />
+
+            <Menu.Item as={Link} to='/settings' name='Settings' active={activeItem === 'Settings'} onClick={this.handleItemClick} />
+
+            <Menu.Menu position='right'>
+              <Menu.Item>
+                <Input transparent icon={{ name: 'search', link: true }} placeholder='Search users...' />
+              </Menu.Item>
+            </Menu.Menu>
+          </Menu>
+
+          <Segment attached='bottom'>
+            {homeOrLogin}
+
+            <Route path='/create_account' render={() => (
+              <Register setAuthInfo={this.setAuthInfo}/>
+            )} />
+
+            <Route path='/tables' render={() => (
+              <Tables user_id={this.state.user_id} token={this.state.token} />
+            )} />
+            <Route path='/waitlist' render={() => (
+              <Waitlist user_id={this.state.user_id} token={this.state.token} />
+            )} />
+            <Route path='/settings' render={() => (
+              <Settings changeSignedInStatus={this.changeSignedInStatus}
+                setAuthInfo={this.setAuthInfo}
+                user_id={this.state.user_id}
+                token={this.state.token} />
+            )} />
+            <Route path='/add_parties' render={() => (
+              <AddParty user_id={this.state.user_id} token={this.state.token} />
+            )} />
+            <Route path='/add_tables' render={() => (
+              <AddTable user_id={this.state.user_id} token={this.state.token} />
+            )} />
+          </Segment>
         </div>
       </Router>
     )
