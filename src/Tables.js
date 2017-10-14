@@ -7,6 +7,8 @@ import {
 import { Redirect } from 'react-router'
 import Table from './Table.js'
 import AllTables from './AllTables.js'
+import AvailableTables from './AvailableTables.js'
+import AllTableHistory from './AllTableHistory.js'
 import TablesVertMenu from './TablesVertMenu'
 import EditTable from './EditTable'
 import axios from 'axios'
@@ -16,7 +18,6 @@ class Tables extends Component {
     super (props)
     this.state = {
       menuItem: 'all'
-      // redirectMenuItem: false
     }
     this.getActiveMenuItem = this.getActiveMenuItem.bind(this)
   }
@@ -25,31 +26,27 @@ class Tables extends Component {
     console.log('Input = ' + activeMenuItem)
     this.setState({
       menuItem: activeMenuItem
-      // redirectMenuItem: true
     })
   }
 
-  // redirectToActiveMenuItem () {
-  //   console.log('render ' + this.state.menuItem)
-  //
-  //   const redirect = <Redirect to={'/'+this.state.menuItem+'_tables'} />
-  //   return redirect
-  // }
-
   render () {
-    // const redirect = this.redirectToActiveMenuItem()
-    //
-    // console.log(redirect)
     return (
       <Router>
         <div>
           <TablesVertMenu getActiveMenuItem={this.getActiveMenuItem}/>
-          {/* redirect */}
 
           <Route path='/all_tables' render={() => (
             <AllTables user_id={this.props.user_id} token={this.props.token} />
           )} />
-          {this.state.menuItem}
+
+          <Route path='/available_tables' render={() => (
+            <AvailableTables user_id={this.props.user_id} token={this.props.token} />
+          )} />
+
+          <Route path='/all_table_history' render={() => (
+            <AllTableHistory user_id={this.props.user_id} token={this.props.token} />
+          )} />
+
         </div>
       </Router>
     )
