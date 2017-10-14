@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
-import { Table as TableUI } from 'semantic-ui-react'
+import {
+  Table as TableUI,
+  Button,
+  Header,
+  Segment
+} from 'semantic-ui-react'
 import axios from 'axios'
 
 import Table from './Table.js'
@@ -104,14 +109,23 @@ class AllTables extends Component {
       />)
       return (
         <div>
-          <h2>All Tables</h2>
+          <Segment clearing raised size='large'>
+            <Header as='h2' floated='left'>
+              Dining Room
+            </Header>
+            <Header as='h2' floated='right'>
+              <Button basic color='teal' name='addTable' onClick={this.handleOnClick}>Add Table</Button>
+            </Header>
+          </Segment>
 
           <TableUI celled>
             <TableUI.Header>
               <TableUI.Row>
-                <TableUI.Cell>Number</TableUI.Cell>
-                <TableUI.Cell>Max Guests</TableUI.Cell>
-                <TableUI.Cell>Min Guests</TableUI.Cell>
+                <TableUI.HeaderCell>Number</TableUI.HeaderCell>
+                <TableUI.HeaderCell>Max Guests</TableUI.HeaderCell>
+                <TableUI.HeaderCell>Min Guests</TableUI.HeaderCell>
+                <TableUI.HeaderCell>Edit</TableUI.HeaderCell>
+                <TableUI.HeaderCell>Delete</TableUI.HeaderCell>
               </TableUI.Row>
             </TableUI.Header>
 
@@ -120,7 +134,7 @@ class AllTables extends Component {
             </TableUI.Body>
           </TableUI>
 
-          <input name='addTable' onClick={this.handleOnClick} type='button' value={'Add Table'} />
+
         </div>
       )
     } else {

@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 // import { Redirect } from 'react-router'
 import { Route } from 'react-router-dom'
-import { Table as TableUI } from 'semantic-ui-react'
+import {
+  Table as TableUI,
+  Button
+} from 'semantic-ui-react'
 import EditTable from './EditTable'
 
 class Table extends Component {
@@ -31,8 +34,9 @@ class Table extends Component {
     }
     let time_sat, time_up
     if (this.props.history) {
-      time_sat = <p>Time Sat: {this.props.time_sat}</p>
-      time_up = <p>Time Up: {this.props.time_up}</p>
+      time_sat = <TableUI.Cell>{this.props.time_sat}</TableUI.Cell>
+
+      time_up = <TableUI.Cell>{this.props.time_up}</TableUI.Cell>
     }
 
     // Add same conditional for party/part_id
@@ -44,13 +48,13 @@ class Table extends Component {
         <TableUI.Cell>{this.props.max_seat}</TableUI.Cell>
         <TableUI.Cell>{this.props.min_seat}</TableUI.Cell>
         <TableUI.Cell>
-          <input onClick={(event) => this.setState({editTable:true, editTableId:event.target.id})} type='button' value='edit' id={this.props.id}/>
+          <Button basic color='yellow' onClick={(event) => this.setState({editTable:true, editTableId:event.target.id})} id={this.props.id}>Edit</Button>
         </TableUI.Cell>
         <TableUI.Cell>
-          <input onClick={(event) => this.props.onDeleteTable(event)} type='button' value='delete' id={this.props.id}/>
+          <Button basic color='red' onClick={(event) => this.props.onDeleteTable(event)} id={this.props.id}>Delete</Button>
         </TableUI.Cell>
-        <TableUI.Cell>{time_sat}</TableUI.Cell>
-        <TableUI.Cell>{time_up}</TableUI.Cell>
+        {time_sat}
+        {time_up}
       </TableUI.Row>
     )
   }
