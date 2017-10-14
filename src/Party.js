@@ -4,13 +4,16 @@ import { Route } from 'react-router-dom'
 import axios from 'axios'
 
 import EditParty from './EditParty'
+import Table from './Table.js'
 
 class Party extends Component {
   constructor (props) {
     super (props)
     this.state = {
       editParty: false,
-      editPartyId: ''
+      editPartyId: '',
+      showingTablesMatchingPartySize: false,
+      matchingTablesArray: []
     }
     this.updatePartyState = this.updatePartyState.bind(this)
     this.getTablesMatchingPartySize = this.getTablesMatchingPartySize.bind(this)
@@ -22,9 +25,17 @@ class Party extends Component {
     })
   }
 
+  updateMatchingTableState (data) {
+    this.setState({
+      showingTablesMatchingPartySize: !(this.state.showingTablesMatchingPartySize),
+      matchingTablesArray: data
+    })
+  }
+
   // `this.props` will refer to each instance of a party.
   // this function is specific to each party
   getTablesMatchingPartySize (event) {
+    const self = this
     event.preventDefault()
     axios({
       url: 'http://localhost:4741/tables/' + this.props.size + '/match',
@@ -34,7 +45,10 @@ class Party extends Component {
         'Authorization': 'Token token=' + this.props.token
       }
     })
-      .then((response) => console.log(response.data))
+      .then((response) => {
+        console.log(response.data.tables)
+        self.updateMatchingTableState(response.data.tables)
+      })
       .catch((error) => console.log(error))
   }
 
@@ -45,6 +59,21 @@ class Party extends Component {
       )}/>
     }
 
+    let matchingTables
+    if (this.state.showingTablesMatchingPartySize) {
+      matchingTables = this.state.matchingTablesArray.map((table, index) => <Table
+        id={table.id}
+        key={index}
+        max_seat={table.max_seat}
+        min_seat={table.min_seat}
+        onDeleteTable={this.deleteTable}
+        onGetAllTables={this.getAllTables}
+        token={this.props.token}
+      />)
+      alert('time to show')
+    } else {
+      alert('time to hide')
+    }
     return (
       <div>
         <div>
@@ -63,11 +92,14 @@ class Party extends Component {
           <span className='field'>Notes:</span> <span>{this.props.notes}</span>
         </div>
 
+        {matchingTables}
+
         <input onClick={(event) => this.setState({editParty:true, editPartyId:event.target.id})} type='button' value='Edit' id={this.props.id} />
 
         <input onClick={(event) => this.props.onDeleteProp(event)} type='button' value='Delete' id={this.props.id}/>
 
         <input onClick={this.getTablesMatchingPartySize} type='button' value='Tbls Matching Party Size' />
+        {matchingTables}
       </div>
     )
   }
