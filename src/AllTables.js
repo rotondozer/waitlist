@@ -108,7 +108,7 @@ class AllTables extends Component {
         token={this.props.token}
       />)
       return (
-        <div>
+        <Container>
           <Segment clearing raised size='large'>
             <Header as='h2' floated='left'>
               Dining Room
@@ -135,7 +135,7 @@ class AllTables extends Component {
           </TableUI>
 
 
-        </div>
+        </Container>
       )
     } else {
       return (
