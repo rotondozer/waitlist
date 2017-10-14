@@ -35,6 +35,8 @@ class Table extends Component {
       time_up = <p>Time Up: {this.props.time_up}</p>
     }
 
+    // Add same conditional for party/part_id
+
     return (
       <div>
         <p>Number (id): {this.props.id}</p>

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router'
 import { Route } from 'react-router-dom'
+import axios from 'axios'
+
 import EditParty from './EditParty'
 
 class Party extends Component {
@@ -11,13 +13,29 @@ class Party extends Component {
       editPartyId: ''
     }
     this.updatePartyState = this.updatePartyState.bind(this)
+    this.getTablesMatchingPartySize = this.getTablesMatchingPartySize.bind(this)
   }
 
   updatePartyState () {
     this.setState({
       editParty: false
     })
+  }
 
+  // `this.props` will refer to each instance of a party.
+  // this function is specific to each party
+  getTablesMatchingPartySize (event) {
+    event.preventDefault()
+    axios({
+      url: 'http://localhost:4741/tables/' + this.props.size + '/match',
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': 'Token token=' + this.props.token
+      }
+    })
+      .then((response) => console.log(response.data))
+      .catch((error) => console.log(error))
   }
 
   render () {
@@ -25,7 +43,6 @@ class Party extends Component {
       return <Route push to='/edit_parties' render={() => (
         <EditParty user_id={this.props.user_id} token={this.props.token} id={this.state.editPartyId} callback={this.updatePartyState} onGetAllParties={this.props.onGetAllParties}/>
       )}/>
-
     }
 
     return (
@@ -49,6 +66,8 @@ class Party extends Component {
         <input onClick={(event) => this.setState({editParty:true, editPartyId:event.target.id})} type='button' value='Edit' id={this.props.id} />
 
         <input onClick={(event) => this.props.onDeleteProp(event)} type='button' value='Delete' id={this.props.id}/>
+
+        <input onClick={this.getTablesMatchingPartySize} type='button' value='Tbls Matching Party Size' />
       </div>
     )
   }
