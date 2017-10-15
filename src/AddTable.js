@@ -1,5 +1,14 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import {
+  Table as TableUI,
+  Button,
+  Header,
+  Segment,
+  Container,
+  Form,
+  Divider
+} from 'semantic-ui-react'
 import { Redirect } from 'react-router'
 
 class AddTable extends Component {
@@ -53,17 +62,31 @@ class AddTable extends Component {
       return <Redirect push to='/tables'/>
     }
     return (
-      <div>
-        <form onSubmit={this.createTable}>
-          <h1>Add a Table to the Dining Area</h1>
-
-          <input name='max_seat' placeholder='Max Guests' onChange={this.handleChange} value={this.state.max_seat}></input>
-
-          <input name='min_seat' placeholder='Minimum Guests' onChange={this.handleChange} value={this.state.min_seat}></input>
-
-          <button type='submit'>Add Table</button>
-        </form>
-      </div>
+      <Container>
+        <Header as='h2'>Add a Table to the Dining Area</Header>
+        <Form size='medium' onSubmit={this.createTable}>
+          <Form.Group widths='equal'>
+            <Form.Field
+              name='max_seat'
+              label='Max Guests'
+              control='input'
+              placeholder='Max Guests'
+              onChange={this.handleChange}
+              value={this.state.max_seat}
+            />
+            <Form.Field
+              name='min_seat'
+              label='Minimum Guests'
+              control='input'
+              placeholder='Min Guests'
+              onChange={this.handleChange}
+              value={this.state.min_seat}
+            />
+          </Form.Group>
+          <Button type='submit' color='teal'>Add Table</Button>
+          <Divider hidden />
+        </Form>
+      </Container>
     )
   }
 }
