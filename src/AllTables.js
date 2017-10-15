@@ -78,19 +78,6 @@ class AllTables extends Component {
     this.getAllTables()
   }
 
-  // This isn't doing anything...
-  // handleSubmit (event) {
-  //   event.preventDefault()
-  //   let base = this
-  //   let tableNum = this.state.tableNum
-  //   fetch(`http://localhost:4741/tables/${tableNum}`)
-  //     .then((response) => response.json())
-  //     .then((json) => {
-  //       console.log(json)
-  //     })
-  //     .catch((error) => console.log('something went wrong', error))
-  // }
-
   render () {
     if (this.state.addTable) {
       return <Route push to='/add_tables' render={() => (
@@ -109,7 +96,7 @@ class AllTables extends Component {
         token={this.props.token}
       />)
       return (
-        <Container>
+        <Container textAlign='center'>
           <Segment clearing raised size='large'>
             <Header as='h2' floated='left'>
               Dining Room
