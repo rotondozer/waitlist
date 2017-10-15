@@ -84,9 +84,9 @@ class AllTables extends Component {
         <AddTable user_id={this.props.user_id} token={this.props.token} />
       )}/>
     }
-    const self = this
+    let tablesOrMessage
     if (this.state.tablesArray.length > 0) {
-      const tables = this.state.tablesArray.map((table, index) => <Table
+      tablesOrMessage = this.state.tablesArray.map((table, index) => <Table
         id={table.id}
         key={index}
         max_seat={table.max_seat}
@@ -95,46 +95,37 @@ class AllTables extends Component {
         onGetAllTables={this.getAllTables}
         token={this.props.token}
       />)
-      return (
-        <Container textAlign='center'>
-          <Segment clearing raised size='large'>
-            <Header as='h2' floated='left'>
-              Dining Room
-            </Header>
-            <Header as='h2' floated='right'>
-              <Button basic color='teal' name='addTable' onClick={this.handleOnClick}>Add Table</Button>
-            </Header>
-          </Segment>
-
-          <TableUI celled>
-            <TableUI.Header>
-              <TableUI.Row>
-                <TableUI.HeaderCell>Number</TableUI.HeaderCell>
-                <TableUI.HeaderCell>Max Guests</TableUI.HeaderCell>
-                <TableUI.HeaderCell>Min Guests</TableUI.HeaderCell>
-                <TableUI.HeaderCell>Edit</TableUI.HeaderCell>
-                <TableUI.HeaderCell>Delete</TableUI.HeaderCell>
-              </TableUI.Row>
-            </TableUI.Header>
-
-            <TableUI.Body>
-              {tables}
-            </TableUI.Body>
-          </TableUI>
-
-
-        </Container>
-      )
     } else {
-      return (
-        <div>
-          <h2>All Tables</h2>
-          <input name='addTable' onClick={this.handleOnClick} type='button' value={'Add Table'} />
-
-          <p>"You haven't created any tables yet!"</p>
-        </div>
-      )
+      tablesOrMessage = <Header as='h2' floated='left'>Dining Area has not been created</Header>
     }
+    return (
+      <Container textAlign='center'>
+        <Segment clearing raised size='large'>
+          <Header as='h2' floated='left'>
+            Dining Room
+          </Header>
+          <Header as='h2' floated='right'>
+            <Button basic color='teal' name='addTable' onClick={this.handleOnClick}>Add Table</Button>
+          </Header>
+        </Segment>
+
+        <TableUI celled>
+          <TableUI.Header>
+            <TableUI.Row>
+              <TableUI.HeaderCell>Number</TableUI.HeaderCell>
+              <TableUI.HeaderCell>Max Guests</TableUI.HeaderCell>
+              <TableUI.HeaderCell>Min Guests</TableUI.HeaderCell>
+              <TableUI.HeaderCell>Edit</TableUI.HeaderCell>
+              <TableUI.HeaderCell>Delete</TableUI.HeaderCell>
+            </TableUI.Row>
+          </TableUI.Header>
+
+          <TableUI.Body>
+            {tablesOrMessage}
+          </TableUI.Body>
+        </TableUI>
+      </Container>
+    )
   }
 }
 

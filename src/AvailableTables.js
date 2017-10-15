@@ -1,5 +1,12 @@
 import React, { Component } from 'react'
 import Table from './Table.js'
+import {
+  Table as TableUI,
+  Button,
+  Header,
+  Segment,
+  Container
+} from 'semantic-ui-react'
 import axios from 'axios'
 
 class AvailableTables extends Component {
@@ -34,8 +41,9 @@ class AvailableTables extends Component {
   }
 
   render () {
+    let body
     if (this.state.availableTablesArray.length > 0) {
-      const availableTables = this.state.availableTablesArray.map((activity, index) => <Table
+      body = this.state.availableTablesArray.map((activity, index) => <Table
         id={activity.table_id}
         key={index}
         max_seat={activity.table.max_seat}
@@ -43,20 +51,33 @@ class AvailableTables extends Component {
 
         token={this.props.token}
       />)
-      return (
-        <div>
-          <h1>AVAILABLE TABLES</h1>
-          {availableTables}
-        </div>
-      )
     } else {
-      return (
-        <div>
-          <h1>AVAILABLE TABLES</h1>
-          <p>No available tables</p>
-        </div>
-      )
+      body = <Header as='h2' floated='left'>Nothing Available Yet</Header>
     }
+    return (
+      <Container>
+        <Segment clearing raised size='large'>
+          <Header as='h2' floated='left'>
+            Available Tables
+          </Header>
+        </Segment>
+        <TableUI celled>
+          <TableUI.Header>
+            <TableUI.Row>
+              <TableUI.HeaderCell>Number</TableUI.HeaderCell>
+              <TableUI.HeaderCell>Max Guests</TableUI.HeaderCell>
+              <TableUI.HeaderCell>Min Guests</TableUI.HeaderCell>
+              <TableUI.HeaderCell>Edit</TableUI.HeaderCell>
+              <TableUI.HeaderCell>Delete</TableUI.HeaderCell>
+            </TableUI.Row>
+          </TableUI.Header>
+
+          <TableUI.Body>
+            {body}
+          </TableUI.Body>
+        </TableUI>
+      </Container>
+    )
   }
 }
 
