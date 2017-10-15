@@ -1,5 +1,12 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import {
+  Table as TableUI,
+  Button,
+  Header,
+  Segment,
+  Container
+} from 'semantic-ui-react'
 
 import Table from './Table.js'
 
@@ -47,10 +54,34 @@ class AllTableHistory extends Component {
       token={this.props.token}
     />)
     return (
-      <div>
-        <h1>ALL TABLE HISTORY</h1>
-        {allTableHistory}
-      </div>
+      <Container>
+        <Segment clearing raised size='large'>
+          <Header as='h2' floated='left'>
+            All Table History
+          </Header>
+        </Segment>
+        <TableUI celled>
+          <TableUI.Header>
+            <TableUI.Row>
+              <TableUI.HeaderCell>Number</TableUI.HeaderCell>
+              <TableUI.HeaderCell>Max Guests</TableUI.HeaderCell>
+              <TableUI.HeaderCell>Min Guests</TableUI.HeaderCell>
+              <TableUI.HeaderCell>Edit</TableUI.HeaderCell>
+              <TableUI.HeaderCell>Delete</TableUI.HeaderCell>
+              <TableUI.HeaderCell>Time Sat</TableUI.HeaderCell>
+              <TableUI.HeaderCell>Time Up</TableUI.HeaderCell>
+            </TableUI.Row>
+          </TableUI.Header>
+
+          <TableUI.Body>
+            {allTableHistory}
+          </TableUI.Body>
+        </TableUI>
+      </Container>
+      // <div>
+      //   <h1>ALL TABLE HISTORY</h1>
+      //   {allTableHistory}
+      // </div>
     )
   }
 }
