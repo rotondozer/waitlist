@@ -21,20 +21,65 @@ class Waitlist extends Component {
       // TODO use this to store the party which the 'Match' button was clicked
       // event.target.id? same as deleteParty()
       activeParty: '',
-      matchingTablesArray: []
-      // showingTablesMatchingPartySize: false
+      showingTablesMatchingPartySize: false,
+      matchingTablesArray: [],
+      showingNextAvailableTables: false,
+      occupiedTablesArray: [],
+      // THIS is where NextAvailableTables will be fed from ...
+      nextAvailableTables: []
     }
     this.componentWillMount = this.componentWillMount.bind(this)
     this.deleteParty = this.deleteParty.bind(this)
     this.handleOnClick = this.handleOnClick.bind(this)
     this.getAllParties = this.getAllParties.bind(this)
     this.updateMatchingTableState = this.updateMatchingTableState.bind(this)
+    this.updateOccupiedTablesState = this.updateOccupiedTablesState.bind(this)
+    this.filterOccupiedTablesToMatchParty = this.filterOccupiedTablesToMatchParty.bind(this)
+    this.updateNextAvailableTablesState = this.updateNextAvailableTablesState.bind(this)
   }
 
+  // TODO consolidate the update state functions to be dynamic
   updateState (data) {
     this.setState({
       partiesArray: data
     })
+  }
+
+  updateOccupiedTablesState (data) {
+    this.setState({
+      showingNextAvailableTables: !(this.state.showingNextAvailableTables),
+      occupiedTablesArray: data
+    })
+  }
+
+  updateNextAvailableTablesState (tables) {
+    this.setState({
+      nextAvailableTables: tables
+    })
+  }
+
+  filterOccupiedTablesToMatchParty () {
+    const matching = this.state.matchingTablesArray
+    const occupied = this.state.occupiedTablesArray
+    let nextAvail = []
+
+
+    // why does the debugger get caught twice?
+    // debugger
+    occupied.forEach(function (occupiedTable) {
+      matching.forEach(function (matchingTable) {
+        if (occupiedTable.table_id === matchingTable.id) {
+          nextAvail.push(matchingTable)
+        }
+      })
+    })
+    // for each index
+    // if the table_id in occupied === id in matching
+      // push the occupied table into the nextAvailableTables array
+    // I really only need table_id and time_sat for display
+    console.log('filtering data like a champ')
+    this.updateNextAvailableTablesState(nextAvail)
+    debugger
   }
 
   updateMatchingTableState (data) {
@@ -112,8 +157,12 @@ class Waitlist extends Component {
 
     let nextAvailableTables
     if (this.state.showingNextAvailableTables) {
+      // this is being flipped to true before it has the updated state to feed
+      console.log('showingNextAvailableTables is TRUE... about to render some componentz')
+      // uncomment below when ready to feed props!
       nextAvailableTables = <Route to='/next_available_tables_for_party' render={() => (
         <NextAvailableTables
+          nextAvailableTables={this.state.nextAvailableTables}
         />
       )} />
     }
@@ -131,6 +180,8 @@ class Waitlist extends Component {
         onDeleteProp={this.deleteParty}
         onGetAllParties={this.getAllParties}
         updateMatchingTableState={this.updateMatchingTableState}
+        updateOccupiedTablesState={this.updateOccupiedTablesState}
+        filterOccupiedTablesToMatchParty={this.filterOccupiedTablesToMatchParty}
         token={this.props.token}
       />)
     } else {
@@ -158,6 +209,7 @@ class Waitlist extends Component {
               <TableUI.HeaderCell>Edit</TableUI.HeaderCell>
               <TableUI.HeaderCell>Delete</TableUI.HeaderCell>
               <TableUI.HeaderCell>Matching Tables</TableUI.HeaderCell>
+              <TableUI.HeaderCell>Next Available Tables</TableUI.HeaderCell>
             </TableUI.Row>
           </TableUI.Header>
 

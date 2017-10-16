@@ -4,7 +4,9 @@ import { Route, Link } from 'react-router-dom'
 import {
   Table as TableUI,
   Button,
-  Container
+  Container,
+  Segment,
+  Header
 } from 'semantic-ui-react'
 import axios from 'axios'
 
@@ -17,23 +19,27 @@ import Table from './Table.js'
 // ** Each row should contain a different table with the most recent time sat
 class NextAvailableTables extends Component {
   render () {
-    // probably won't be matching tables array
+
     const nextAvailableTables = this.props.nextAvailableTables.map((table, index) => <Table
       id={table.id}
-      max_seat={table.max_seat}
-      min_seat={table.min_seat}
+
       time_sat={table.time_sat}
       key={index}
     />)
 
     return (
       <Container>
+        <Segment clearing raised size='large'>
+          <Header as='h2' floated='left'>
+            Next Available Tables for this Party
+          </Header>
+
+        </Segment>
         <TableUI celled>
           <TableUI.Header>
             <TableUI.Row>
               <TableUI.HeaderCell>Number</TableUI.HeaderCell>
-              <TableUI.HeaderCell>Max Guests</TableUI.HeaderCell>
-              <TableUI.HeaderCell>Min Guests</TableUI.HeaderCell>
+              <TableUI.HeaderCell>Time Sat</TableUI.HeaderCell>
               <TableUI.HeaderCell>Edit</TableUI.HeaderCell>
               <TableUI.HeaderCell>Delete</TableUI.HeaderCell>
             </TableUI.Row>

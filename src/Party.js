@@ -17,14 +17,11 @@ class Party extends Component {
     super (props)
     this.state = {
       editParty: false,
-      editPartyId: '',
-      showingTablesMatchingPartySize: false
-      // matchingTablesArray: []
+      editPartyId: ''
     }
     this.updatePartyState = this.updatePartyState.bind(this)
     this.getTablesMatchingPartySize = this.getTablesMatchingPartySize.bind(this)
     this.getNextAvailableTables = this.getNextAvailableTables.bind(this)
-    this.filterOccupiedTablesToMatchParty = this.filterOccupiedTablesToMatchParty.bind(this)
   }
 
   updatePartyState () {
@@ -54,11 +51,6 @@ class Party extends Component {
       .catch((error) => console.log(error))
   }
 
-  filterOccupiedTablesToMatchParty () {
-    // do something here to filter the occupied tables to those that match
-    console.log('filtering data like a champ')
-  }
-
   // *** `this.props` will refer to each instance of a party. ***
   // this function is specific to each party
   getAllOccupiedTables () {
@@ -70,14 +62,26 @@ class Party extends Component {
         'Authorization': 'Token token=' + this.props.token
       }
     })
-      .then((response) => console.log(response.data))
-      .then(this.filterOccupiedTablesToMatchParty)
+      .then((response) => {
+        console.log('All Occupied Tables = ', response.data.tables_activities)
+        this.props.updateOccupiedTablesState(response.data.tables_activities)
+      })
       .catch((error) => console.log(error))
+      // update state in waitlist with an array of occupied tables
+      // then in waitlist compare the tables arrays
+      // return the filtered value down to NextAvailableTables component
   }
 
   getNextAvailableTables (event) {
     event.preventDefault()
+    // this func gets the matching tables then calls another func
+    // through props which updates the matchingParty state in Waitlist.js
     this.getTablesMatchingPartySize(event)
+    // At this point, Waitlist state should have tables matching party size
+    // Get all occupied tables, And update Waitlist state in promise chain
+    this.getAllOccupiedTables()
+    //
+    this.props.filterOccupiedTablesToMatchParty()
   }
 
   render () {
@@ -112,7 +116,7 @@ class Party extends Component {
           <Button basic color='orange'
             onClick={this.getNextAvailableTables}
             as={Link} to='/next_available_tables_for_party'
-            id={this.props.id}>Match
+            id={this.props.id}>Next Available
           </Button>
         </TableUI.Cell>
       </TableUI.Row>
