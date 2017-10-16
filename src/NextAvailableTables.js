@@ -4,30 +4,30 @@ import { Route, Link } from 'react-router-dom'
 import {
   Table as TableUI,
   Button,
-  Container,
-  Segment,
-  Header
+  Container
 } from 'semantic-ui-react'
 import axios from 'axios'
 
 import Table from './Table.js'
-
-class MatchingTables extends Component {
+// ** This Component needs to serve the same purpose as MatchingTables
+// ** Tables returned should be 'Matching Tables'
+// ** That are also unavailable
+// ** With time sat visible
+// ** Table columns should be normal (num, max, min, time_sat)
+// ** Each row should contain a different table with the most recent time sat
+class NextAvailableTables extends Component {
   render () {
-    const matchingTables = this.props.matchingTablesArray.map((table, index) => <Table
+    // probably won't be matching tables array
+    const nextAvailableTables = this.props.nextAvailableTables.map((table, index) => <Table
       id={table.id}
       max_seat={table.max_seat}
       min_seat={table.min_seat}
+      time_sat={table.time_sat}
       key={index}
     />)
 
     return (
       <Container>
-        <Segment clearing raised size='large'>
-          <Header as='h2' floated='left'>
-            Matching Tables
-          </Header>
-        </Segment>
         <TableUI celled>
           <TableUI.Header>
             <TableUI.Row>
@@ -40,7 +40,7 @@ class MatchingTables extends Component {
           </TableUI.Header>
 
           <TableUI.Body>
-            {matchingTables}
+            {nextAvailableTables}
           </TableUI.Body>
         </TableUI>
       </Container>
@@ -48,4 +48,4 @@ class MatchingTables extends Component {
   }
 }
 
-export default MatchingTables
+export default NextAvailableTables

@@ -23,6 +23,8 @@ class Party extends Component {
     }
     this.updatePartyState = this.updatePartyState.bind(this)
     this.getTablesMatchingPartySize = this.getTablesMatchingPartySize.bind(this)
+    this.getNextAvailableTables = this.getNextAvailableTables.bind(this)
+    this.filterOccupiedTablesToMatchParty = this.filterOccupiedTablesToMatchParty.bind(this)
   }
 
   updatePartyState () {
@@ -31,14 +33,7 @@ class Party extends Component {
     })
   }
 
-  // updateMatchingTableState (data) {
-  //   this.setState({
-  //     showingTablesMatchingPartySize: !(this.state.showingTablesMatchingPartySize),
-  //     matchingTablesArray: data
-  //   })
-  // }
-
-  // `this.props` will refer to each instance of a party.
+  // *** `this.props` will refer to each instance of a party. ***
   // this function is specific to each party
   getTablesMatchingPartySize (event) {
     // getting here on click
@@ -59,6 +54,32 @@ class Party extends Component {
       .catch((error) => console.log(error))
   }
 
+  filterOccupiedTablesToMatchParty () {
+    // do something here to filter the occupied tables to those that match
+    console.log('filtering data like a champ')
+  }
+
+  // *** `this.props` will refer to each instance of a party. ***
+  // this function is specific to each party
+  getAllOccupiedTables () {
+    axios({
+      url: 'http://localhost:4741/tables_activities_all_occupied',
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': 'Token token=' + this.props.token
+      }
+    })
+      .then((response) => console.log(response.data))
+      .then(this.filterOccupiedTablesToMatchParty)
+      .catch((error) => console.log(error))
+  }
+
+  getNextAvailableTables (event) {
+    event.preventDefault()
+    this.getTablesMatchingPartySize(event)
+  }
+
   render () {
     if (this.state.editParty) {
       return <Route push to='/edit_parties' render={() => (
@@ -66,19 +87,6 @@ class Party extends Component {
       )}/>
     }
 
-    // let matchingTables
-    // if (this.state.showingTablesMatchingPartySize) {
-    //   // Still getting here and logging true
-    //   // console.log('it it true')
-    //   // <Router>
-    //     matchingTables = <Route to='/matching_tables_to_party_size' render={() => (
-    //       <MatchingTables user_id={this.state.user_id} token={this.state.token} />
-    //       )} />
-      // </Router>
-
-
-    //
-    // }
     return (
 
       <TableUI.Row>
@@ -100,11 +108,14 @@ class Party extends Component {
             id={this.props.id}>Match
           </Button>
         </TableUI.Cell>
-        {/* Matching Tables needs to be its own component */}
-
+        <TableUI.Cell>
+          <Button basic color='orange'
+            onClick={this.getNextAvailableTables}
+            as={Link} to='/next_available_tables_for_party'
+            id={this.props.id}>Match
+          </Button>
+        </TableUI.Cell>
       </TableUI.Row>
-
-
 
     )
   }

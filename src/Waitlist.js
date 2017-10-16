@@ -10,6 +10,7 @@ import {
 import axios from 'axios'
 
 import MatchingTables from './MatchingTables.js'
+import NextAvailableTables from './NextAvailableTables.js'
 import Party from './Party.js'
 
 class Waitlist extends Component {
@@ -96,22 +97,25 @@ class Waitlist extends Component {
       return <Redirect push to="/add_parties" />
     }
 
-    // TODO get props!!
     let matchingTables
     if (this.state.showingTablesMatchingPartySize) {
-      // Still getting here and logging true
-      console.log('it it true')
-      // <Router>
-        matchingTables = <Route to='/matching_tables_to_party_size' render={() => (
-          <MatchingTables
-            user_id={this.props.user_id}
-            token={this.props.token}
-            matchingTablesArray={this.state.matchingTablesArray}
-            updateMatchingTableState={this.updateMatchingTableState}
+      matchingTables = <Route to='/matching_tables_to_party_size' render={() => (
+        <MatchingTables
+          user_id={this.props.user_id}
+          token={this.props.token}
+          matchingTablesArray={this.state.matchingTablesArray}
+          updateMatchingTableState={this.updateMatchingTableState}
 
-          />
-          )} />
-      // </Router>
+        />
+      )} />
+    }
+
+    let nextAvailableTables
+    if (this.state.showingNextAvailableTables) {
+      nextAvailableTables = <Route to='/next_available_tables_for_party' render={() => (
+        <NextAvailableTables
+        />
+      )} />
     }
 
     let partiesOrMessage
@@ -139,7 +143,7 @@ class Waitlist extends Component {
             Guests Waiting
           </Header>
           <Header as='h2' floated='right'>
-            <Button basic color='teal' name='addParaty' onClick={this.handleOnClick}>Add Table</Button>
+            <Button basic color='teal' name='addParty' onClick={this.handleOnClick}>Add Party</Button>
           </Header>
         </Segment>
 
@@ -162,6 +166,7 @@ class Waitlist extends Component {
           </TableUI.Body>
         </TableUI>
         {matchingTables}
+        {nextAvailableTables}
       </Container>
     )
   }
