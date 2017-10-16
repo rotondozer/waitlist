@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router'
 import { Route } from 'react-router-dom'
+import {
+  Table as TableUI,
+  Button
+} from 'semantic-ui-react'
 import axios from 'axios'
 
 import EditParty from './EditParty'
@@ -70,37 +74,29 @@ class Party extends Component {
         onGetAllTables={this.getAllTables}
         token={this.props.token}
       />)
-      alert('time to show')
-    } else {
-      alert('time to hide')
     }
     return (
-      <div>
-        <div>
-          <span className='field'>Name:</span> <span>{this.props.name}</span>
-        </div>
-        <div>
-          <span className='field'>Size:</span> <span>{this.props.size}</span>
-        </div>
-        <div>
-          <span className='field'>Estimated Wait:</span> <span>{this.props.estWait}</span>
-        </div>
-        <div>
-          <span className='field'>Time Checked In:</span> <span>{this.props.checkedIn}</span>
-        </div>
-        <div>
-          <span className='field'>Notes:</span> <span>{this.props.notes}</span>
-        </div>
 
+      <TableUI.Row>
+        <TableUI.Cell>{this.props.name}</TableUI.Cell>
+        <TableUI.Cell>{this.props.size}</TableUI.Cell>
+        <TableUI.Cell>{this.props.estWait}</TableUI.Cell>
+        <TableUI.Cell>{this.props.checkedIn}</TableUI.Cell>
+        <TableUI.Cell>{this.props.notes}</TableUI.Cell>
+        <TableUI.Cell>
+          <Button basic color='yellow' onClick={(event) => this.setState({editParty:true, editPartyId:event.target.id})} id={this.props.id}>Edit</Button>
+        </TableUI.Cell>
+        <TableUI.Cell>
+          <Button basic color='red' onClick={(event) => this.props.onDeleteTable(event)} id={this.props.id}>Delete</Button>
+        </TableUI.Cell>
+        <TableUI.Cell>
+          <Button basic color='blue' onClick={this.getTablesMatchingPartySize} id={this.props.id}>Match</Button>
+        </TableUI.Cell>
+        {/* Matching Tables needs to be its own component */}
         {matchingTables}
+      </TableUI.Row>
 
-        <input onClick={(event) => this.setState({editParty:true, editPartyId:event.target.id})} type='button' value='Edit' id={this.props.id} />
 
-        <input onClick={(event) => this.props.onDeleteProp(event)} type='button' value='Delete' id={this.props.id}/>
-
-        <input onClick={this.getTablesMatchingPartySize} type='button' value='Tbls Matching Party Size' />
-        {matchingTables}
-      </div>
     )
   }
 }

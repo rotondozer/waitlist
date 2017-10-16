@@ -12,8 +12,6 @@ import axios from 'axios'
 import Table from './Table.js'
 import AddTable from './AddTable'
 
-
-
 class AllTables extends Component {
   constructor (props) {
     super (props)

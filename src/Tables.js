@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { Grid } from 'semantic-ui-react'
 import {
   BrowserRouter as Router,
-  Route
+  Route,
+  Redirect
 } from 'react-router-dom'
 
 import AllTables from './AllTables.js'
@@ -14,7 +15,8 @@ class Tables extends Component {
   constructor (props) {
     super (props)
     this.state = {
-      menuItem: 'all'
+      menuItem: 'AllTables'
+      // redirect: false
     }
     this.getActiveMenuItem = this.getActiveMenuItem.bind(this)
   }
@@ -26,7 +28,18 @@ class Tables extends Component {
     })
   }
 
+  // componentWillMount () {
+  //   this.setState({ redirect: true })
+  // }
+  //
+  // componentDidMount () {
+  //   this.setState({ redirect: false })
+  // }
+
   render () {
+    // if (this.state.redirect) {
+    //   <Redirect to='all_tables' />
+    // }
     return (
       <Router>
         <Grid divided relaxed='very'>

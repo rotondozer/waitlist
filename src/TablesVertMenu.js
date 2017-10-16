@@ -20,7 +20,12 @@ class TablesVertMenu extends Component {
     this.props.getActiveMenuItem(name)
   }
 
+  componentWillMount () {
+    this.props.getActiveMenuItem()
+  }
+
   render() {
+
     const { activeItem } = this.state
 
     return (

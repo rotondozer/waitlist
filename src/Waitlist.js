@@ -1,5 +1,12 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router'
+import {
+  Table as TableUI,
+  Button,
+  Header,
+  Segment,
+  Container
+} from 'semantic-ui-react'
 import axios from 'axios'
 
 import Party from './Party.js'
@@ -23,7 +30,6 @@ class Waitlist extends Component {
   }
 
   handleOnClick (event) {
-    console.log('Yooooooooooo')
     this.setState({
       [event.target.name]: true
     })
@@ -33,7 +39,6 @@ class Waitlist extends Component {
     const baseUrl = 'http://localhost:4741'
     const partyId = event.target.id
     event.preventDefault()
-    console.log('calling deleteParty with id ' + event.target.id)
     axios({
       url: `${baseUrl}/parties/${partyId}`,
       method: 'DELETE',
@@ -74,9 +79,9 @@ class Waitlist extends Component {
       return <Redirect push to="/add_parties" />
     }
 
-    const self = this
+    let partiesOrMessage
     if (this.state.partiesArray.length > 0) {
-      const parties = this.state.partiesArray.map((party, index) => <Party
+      partiesOrMessage = this.state.partiesArray.map((party, index) => <Party
         name={party.name}
         size={party.size}
         estWait={party.est_wait}
@@ -88,24 +93,40 @@ class Waitlist extends Component {
         onGetAllParties={this.getAllParties}
         token={this.props.token}
       />)
-      return (
-        <div>
-          <h2>Waitlist</h2>
-          <input name='addParty' onClick={this.handleOnClick} type='button' value={'Add Party'} />
-
-          {parties}
-        </div>
-      )
     } else {
-      return (
-        <div>
-          <h2>Waitlist</h2>
-          <input name='addParty' onClick={this.handleOnClick} type='button' value={'Add Party'} />
-
-          <p>No Parties Waiting</p>
-        </div>
-      )
+      partiesOrMessage = <Header as='h2' floated='left'>No Parties Waiting</Header>
     }
+    return (
+      <Container textAlign='center'>
+        <Segment clearing raised size='large'>
+          <Header as='h2' floated='left'>
+            Guests Waiting
+          </Header>
+          <Header as='h2' floated='right'>
+            <Button basic color='teal' name='addParaty' onClick={this.handleOnClick}>Add Table</Button>
+          </Header>
+        </Segment>
+
+        <TableUI celled>
+          <TableUI.Header>
+            <TableUI.Row>
+              <TableUI.HeaderCell>Name</TableUI.HeaderCell>
+              <TableUI.HeaderCell>Size</TableUI.HeaderCell>
+              <TableUI.HeaderCell>Est. Wait</TableUI.HeaderCell>
+              <TableUI.HeaderCell>Time Checked In</TableUI.HeaderCell>
+              <TableUI.HeaderCell>Notes</TableUI.HeaderCell>
+              <TableUI.HeaderCell>Edit</TableUI.HeaderCell>
+              <TableUI.HeaderCell>Delete</TableUI.HeaderCell>
+              <TableUI.HeaderCell>Matching Tables</TableUI.HeaderCell>
+            </TableUI.Row>
+          </TableUI.Header>
+
+          <TableUI.Body>
+            {partiesOrMessage}
+          </TableUI.Body>
+        </TableUI>
+      </Container>
+    )
   }
 }
 

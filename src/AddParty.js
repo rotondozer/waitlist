@@ -61,10 +61,15 @@ class AddParty extends Component {
       <div>
         <form onSubmit={this.createParty}>
           <h1>Add a Party to the WaitList</h1>
+
           <input name='name' placeholder='name' onChange={this.handleChange} value={this.state.name}></input>
+
           <input name='size' placeholder='party size' onChange={this.handleChange} value={this.state.size}></input>
+
           <input name='estWait' placeholder='estimated wait' onChange={this.handleChange} value={this.state.estWait}></input>
+
           <input name='timeIn' placeholder='time checked in' onChange={this.handleChange} value={this.state.timeIn}></input>
+
           <input name='notes' placeholder='notes' onChange={this.handleChange} value={this.state.notes}></input>
 
           <button type='submit'>Add Party</button>
