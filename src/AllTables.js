@@ -16,6 +16,7 @@ class AllTables extends Component {
   constructor (props) {
     super (props)
     this.state = {
+      // This state needs to be passed in as props, not updated on the spot
       tablesArray: []
     }
     // this.handleSubmit = this.handleSubmit.bind(this)
@@ -73,29 +74,40 @@ class AllTables extends Component {
   }
 
   componentWillMount () {
+    // State is updated with tables before mount
     this.getAllTables()
   }
 
+  renderTables () {
+    return this.state.tablesArray.map((table, index) => <Table
+      id={table.id}
+      key={index}
+      max_seat={table.max_seat}
+      min_seat={table.min_seat}
+      onDeleteTable={this.deleteTable}
+      onGetAllTables={this.getAllTables}
+      token={this.props.token}
+    />)
+  }
+
   render () {
+    // ComponentWillMount gets called here
+    // Render will finish execution with empty state
+    // Realize state is updated
+    // Then re-render, casuing the UX bug
     if (this.state.addTable) {
       return <Route push to='/add_tables' render={() => (
         <AddTable user_id={this.props.user_id} token={this.props.token} />
       )}/>
     }
-    let tablesOrMessage
-    if (this.state.tablesArray.length > 0) {
-      tablesOrMessage = this.state.tablesArray.map((table, index) => <Table
-        id={table.id}
-        key={index}
-        max_seat={table.max_seat}
-        min_seat={table.min_seat}
-        onDeleteTable={this.deleteTable}
-        onGetAllTables={this.getAllTables}
-        token={this.props.token}
-      />)
-    } else {
+
+    let tablesOrMessage = this.renderTables()
+    // TODO figure out why this conditional is causing UX bug
+
+    if (this.state.tablesArray.length < 1) {
       tablesOrMessage = <Header as='h2' floated='left'>Dining Area has not been created</Header>
     }
+
     return (
       <Container textAlign='center'>
         <Segment clearing raised size='large'>
