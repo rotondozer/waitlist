@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router'
+import { Redirect, Route } from 'react-router'
 import {
   Table as TableUI,
   Button,
@@ -9,23 +9,40 @@ import {
 } from 'semantic-ui-react'
 import axios from 'axios'
 
+import MatchingTables from './MatchingTables.js'
 import Party from './Party.js'
 
 class Waitlist extends Component {
   constructor (props) {
     super (props)
     this.state = {
-      partiesArray: []
+      partiesArray: [],
+      // TODO use this to store the party which the 'Match' button was clicked
+      // event.target.id? same as deleteParty()
+      activeParty: '',
+      matchingTablesArray: []
+      // showingTablesMatchingPartySize: false
     }
     this.componentWillMount = this.componentWillMount.bind(this)
     this.deleteParty = this.deleteParty.bind(this)
     this.handleOnClick = this.handleOnClick.bind(this)
     this.getAllParties = this.getAllParties.bind(this)
+    this.updateMatchingTableState = this.updateMatchingTableState.bind(this)
   }
 
   updateState (data) {
     this.setState({
       partiesArray: data
+    })
+  }
+
+  updateMatchingTableState (data) {
+    // being called
+    this.setState({
+      showingTablesMatchingPartySize: !(this.state.showingTablesMatchingPartySize),
+      matchingTablesArray: data
+      // TODO update user here, if needed
+      // activeParty: user
     })
   }
 
@@ -79,6 +96,24 @@ class Waitlist extends Component {
       return <Redirect push to="/add_parties" />
     }
 
+    // TODO get props!!
+    let matchingTables
+    if (this.state.showingTablesMatchingPartySize) {
+      // Still getting here and logging true
+      console.log('it it true')
+      // <Router>
+        matchingTables = <Route to='/matching_tables_to_party_size' render={() => (
+          <MatchingTables
+            user_id={this.props.user_id}
+            token={this.props.token}
+            matchingTablesArray={this.state.matchingTablesArray}
+            updateMatchingTableState={this.updateMatchingTableState}
+
+          />
+          )} />
+      // </Router>
+    }
+
     let partiesOrMessage
     if (this.state.partiesArray.length > 0) {
       partiesOrMessage = this.state.partiesArray.map((party, index) => <Party
@@ -91,6 +126,7 @@ class Waitlist extends Component {
         id={party.id}
         onDeleteProp={this.deleteParty}
         onGetAllParties={this.getAllParties}
+        updateMatchingTableState={this.updateMatchingTableState}
         token={this.props.token}
       />)
     } else {
@@ -125,6 +161,7 @@ class Waitlist extends Component {
             {partiesOrMessage}
           </TableUI.Body>
         </TableUI>
+        {matchingTables}
       </Container>
     )
   }

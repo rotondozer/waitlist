@@ -94,6 +94,7 @@ class WaitListApp extends Component {
             <Route path='/tables' render={() => (
               <Tables user_id={this.state.user_id} token={this.state.token} />
             )} />
+
             <Route path='/waitlist' render={() => (
               <Waitlist user_id={this.state.user_id} token={this.state.token} />
             )} />
