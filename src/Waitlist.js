@@ -32,6 +32,7 @@ class Waitlist extends Component {
     this.deleteParty = this.deleteParty.bind(this)
     this.handleOnClick = this.handleOnClick.bind(this)
     this.getAllParties = this.getAllParties.bind(this)
+    this.getAllOccupiedTables = this.getAllOccupiedTables.bind(this)
     this.updateMatchingTableState = this.updateMatchingTableState.bind(this)
     this.updateOccupiedTablesState = this.updateOccupiedTablesState.bind(this)
     this.filterOccupiedTablesToMatchParty = this.filterOccupiedTablesToMatchParty.bind(this)
@@ -47,14 +48,26 @@ class Waitlist extends Component {
 
   updateOccupiedTablesState (data) {
     this.setState({
-      showingNextAvailableTables: !(this.state.showingNextAvailableTables),
+
       occupiedTablesArray: data
     })
+    // this.filterOccupiedTablesToMatchParty()
   }
 
   updateNextAvailableTablesState (tables) {
     this.setState({
-      nextAvailableTables: tables
+      nextAvailableTables: tables,
+      showingNextAvailableTables: !(this.state.showingNextAvailableTables)
+    })
+
+  }
+
+  updateMatchingTableState (data) {
+    this.setState({
+      showingTablesMatchingPartySize: !(this.state.showingTablesMatchingPartySize),
+      matchingTablesArray: data
+      // TODO update user here, if needed
+      // activeParty: user
     })
   }
 
@@ -63,9 +76,6 @@ class Waitlist extends Component {
     const occupied = this.state.occupiedTablesArray
     let nextAvail = []
 
-
-    // why does the debugger get caught twice?
-    // debugger
     occupied.forEach(function (occupiedTable) {
       matching.forEach(function (matchingTable) {
         if (occupiedTable.table_id === matchingTable.id) {
@@ -73,23 +83,10 @@ class Waitlist extends Component {
         }
       })
     })
-    // for each index
-    // if the table_id in occupied === id in matching
-      // push the occupied table into the nextAvailableTables array
-    // I really only need table_id and time_sat for display
-    console.log('filtering data like a champ')
+    // On first click, this function is given an empty array
+    // On the first click, occupied is there and matching is not
+    // It should help that these two updates are in the same place, so one can't happen without the other
     this.updateNextAvailableTablesState(nextAvail)
-    debugger
-  }
-
-  updateMatchingTableState (data) {
-    // being called
-    this.setState({
-      showingTablesMatchingPartySize: !(this.state.showingTablesMatchingPartySize),
-      matchingTablesArray: data
-      // TODO update user here, if needed
-      // activeParty: user
-    })
   }
 
   handleOnClick (event) {
@@ -133,8 +130,25 @@ class Waitlist extends Component {
       .catch((error) => console.log(error))
   }
 
+  getAllOccupiedTables () {
+    // event.preventDefault()
+    axios({
+      url: 'http://localhost:4741/tables_activities_all_occupied',
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': 'Token token=' + this.props.token
+      }
+    })
+      .then((response) => {
+        console.log('All Occupied Tables = ', response.data.tables_activities)
+        this.updateOccupiedTablesState(response.data.tables_activities)
+      })
+      .catch((error) => console.log(error))
+    }
   componentWillMount () {
     this.getAllParties()
+    this.getAllOccupiedTables()
   }
 
   render () {

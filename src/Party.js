@@ -21,7 +21,8 @@ class Party extends Component {
     }
     this.updatePartyState = this.updatePartyState.bind(this)
     this.getTablesMatchingPartySize = this.getTablesMatchingPartySize.bind(this)
-    this.getNextAvailableTables = this.getNextAvailableTables.bind(this)
+    // this.getNextAvailableTables = this.getNextAvailableTables.bind(this)
+    this.getAllOccupiedTables = this.getAllOccupiedTables.bind(this)
   }
 
   updatePartyState () {
@@ -33,9 +34,8 @@ class Party extends Component {
   // *** `this.props` will refer to each instance of a party. ***
   // this function is specific to each party
   getTablesMatchingPartySize (event) {
-    // getting here on click
-    const self = this
     event.preventDefault()
+
     axios({
       url: 'http://localhost:4741/tables/' + this.props.size + '/match',
       method: 'GET',
@@ -44,16 +44,14 @@ class Party extends Component {
         'Authorization': 'Token token=' + this.props.token
       }
     })
-      .then((response) => {
-        console.log(response.data.tables)
-        this.props.updateMatchingTableState(response.data.tables)
-      })
+      .then((response) => this.props.updateMatchingTableState(response.data.tables))
       .catch((error) => console.log(error))
   }
 
   // *** `this.props` will refer to each instance of a party. ***
   // this function is specific to each party
-  getAllOccupiedTables () {
+  getAllOccupiedTables (event) {
+    event.preventDefault()
     axios({
       url: 'http://localhost:4741/tables_activities_all_occupied',
       method: 'GET',
@@ -66,23 +64,17 @@ class Party extends Component {
         console.log('All Occupied Tables = ', response.data.tables_activities)
         this.props.updateOccupiedTablesState(response.data.tables_activities)
       })
+      .then(() => this.props.filterOccupiedTablesToMatchParty())
       .catch((error) => console.log(error))
-      // update state in waitlist with an array of occupied tables
-      // then in waitlist compare the tables arrays
-      // return the filtered value down to NextAvailableTables component
   }
 
-  getNextAvailableTables (event) {
-    event.preventDefault()
-    // this func gets the matching tables then calls another func
-    // through props which updates the matchingParty state in Waitlist.js
-    this.getTablesMatchingPartySize(event)
-    // At this point, Waitlist state should have tables matching party size
-    // Get all occupied tables, And update Waitlist state in promise chain
-    this.getAllOccupiedTables()
-    //
-    this.props.filterOccupiedTablesToMatchParty()
-  }
+  // getNextAvailableTables (event) {
+  //   event.preventDefault()
+  //
+  //   this.getTablesMatchingPartySize(event)
+  //
+  //   this.props.filterOccupiedTablesToMatchParty()
+  // }
 
   render () {
     if (this.state.editParty) {
@@ -107,14 +99,14 @@ class Party extends Component {
         </TableUI.Cell>
         <TableUI.Cell>
           <Button basic color='blue'
-            onClick={this.getTablesMatchingPartySize}
+            onClick={(event) => this.getTablesMatchingPartySize(event)}
             as={Link} to='/matching_tables_to_party_size'
             id={this.props.id}>Match
           </Button>
         </TableUI.Cell>
         <TableUI.Cell>
           <Button basic color='orange'
-            onClick={this.getNextAvailableTables}
+            onClick={(event) => this.getAllOccupiedTables(event)}
             as={Link} to='/next_available_tables_for_party'
             id={this.props.id}>Next Available
           </Button>
