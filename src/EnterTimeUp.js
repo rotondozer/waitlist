@@ -39,13 +39,12 @@ class EnterTimeUp extends Component {
   render () {
     return (
       <TableUI.Row>
-
-        <TableUI.Cell>
-          {this.props.table_id}
-        </TableUI.Cell>
-        <TableUI.Cell>
-          {this.props.time_sat}
-        </TableUI.Cell>
+        <TableUI.Cell>{this.props.table_id}</TableUI.Cell>
+        <TableUI.Cell>max</TableUI.Cell>
+        <TableUI.Cell>min</TableUI.Cell>
+        <TableUI.Cell>edit</TableUI.Cell>
+        <TableUI.Cell>delete</TableUI.Cell>
+        <TableUI.Cell>{this.props.time_sat}</TableUI.Cell>
         <TableUI.Cell>
           {/* TODO capture onChange within state, send that with submit form */}
           <input placeholder='enter time up'></input>
