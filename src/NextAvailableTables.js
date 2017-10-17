@@ -19,9 +19,8 @@ import Table from './Table.js'
 // ** Each row should contain a different table with the most recent time sat
 class NextAvailableTables extends Component {
   render () {
-    debugger
     const nextAvailableTables = this.props.nextAvailableTables.map((table, index) => <Table
-      id={table.table_id}
+      table_id={table.table_id}
 
       max_seat={table.time_sat}
       key={index}

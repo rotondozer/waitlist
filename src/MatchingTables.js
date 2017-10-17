@@ -15,7 +15,7 @@ import Table from './Table.js'
 class MatchingTables extends Component {
   render () {
     const matchingTables = this.props.matchingTablesArray.map((table, index) => <Table
-      id={table.id}
+      table_id={table.id}
       max_seat={table.max_seat}
       min_seat={table.min_seat}
       key={index}
