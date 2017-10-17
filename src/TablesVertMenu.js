@@ -31,17 +31,17 @@ class TablesVertMenu extends Component {
     return (
       <Menu vertical>
         <Menu.Item as={Link} to='/all_tables' name='AllTables' active={activeItem === 'AllTables'} onClick={this.handleItemClick}>
-          <Label color='teal'>1</Label>
+          <Label color='teal'>0</Label>
           All Tables
         </Menu.Item>
 
         <Menu.Item as={Link} to='/available_tables' name='AvailableTables' active={activeItem === 'AvailableTables'} onClick={this.handleItemClick}>
-          <Label>51</Label>
+          <Label>0</Label>
           Avaialable
         </Menu.Item>
 
         <Menu.Item as={Link} to='/all_table_history' name='AllTableHistory' active={activeItem === 'AllTableHistory'} onClick={this.handleItemClick}>
-          <Label>1</Label>
+          <Label>0</Label>
           All Table History
         </Menu.Item>
 

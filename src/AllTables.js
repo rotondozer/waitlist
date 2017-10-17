@@ -42,7 +42,6 @@ class AllTables extends Component {
   deleteTable (event) {
     event.preventDefault()
     const tableId = event.target.id
-    console.log('calling deleteTable with id ' + tableId)
     axios({
       url: 'http://localhost:4741/tables/' + tableId,
       method: 'DELETE',
@@ -80,7 +79,7 @@ class AllTables extends Component {
 
   renderTables () {
     return this.state.tablesArray.map((table, index) => <Table
-      id={table.id}
+      table_id={table.id}
       key={index}
       max_seat={table.max_seat}
       min_seat={table.min_seat}

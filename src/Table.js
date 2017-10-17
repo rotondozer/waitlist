@@ -38,7 +38,6 @@ class Table extends Component {
       time_sat: event.target.getAttribute('time_sat'),
       activity_id: event.target.getAttribute('activity_id')
     })
-    debugger
   }
 
   render () {

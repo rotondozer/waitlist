@@ -28,18 +28,8 @@ class Tables extends Component {
     })
   }
 
-  // componentWillMount () {
-  //   this.setState({ redirect: true })
-  // }
-  //
-  // componentDidMount () {
-  //   this.setState({ redirect: false })
-  // }
-
   render () {
-    // if (this.state.redirect) {
-    //   <Redirect to='all_tables' />
-    // }
+
     return (
       <Router>
         <Grid divided relaxed='very'>

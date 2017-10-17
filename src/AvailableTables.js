@@ -44,7 +44,7 @@ class AvailableTables extends Component {
     let body
     if (this.state.availableTablesArray.length > 0) {
       body = this.state.availableTablesArray.map((activity, index) => <Table
-        id={activity.table_id}
+        table_id={activity.table_id}
         key={index}
         max_seat={activity.table.max_seat}
         min_seat={activity.table.min_seat}
