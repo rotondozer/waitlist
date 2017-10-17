@@ -145,7 +145,7 @@ class Waitlist extends Component {
         this.updateOccupiedTablesState(response.data.tables_activities)
       })
       .catch((error) => console.log(error))
-    }
+  }
   componentWillMount () {
     this.getAllParties()
     this.getAllOccupiedTables()
@@ -190,7 +190,7 @@ class Waitlist extends Component {
         checkedIn={party.checked_in}
         notes={party.notes}
         key={index}
-        id={party.id}
+        party_id={party.id}
         onDeleteProp={this.deleteParty}
         onGetAllParties={this.getAllParties}
         updateMatchingTableState={this.updateMatchingTableState}
@@ -223,6 +223,7 @@ class Waitlist extends Component {
               <TableUI.HeaderCell>Delete</TableUI.HeaderCell>
               <TableUI.HeaderCell>Matching Tables</TableUI.HeaderCell>
               <TableUI.HeaderCell>Next Available Tables</TableUI.HeaderCell>
+              <TableUI.HeaderCell>Seat Party</TableUI.HeaderCell>
             </TableUI.Row>
           </TableUI.Header>
 

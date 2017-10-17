@@ -19,7 +19,6 @@ class AddParty extends Component {
 
   createParty (event) {
     event.preventDefault()
-    console.log(this.state)
     axios({
       url: 'http://localhost:4741/parties',
       method: 'POST',
