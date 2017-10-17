@@ -28,7 +28,7 @@ class EditTable extends Component {
           max_seat: this.state.max_seat,
           min_seat: this.state.min_seat,
           // TODO: pass user_id down from container component
-          user_id: 1
+          user_id: this.props.user_id
         }
       }
     })

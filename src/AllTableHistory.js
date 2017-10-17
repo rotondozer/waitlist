@@ -43,14 +43,15 @@ class AllTableHistory extends Component {
 
   render () {
     const allTableHistory = this.state.allTableHistoryArray.map((activity, index) => <Table
-      id={activity.table_id}
+      activity_id={activity.id}
+      table_id={activity.table_id}
       key={index}
       max_seat={activity.table.max_seat}
       min_seat={activity.table.min_seat}
       history={true}
       time_sat={activity.time_sat}
       time_up={activity.time_up}
-
+      user_id={this.props.user_id}
       token={this.props.token}
     />)
     return (
