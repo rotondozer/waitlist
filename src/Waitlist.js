@@ -202,11 +202,10 @@ class Waitlist extends Component {
       partiesOrMessage = <Header as='h2' floated='left'>No Parties Waiting</Header>
     }
     return (
-      <Container textAlign='center'>
+      <Container>
         <Segment clearing raised size='large'>
-          <Header as='h2' floated='left'>
-            Guests Waiting
-          </Header>
+          <Header as='h2' floated='left'  content='Guests Waiting' subheader="Click 'Match' first, then 'Next Available'" />
+
           <Header as='h2' floated='right'>
             <Button basic color='teal' name='addParty' onClick={this.handleOnClick}>Add Party</Button>
           </Header>

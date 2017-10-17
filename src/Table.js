@@ -35,8 +35,15 @@ class Table extends Component {
     let time_sat, time_up
     if (this.props.history) {
       time_sat = <TableUI.Cell>{this.props.time_sat}</TableUI.Cell>
+      if (this.props.time_up === null) {
+        // Make the time-up cell a button to PATCH tables_activities and enter time up.
+        time_up = <TableUI.Cell><Button basic color='teal' id={this.props.id}>They're Up!</Button></TableUI.Cell>
+        // Either send the form pre-filled with infomation
+        // or edit controller to not update blank fields
+      } else {
+        time_up = <TableUI.Cell>{this.props.time_up}</TableUI.Cell>
+      }
 
-      time_up = <TableUI.Cell>{this.props.time_up}</TableUI.Cell>
     }
 
     // Add same conditional for party/part_id
