@@ -76,10 +76,10 @@ class Waitlist extends Component {
     const occupied = this.state.occupiedTablesArray
     let nextAvail = []
 
-    occupied.forEach(function (occupiedTable) {
-      matching.forEach(function (matchingTable) {
+    matching.forEach(function (matchingTable) {
+      occupied.forEach(function (occupiedTable) {
         if (occupiedTable.table_id === matchingTable.id) {
-          nextAvail.push(matchingTable)
+          nextAvail.push(occupiedTable)
         }
       })
     })
