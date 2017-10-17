@@ -34,11 +34,11 @@ class Table extends Component {
     this.setState({
       enterTimeUp: !(this.state.enterTimeUp),
       // is 'Buton id == table_id' originally passed,
-      editTableId: event.target.table_id,
-      time_sat: event.target.time_sat,
-      activity_id: event.target.activity_id
+      editTableId: event.target.getAttribute('table_id'),
+      time_sat: event.target.getAttribute('time_sat'),
+      activity_id: event.target.getAttribute('activity_id')
     })
-    console.log('enterTimeUp')
+    debugger
   }
 
   render () {
