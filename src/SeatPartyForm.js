@@ -54,11 +54,18 @@ class SeatPartyForm extends Component {
   render () {
 
     return (
-      <form onSubmit={(event) => this.seatParty(event)}>
-        <input placeholder='table number' name='table_id' onChange={(event) => this.handleInputChange(event)} value={this.state.table_id}/>
-        <input placeholder='time sat' name='time_sat' onChange={(event) => this.handleInputChange(event)} value={this.state.time_sat}/>
-        <button>Seat</button>
-      </form>
+
+      <Form onSubmit={(event) => this.seatParty(event)}>
+        <Form.Group>
+          <Form.Input placeholder='table number'
+            name='table_id'
+            onChange={(event) => this.handleInputChange(event)} value={this.state.table_id} />
+          <Form.Input placeholder='time sat'
+            name='time_sat'
+            onChange={(event) => this.handleInputChange(event)} value={this.state.time_sat} />
+          <Form.Button content='Seat'/>
+        </Form.Group>
+      </Form>
     )
   }
 }
