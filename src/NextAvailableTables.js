@@ -20,6 +20,7 @@ import Table from './Table.js'
 // ** Each row should contain a different table with the most recent time sat
 class NextAvailableTables extends Component {
   render () {
+    // the max_seat prop is used her to re-use the table component
     const nextAvailableTables = this.props.nextAvailableTables.map((table, index) => <Table
       table_id={table.table_id}
 

@@ -5,6 +5,7 @@ import {
   Table as TableUI,
   Button
 } from 'semantic-ui-react'
+import Time from 'react-time-format'
 
 class EnterTimeUp extends Component {
   constructor (props) {
@@ -57,7 +58,7 @@ class EnterTimeUp extends Component {
           <Button basic color='yellow' onClick={(event) => this.submitTimeUp(event)}>Submit</Button>
         </TableUI.Cell>
         <TableUI.Cell>delete</TableUI.Cell>
-        <TableUI.Cell>{this.props.time_sat}</TableUI.Cell>
+        <TableUI.Cell><Time value={this.props.time_sat} format='hh:mm'/></TableUI.Cell>
         <TableUI.Cell>
           {/* TODO capture onChange within state, send that with submit form */}
           <input placeholder='enter time up' onChange={(event) => this.handleInputChange(event)} value={this.state.time_up_input}></input>

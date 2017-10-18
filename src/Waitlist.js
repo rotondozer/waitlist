@@ -191,7 +191,7 @@ class Waitlist extends Component {
         notes={party.notes}
         key={index}
         party_id={party.id}
-        onDeleteProp={this.deleteParty}
+        onDeleteParty={this.deleteParty}
         onGetAllParties={this.getAllParties}
         updateMatchingTableState={this.updateMatchingTableState}
         updateOccupiedTablesState={this.updateOccupiedTablesState}

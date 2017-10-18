@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router'
+import {
+  Form,
+  Container,
+  Header
+} from 'semantic-ui-react'
 import axios from 'axios'
 
 class EditParty extends Component {
@@ -53,18 +58,36 @@ class EditParty extends Component {
 
   render () {
     return (
-      <div>
-        <form onSubmit={this.editParty}>
-          <h1>Edit this Party</h1>
-          <input name='name' placeholder='name' onChange={this.handleChange} value={this.state.name}></input>
-          <input name='size' placeholder='party size' onChange={this.handleChange} value={this.state.size}></input>
-          <input name='estWait' placeholder='estimated wait' onChange={this.handleChange} value={this.state.estWait}></input>
-          <input name='timeIn' placeholder='time checked in' onChange={this.handleChange} value={this.state.timeIn}></input>
-          <input name='notes' placeholder='notes' onChange={this.handleChange} value={this.state.notes}></input>
+      <Container>
 
-          <button type='submit'>Edit Party</button>
-        </form>
-      </div>
+        <Form onSubmit={this.editParty}>
+          <Form.Group>
+            <Header as='h4' content='Edit this Party' />
+            <Form.Input name='name'
+              placeholder='name'
+              onChange={this.handleChange}
+              value={this.state.name} />
+            <Form.Input name='size'
+              placeholder='party size'
+              onChange={this.handleChange}
+              value={this.state.size} />
+            <Form.Input name='estWait'
+              placeholder='estimated wait'
+              onChange={this.handleChange}
+              value={this.state.estWait} />
+            <Form.Input name='timeIn'
+              placeholder='time checked in'
+              onChange={this.handleChange}
+              value={this.state.timeIn} />
+            <Form.Input name='notes'
+              placeholder='notes'
+              onChange={this.handleChange}
+              value={this.state.notes} />
+
+            <Form.Button basic color='teal' type='submit' content='Edit Party' />
+          </Form.Group>
+        </Form>
+      </Container>
     )
   }
 }

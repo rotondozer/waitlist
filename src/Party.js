@@ -102,7 +102,7 @@ class Party extends Component {
           <Button basic color='yellow' onClick={(event) => this.setState({editParty:true, editPartyId:event.target.id})} id={this.props.party_id}>Edit</Button>
         </TableUI.Cell>
         <TableUI.Cell>
-          <Button basic color='red' onClick={(event) => this.props.onDeleteTable(event)} id={this.props.party_id}>Delete</Button>
+          <Button basic color='red' onClick={(event) => this.props.onDeleteParty(event)} id={this.props.party_id}>Delete</Button>
         </TableUI.Cell>
         <TableUI.Cell>
           <Button basic color='blue'

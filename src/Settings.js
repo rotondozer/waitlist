@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import {
+  Container,
+  Button,
+  Grid
+} from 'semantic-ui-react'
 
 import ChangePassword from './ChangePassword'
 
@@ -35,13 +40,26 @@ class Settings extends Component {
 
   render () {
     return (
-      <div>
+      <Container>
+        <Grid centered>
+          <Grid.Row>
+            <Grid.Column width={6}>
+              <ChangePassword setAuthInfo={this.props.setAuthInfo} user_id={this.props.user_id} token={this.props.token}/>
+            </Grid.Column>
+          </Grid.Row>
 
-        <ChangePassword setAuthInfo={this.props.setAuthInfo} user_id={this.props.user_id} token={this.props.token}/>
-
-        {/* LOG OUT BUTTON */}
-        <input type='button' onClick={(event) => this.signOut(event)} value={'Logout'}/>
-      </div>
+          <Grid.Row>
+            <Grid.Column width={6}>
+              {/* LOG OUT BUTTON */}
+              <Button fluid
+                basic color='red'
+                type='button'
+                onClick={(event) => this.signOut(event)}
+                content='Logout'/>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Container>
     )
   }
 }

@@ -1,5 +1,11 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router'
+import {
+  Form,
+  Container,
+  Header,
+  Segment
+} from 'semantic-ui-react'
 import axios from 'axios'
 
 // ChangePassword does not actually need email?
@@ -64,18 +70,37 @@ class ChangePassword extends Component {
       return <Redirect push to='/' />
     }
     return (
-      <div>
-        <h2>Change Password</h2>
-        <form onSubmit={this.changePassword}>
-          <input name='email' placeholder='email' onChange={this.handleChange} value={this.state.email} />
+      <Container>
+        <Segment clearing raised size='large'>
+          <Header as='h2' content='Change Password'/>
+        </Segment>
+        <Form onSubmit={this.changePassword}>
+          <Form.Input
+            name='email'
+            label='Name'
+            placeholder='Name'
+            onChange={this.handleChange}
+            value={this.state.email} />
 
-          <input type='password' name='old_password' placeholder='old_password' onChange={this.handleChange} value={this.state.old_password} />
+          <Form.Input
+            type='password'
+            label='Old Password'
+            name='old_password'
+            placeholder='Old'
+            onChange={this.handleChange}
+            value={this.state.old_password} />
 
-          <input type='password' name='new_password' placeholder='new_password' onChange={this.handleChange} value={this.state.new_password} />
+          <Form.Input
+            type='password'
+            label='New Password'
+            name='new_password'
+            placeholder='New'
+            onChange={this.handleChange}
+            value={this.state.new_password} />
 
-          <button type='submit'>Change Password</button>
-        </form>
-      </div>
+          <Form.Button fluid basic color='teal' type='submit' content='Change Password' />
+        </Form>
+      </Container>
     )
   }
 }
