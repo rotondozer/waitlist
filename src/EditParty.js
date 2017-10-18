@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router'
 import {
-  Form,
-  Container,
-  Header
+  Input,
+  Button,
+  Table
 } from 'semantic-ui-react'
 import axios from 'axios'
 
@@ -58,36 +58,52 @@ class EditParty extends Component {
 
   render () {
     return (
-      <Container>
-
-        <Form onSubmit={this.editParty}>
-          <Form.Group>
-            <Header as='h4' content='Edit this Party' />
-            <Form.Input name='name'
-              placeholder='name'
-              onChange={this.handleChange}
-              value={this.state.name} />
-            <Form.Input name='size'
-              placeholder='party size'
-              onChange={this.handleChange}
-              value={this.state.size} />
-            <Form.Input name='estWait'
-              placeholder='estimated wait'
-              onChange={this.handleChange}
-              value={this.state.estWait} />
-            <Form.Input name='timeIn'
-              placeholder='time checked in'
-              onChange={this.handleChange}
-              value={this.state.timeIn} />
-            <Form.Input name='notes'
-              placeholder='notes'
-              onChange={this.handleChange}
-              value={this.state.notes} />
-
-            <Form.Button basic color='teal' type='submit' content='Edit Party' />
-          </Form.Group>
-        </Form>
-      </Container>
+      // TODO get rid of Form,
+      // TODO fire axios PATCH on button click,
+      // TODO Put all inputs inside table cells
+      <Table.Row>
+        <Table.Cell>
+          <Input name='name'
+            placeholder='name'
+            onChange={this.handleChange}
+            value={this.state.name} />
+        </Table.Cell>
+        <Table.Cell>
+          <Input name='size'
+            placeholder='party size'
+            onChange={this.handleChange}
+            value={this.state.size} />
+        </Table.Cell>
+        <Table.Cell>
+          <Input name='estWait'
+            placeholder='estimated wait'
+            onChange={this.handleChange}
+            value={this.state.estWait} />
+        </Table.Cell>
+        <Table.Cell>
+          <Input name='timeIn'
+            placeholder='time checked in'
+            onChange={this.handleChange}
+            value={this.state.timeIn} />
+        </Table.Cell>
+        <Table.Cell>
+          <Input name='notes'
+            placeholder='notes'
+            onChange={this.handleChange}
+            value={this.state.notes} />
+        </Table.Cell>
+        <Table.Cell>
+          <Button basic
+            color='teal'
+            type='submit'
+            onClick={(event) => this.editParty(event)}
+            content='Edit Party' />
+        </Table.Cell>
+        <Table.Cell>{'  '}</Table.Cell>
+        <Table.Cell>{'  '}</Table.Cell>
+        <Table.Cell>{'  '}</Table.Cell>
+        <Table.Cell>{'  '}</Table.Cell>
+      </Table.Row>
     )
   }
 }

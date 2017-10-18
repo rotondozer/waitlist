@@ -77,7 +77,11 @@ class Party extends Component {
   render () {
     if (this.state.editParty) {
       return <Route push to='/edit_parties' render={() => (
-        <EditParty user_id={this.props.user_id} token={this.props.token} id={this.state.editPartyId} callback={this.updatePartyState} onGetAllParties={this.props.onGetAllParties}/>
+        <EditParty user_id={this.props.user_id}
+          token={this.props.token}
+          id={this.state.editPartyId}
+          callback={this.updatePartyState}
+          onGetAllParties={this.props.onGetAllParties}/>
       )}/>
     }
 

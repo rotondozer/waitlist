@@ -228,6 +228,7 @@ class Waitlist extends Component {
           </TableUI.Header>
 
           <TableUI.Body>
+            {/* TODO move message display to central location*/}
             {partiesOrMessage}
           </TableUI.Body>
         </TableUI>
