@@ -15,7 +15,6 @@ class Table extends Component {
     super (props)
     this.state = {
       editTable: false,
-      editTableId: '',
       enterTimeUp: false,
       time_sat: '',
       activity_id: '',
@@ -26,7 +25,7 @@ class Table extends Component {
 
   updateTableState () {
     this.setState({
-      editTable: false
+      editTable: !(this.state.editTable)
     })
   }
 
@@ -43,22 +42,20 @@ class Table extends Component {
 
   render () {
     if (this.state.editTable) {
-      // user_id and token should come form props, anything specific to the entry
-      // should come from state
       return <Route push to='/edit_tables' render={() => (
-        <EditTable id={this.state.editTableId}
+        <EditTable user_id={this.props.user_id}
+          token={this.props.token}
+          table_id={this.props.table_id}
+          max_seat={this.props.max_seat}
+          min_seat={this.props.min_seat}
           callback={this.updateTableState}
           onGetAllTables={this.props.onGetAllTables}
-          token={this.props.token}
-          user_id={this.props.user_id}
         />
       )}/>
     }
     if (this.state.enterTimeUp) {
-      // user_id and token should come from props, anything specific to the entry
-      // should come from state (updated onClick)
       return <Route push to='/enter_time_up' render={() => (
-        <EnterTimeUp table_id={this.state.editTableId}
+        <EnterTimeUp table_id={this.props.table_id}
           activity_id={this.state.activity_id}
           time_sat={this.state.time_sat}
           user_id={this.props.user_id}
@@ -85,29 +82,26 @@ class Table extends Component {
       } else {
         time_up = <TableUI.Cell><Time value={this.props.time_up} format='hh:mm'/></TableUI.Cell>
       }
-
     }
 
-    // Add same conditional for party/part_id
+    // TODO ? Add same conditional for party/part_id
 
     return (
-
       <TableUI.Row>
         <TableUI.Cell>{this.props.table_id}</TableUI.Cell>
         <TableUI.Cell>{this.props.max_seat}</TableUI.Cell>
         <TableUI.Cell>{this.props.min_seat}</TableUI.Cell>
         <TableUI.Cell>
-          <Button basic color='yellow' onClick={(event) => this.setState({editTable:true, editTableId:event.target.id})} id={this.props.id}>Edit</Button>
+          <Button basic color='yellow' onClick={(event) => this.setState({editTable:true, editTableId:event.target.id})} id={this.props.table_id}>Edit</Button>
         </TableUI.Cell>
         <TableUI.Cell>
-          <Button basic color='red' onClick={(event) => this.props.onDeleteTable(event)} id={this.props.id}>Delete</Button>
+          <Button basic color='red' onClick={(event) => this.props.onDeleteTable(event)} id={this.props.table_id}>Delete</Button>
         </TableUI.Cell>
         {time_sat}
         {time_up}
       </TableUI.Row>
     )
   }
-
 }
 
 export default Table

@@ -1,23 +1,26 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router'
+import {
+  Table,
+  Input,
+  Button
+} from 'semantic-ui-react'
 import axios from 'axios'
 
 class EditTable extends Component {
   constructor (props) {
     super (props)
     this.state = {
-      max_seat: '',
-      min_seat: ''
+      max_seat: this.props.max_seat,
+      min_seat: this.props.min_seat
     }
     this.editTable = this.editTable.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
 
   editTable (event) {
-    console.log('edit table props ' + this.props)
     event.preventDefault()
     axios({
-      url: 'http://localhost:4741/tables/' + this.props.id,
+      url: 'http://localhost:4741/tables/' + this.props.table_id,
       method: 'PATCH',
       headers: {
         'content-type': 'application/json',
@@ -27,7 +30,6 @@ class EditTable extends Component {
         table: {
           max_seat: this.state.max_seat,
           min_seat: this.state.min_seat,
-          // TODO: pass user_id down from container component
           user_id: this.props.user_id
         }
       }
@@ -48,17 +50,26 @@ class EditTable extends Component {
 
   render () {
     return (
-      <div>
-        <form onSubmit={this.editTable}>
-          <h1>Edit Table Number {this.props.id}</h1>
-
-          <input name='max_seat' placeholder='Max Guests' onChange={this.handleChange} value={this.state.max_seat}></input>
-
-          <input name='min_seat' placeholder='Minimum Guests' onChange={this.handleChange} value={this.state.min_seat}></input>
-
-          <button type='submit'>Edit Table {this.props.id}</button>
-        </form>
-      </div>
+      <Table.Row>
+        {/* Table Id can probably be edited? */}
+        <Table.Cell>{this.props.table_id}</Table.Cell>
+        <Table.Cell>
+          <Input name='max_seat'
+            placeholder='Max Guests'
+            onChange={this.handleChange} value={this.state.max_seat} />
+        </Table.Cell>
+        <Table.Cell>
+          <Input name='min_seat'
+            placeholder='Minimum Guests' onChange={this.handleChange} value={this.state.min_seat}/>
+        </Table.Cell>
+        <Table.Cell>
+          <Button basic
+            color='teal'
+            type='submit'
+            content={`Edit Table ${this.props.table_id}`}
+            onClick={(event) => this.editTable(event)}/>
+        </Table.Cell>
+      </Table.Row>
     )
   }
 }
