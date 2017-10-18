@@ -16,13 +16,11 @@ class Tables extends Component {
     super (props)
     this.state = {
       menuItem: 'AllTables'
-      // redirect: false
     }
     this.getActiveMenuItem = this.getActiveMenuItem.bind(this)
   }
 
   getActiveMenuItem (activeMenuItem) {
-    console.log('Input = ' + activeMenuItem)
     this.setState({
       menuItem: activeMenuItem
     })
@@ -40,15 +38,15 @@ class Tables extends Component {
 
             <Grid.Column computer={10} tablet={8} mobile={16}>
               <Route path='/all_tables' render={() => (
-                <AllTables user_id={this.props.user_id} token={this.props.token} />
+                <AllTables user_id={this.props.user_id} token={this.props.token} handleMessage={this.props.handleMessage}/>
               )} />
 
               <Route path='/available_tables' render={() => (
-                <AvailableTables user_id={this.props.user_id} token={this.props.token} />
+                <AvailableTables user_id={this.props.user_id} token={this.props.token} handleMessage={this.props.handleMessage}/>
               )} />
 
               <Route path='/all_table_history' render={() => (
-                <AllTableHistory user_id={this.props.user_id} token={this.props.token} />
+                <AllTableHistory user_id={this.props.user_id} token={this.props.token} handleMessage={this.props.handleMessage}/>
               )} />
             </Grid.Column>
           </Grid.Row>

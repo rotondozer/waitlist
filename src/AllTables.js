@@ -19,7 +19,6 @@ class AllTables extends Component {
       // This state needs to be passed in as props, not updated on the spot
       tablesArray: []
     }
-    // this.handleSubmit = this.handleSubmit.bind(this)
     this.getAllTables = this.getAllTables.bind(this)
     this.handleOnClick = this.handleOnClick.bind(this)
     this.deleteTable = this.deleteTable.bind(this)
@@ -33,7 +32,6 @@ class AllTables extends Component {
   }
 
   handleOnClick (event) {
-    console.log('handleOnClick ' + event.target.name)
     this.setState({
       [event.target.name]: true
     })
@@ -52,7 +50,7 @@ class AllTables extends Component {
     })
       .then(() => this.getAllTables())
       .then((response) => console.log(response))
-      .catch((error) => console.log(error))
+      .catch((error) => this.props.handleMessage(error, error))
   }
 
   getAllTables () {
@@ -69,7 +67,7 @@ class AllTables extends Component {
         console.log(response.data.tables)
         self.updateState(response.data.tables)
       })
-      .catch((error) => console.log(error))
+      .catch((error) => this.props.handleMessage('error', 'error'))
   }
 
   componentWillMount () {

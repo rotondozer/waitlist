@@ -4,7 +4,13 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-import { Input, Menu, Segment } from 'semantic-ui-react'
+import {
+  Input,
+  Menu,
+  Segment,
+  Container,
+  Header
+} from 'semantic-ui-react'
 
 import Tables from './Tables'
 import Waitlist from './Waitlist'
@@ -23,10 +29,14 @@ class WaitListApp extends Component {
       user: 'Not Signed In',
       token: '',
       user_id: '',
-      signed_in: false
+      signed_in: false,
+      displayMessage: false,
+      displayMessageContent: '',
+      displayMessageType: '',
     }
     this.setAuthInfo = this.setAuthInfo.bind(this)
     this.changeSignedInStatus = this.changeSignedInStatus.bind(this)
+    this.handleMessage = this.handleMessage.bind(this)
   }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
@@ -46,6 +56,14 @@ class WaitListApp extends Component {
     })
   }
 
+  handleMessage (type, content) {
+    this.setState({
+      displayMessage: !(this.state.displayMessage),
+      displayMessageContent: content,
+      displayMessageType: type
+    })
+  }
+
   render() {
     const { activeItem } = this.state
 
@@ -57,25 +75,26 @@ class WaitListApp extends Component {
       )}/>
     } else {
       homeOrLogin = <Route exact path='/' render={() => (
-        <Login setAuthInfo={this.setAuthInfo} changeSignedInStatus={this.changeSignedInStatus}/>
+        <Login setAuthInfo={this.setAuthInfo} changeSignedInStatus={this.changeSignedInStatus} handleMessage={this.handleMessage}/>
       )}/>
     }
 
+    let displayMessage
+    if (this.state.displayMessage) {
+      displayMessage = <div><h1>Type: {this.state.displayMessageType}</h1><h1>Content: {this.state.displayMessageContent}</h1></div>
+    }
+
     return (
-      <Router>
-        <div>
-
-          <h1 className='restaurant-name' >Your Restaurant Name</h1>
-          <h4 className='username' >{this.state.user}</h4>
-
+      <Router className='outer-frame'>
+        <Container>
+          <Header as='h1' content='Your Restaurant Name' floated='left' />
+          <Header as='h3' content={this.state.user} floated='right'/>
+          {displayMessage}
           <Menu attached='top' tabular>
-            <Menu.Item as={Link} to='/' name='Home' active={activeItem === 'Home'} onClick={this.handleItemClick} />
-
-            <Menu.Item as={Link} to='/tables' name='Tables' active={activeItem === 'Tables'} onClick={this.handleItemClick} />
-
-            <Menu.Item as={Link} to='/waitlist' name='Waitlist' active={activeItem === 'Waitlist'} onClick={this.handleItemClick} />
-
-            <Menu.Item as={Link} to='/settings' name='Settings' active={activeItem === 'Settings'} onClick={this.handleItemClick} />
+            <Menu.Item as={Link} to='/' handleMessage={this.handleMessage} name='Home' active={activeItem === 'Home'} onClick={this.handleItemClick} />
+            <Menu.Item as={Link} to='/tables' handleMessage={this.handleMessage} name='Tables' active={activeItem === 'Tables'} onClick={this.handleItemClick} />
+            <Menu.Item as={Link} to='/waitlist' handleMessage={this.handleMessage} name='Waitlist' active={activeItem === 'Waitlist'} onClick={this.handleItemClick} />
+            <Menu.Item as={Link} to='/settings' handleMessage={this.handleMessage} name='Settings' active={activeItem === 'Settings'} onClick={this.handleItemClick} />
 
             <Menu.Menu position='right'>
               <Menu.Item>
@@ -88,30 +107,29 @@ class WaitListApp extends Component {
             {homeOrLogin}
 
             <Route path='/create_account' render={() => (
-              <Register setAuthInfo={this.setAuthInfo}/>
+              <Register handleMessage={this.handleMessage} setAuthInfo={this.setAuthInfo}/>
             )} />
-
             <Route path='/tables' render={() => (
-              <Tables user_id={this.state.user_id} token={this.state.token} />
+              <Tables user_id={this.state.user_id} token={this.state.token} handleMessage={this.handleMessage}/>
             )} />
-
             <Route path='/waitlist' render={() => (
-              <Waitlist user_id={this.state.user_id} token={this.state.token} />
+              <Waitlist user_id={this.state.user_id} token={this.state.token} handleMessage={this.handleMessage}/>
             )} />
             <Route path='/settings' render={() => (
               <Settings changeSignedInStatus={this.changeSignedInStatus}
                 setAuthInfo={this.setAuthInfo}
                 user_id={this.state.user_id}
-                token={this.state.token} />
+                token={this.state.token}
+                handleMessage={this.handleMessage} />
             )} />
             <Route path='/add_parties' render={() => (
-              <AddParty user_id={this.state.user_id} token={this.state.token} />
+              <AddParty user_id={this.state.user_id} token={this.state.token} handleMessage={this.handleMessage}/>
             )} />
             <Route path='/add_tables' render={() => (
-              <AddTable user_id={this.state.user_id} token={this.state.token} />
+              <AddTable user_id={this.state.user_id} token={this.state.token} handleMessage={this.handleMessage}/>
             )} />
           </Segment>
-        </div>
+        </Container>
       </Router>
     )
   }
