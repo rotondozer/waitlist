@@ -11,11 +11,11 @@ class EditParty extends Component {
   constructor (props) {
     super (props)
     this.state = {
-      name: '',
-      size: '',
-      estWait: '',
-      timeIn: '',
-      notes: ''
+      name: this.props.name,
+      size: this.props.size,
+      estWait: this.props.estWait,
+      timeIn: this.props.checkedIn,
+      notes: this.props.notes
     }
     this.editParty = this.editParty.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -58,9 +58,6 @@ class EditParty extends Component {
 
   render () {
     return (
-      // TODO get rid of Form,
-      // TODO fire axios PATCH on button click,
-      // TODO Put all inputs inside table cells
       <Table.Row>
         <Table.Cell>
           <Input name='name'
