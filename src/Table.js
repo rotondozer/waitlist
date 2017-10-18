@@ -5,6 +5,7 @@ import {
   Table as TableUI,
   Button
 } from 'semantic-ui-react'
+import Time from 'react-time-format'
 
 import EnterTimeUp from './EnterTimeUp'
 import EditTable from './EditTable'
@@ -67,7 +68,7 @@ class Table extends Component {
     }
     let time_sat, time_up
     if (this.props.history) {
-      time_sat = <TableUI.Cell>{this.props.time_sat}</TableUI.Cell>
+      time_sat = <TableUI.Cell><Time value={this.props.time_sat} format='HH:mm'/></TableUI.Cell>
       if (this.props.time_up === null) {
         // Each button contains props unique to that tables_activity
         // onClick update state with the unique values
