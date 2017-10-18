@@ -69,6 +69,7 @@ class EditTable extends Component {
             content={`Edit Table ${this.props.table_id}`}
             onClick={(event) => this.editTable(event)}/>
         </Table.Cell>
+        <Table.Cell>{'  '}</Table.Cell>
       </Table.Row>
     )
   }
