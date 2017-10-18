@@ -83,7 +83,7 @@ class Table extends Component {
         // Either send the form pre-filled with infomation
         // or edit controller to not update blank fields
       } else {
-        time_up = <TableUI.Cell>{this.props.time_up}</TableUI.Cell>
+        time_up = <TableUI.Cell><Time value={this.props.time_up} format='hh:mm'/></TableUI.Cell>
       }
 
     }

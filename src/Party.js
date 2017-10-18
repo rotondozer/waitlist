@@ -6,6 +6,7 @@ import {
   Button,
   Container
 } from 'semantic-ui-react'
+import Time from 'react-time-format'
 import axios from 'axios'
 
 import EditParty from './EditParty'
@@ -95,7 +96,7 @@ class Party extends Component {
         <TableUI.Cell>{this.props.name}</TableUI.Cell>
         <TableUI.Cell>{this.props.size}</TableUI.Cell>
         <TableUI.Cell>{this.props.estWait}</TableUI.Cell>
-        <TableUI.Cell>{this.props.checkedIn}</TableUI.Cell>
+        <TableUI.Cell><Time value={this.props.checkedIn} format='hh:mm'/></TableUI.Cell>
         <TableUI.Cell>{this.props.notes}</TableUI.Cell>
         <TableUI.Cell>
           <Button basic color='yellow' onClick={(event) => this.setState({editParty:true, editPartyId:event.target.id})} id={this.props.party_id}>Edit</Button>
@@ -118,6 +119,7 @@ class Party extends Component {
           </Button>
         </TableUI.Cell>
         <TableUI.Cell>
+          {/* Pretty sure i don't need the link to */}
           <Button basic color='teal'
             onClick={(event) => this.showSeatPartyForm(event)}
             as={Link} to='########'
