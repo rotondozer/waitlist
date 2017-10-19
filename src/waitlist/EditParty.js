@@ -43,9 +43,9 @@ class EditParty extends Component {
       }
     })
       .then(() => this.props.callback())
-      .then((response) => this.props.handleMessage('good', 'good'))
+      .then((response) => this.props.handleMessage('green', this.state.name + '\'s information updated'))
       .then(this.props.onGetAllParties)
-      .catch((error) => this.props.handleMessage('bad', 'bad'))
+      .catch((error) => this.props.handleMessage('red', 'something went wrong'))
   }
 
   handleChange (event) {

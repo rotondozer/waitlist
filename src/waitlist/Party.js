@@ -47,11 +47,8 @@ class Party extends Component {
         'Authorization': 'Token token=' + this.props.token
       }
     })
-      .then((response) => {
-        this.props.updateMatchingTableState(response.data.tables)
-        this.props.handleMessage('good', 'good')
-      })
-      .catch((error) => this.props.handleMessage('bad', 'bad'))
+      .then((response) => this.props.updateMatchingTableState(response.data.tables))
+      .catch((error) => this.props.handleMessage('red', 'something went wrong'))
   }
 
   // *** `this.props` will refer to each instance of a party. ***
@@ -66,12 +63,9 @@ class Party extends Component {
         'Authorization': 'Token token=' + this.props.token
       }
     })
-      .then((response) => {
-        this.props.updateOccupiedTablesState(response.data.tables_activities)
-        this.props.handleMessage('good', 'good')
-      })
+      .then((response) => this.props.updateOccupiedTablesState(response.data.tables_activities))
       .then(() => this.props.filterOccupiedTablesToMatchParty())
-      .catch((error) => this.props.handleMessage('bad', 'bad'))
+      .catch((error) => this.props.handleMessage('red', 'something went wrong'))
   }
 
   showSeatPartyForm () {

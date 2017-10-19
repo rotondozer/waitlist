@@ -25,8 +25,6 @@ class SeatPartyForm extends Component {
     this.setState({
       [event.target.name]: event.target.value
     })
-    console.log('table_id: ', this.state.table_id)
-    console.log('time_sat: ', this.state.time_sat)
   }
 
   seatParty (event) {
@@ -40,15 +38,15 @@ class SeatPartyForm extends Component {
       },
       data: {
         tables_activity: {
-          table_id: this.state.table_id, // this.props.table_id,
-          time_sat:  this.state.time_sat, // this.props.time_sat,
+          table_id: this.state.table_id,
+          time_sat:  this.state.time_sat,
           // time_up: should be intentionally blank
           party_id: this.props.party_id
         }
       }
     })
-      .then((response) => console.log(response.data))
-      .catch((error) => console.log(error))
+      .then((response) => this.props.handleMessage('green', 'Sat at Table ' + this.state.table_id + ' at ' + this.state.time_sat + '. Now remove from Waitlist'))
+      .catch((error) => this.handleMessage('red', 'something went wrong'))
   }
 
   render () {

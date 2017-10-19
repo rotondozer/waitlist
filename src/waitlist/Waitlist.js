@@ -108,8 +108,8 @@ class Waitlist extends Component {
       }
     })
       .then(() => this.getAllParties())
-      .then((response) => this.props.handleMessage('good'))
-      .catch((error) => this.props.handleMessage('bad'))
+      .then((response) => this.props.handleMessage('green', 'Party removed from the Waitlist'))
+      .catch((error) => this.props.handleMessage('red', 'something went wrong.'))
   }
 
   getAllParties () {

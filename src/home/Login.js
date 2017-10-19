@@ -49,7 +49,7 @@ class Login extends Component {
       })
       .then(() => this.props.changeSignedInStatus(true))
       .then(() => this.onSuccessUpdateState())
-      .catch((error) => console.log(error))
+      .catch((error) => this.props.handleMessage('red', 'Invalid username or password'))
 
   }
 

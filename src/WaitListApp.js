@@ -113,11 +113,11 @@ class WaitListApp extends Component {
             <Menu.Item as={Link} to='/waitlist' name='Waitlist' active={activeItem === 'Waitlist'} onClick={this.handleItemClick} />
             <Menu.Item as={Link} to='/settings' name='Settings' active={activeItem === 'Settings'} onClick={this.handleItemClick} />
 
-            <Menu.Menu position='right'>
+            {/* <Menu.Menu position='right'>
               <Menu.Item>
                 <Input transparent icon={{ name: 'search', link: true }} placeholder='Search users...' />
               </Menu.Item>
-            </Menu.Menu>
+            </Menu.Menu> */}
           </Menu>
 
           <Segment attached='bottom'>
