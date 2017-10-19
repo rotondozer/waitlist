@@ -32,7 +32,7 @@ class Settings extends Component {
         'Authorization': 'Token token=' + self.props.token
       }
     })
-      .then(this.props.handleMessage('', 'Signed Out'))
+      .then(this.props.handleMessage('yellow', 'Signed Out'))
       .then(self.props.setAuthInfo('Not Signed In','',''))
       .then(self.props.changeSignedInStatus(false))
       .catch((error) => this.props.handleMessage('red', 'Something went wrong.'))
@@ -44,7 +44,7 @@ class Settings extends Component {
         <Grid centered>
           <Grid.Row>
             <Grid.Column mobile={12} tablet={8} computer={8}>
-              <ChangePassword setAuthInfo={this.props.setAuthInfo} user_id={this.props.user_id} token={this.props.token}/>
+              <ChangePassword setAuthInfo={this.props.setAuthInfo} user_id={this.props.user_id} token={this.props.token} handleMessage={this.props.handleMessage}/>
             </Grid.Column>
           </Grid.Row>
 
