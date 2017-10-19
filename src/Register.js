@@ -42,9 +42,9 @@ class Register extends Component {
         }
       }
     })
-      .then((response) => console.log(response))
+      .then((response) => this.props.handleMessage('good', 'good'))
       .then(this.changeHasAccountStatus)
-      .catch((error) => console.log(error))
+      .catch((error) => this.props.handleMessage('bad', 'bad'))
     this.setState({
       email: '',
       password: '',

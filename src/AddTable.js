@@ -25,7 +25,6 @@ class AddTable extends Component {
 
   createTable (event) {
     event.preventDefault()
-    console.log(this.state)
     axios({
       url: 'http://localhost:4741/tables',
       method: 'POST',
@@ -37,15 +36,13 @@ class AddTable extends Component {
         table: {
           max_seat: this.state.max_seat,
           min_seat: this.state.min_seat,
-          // TODO: pass user_id down from container component
           user_id: this.props.user_id
         }
       }
     })
-      .then((response) => console.log(response))
+      .then((response) => this.props.handleMessage('dis good', 'good good'))
       .then(() => this.setState({addedTable:true}))
-      .catch((error) => console.log(error))
-      {/*PLACE USER MESSAGE HERE*/}
+      .catch((error) => this.props.handleMessage('dis bad', 'bad bad'))
   }
 
   handleChange (event) {

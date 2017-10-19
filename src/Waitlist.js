@@ -108,8 +108,8 @@ class Waitlist extends Component {
       }
     })
       .then(() => this.getAllParties())
-      .then((response) => console.log(response))
-      .catch((error) => console.log(error))
+      .then((response) => this.props.handleMessage('good'))
+      .catch((error) => this.props.handleMessage('bad'))
   }
 
   getAllParties () {
@@ -124,10 +124,10 @@ class Waitlist extends Component {
       }
     })
       .then((response) => {
-        console.log(response.data.parties)
         self.updateState(response.data.parties)
+        this.props.handleMessage('good')
       })
-      .catch((error) => console.log(error))
+      .catch((error) => this.props.handleMessage('bad'))
   }
 
   getAllOccupiedTables () {
@@ -141,10 +141,10 @@ class Waitlist extends Component {
       }
     })
       .then((response) => {
-        console.log('All Occupied Tables = ', response.data.tables_activities)
         this.updateOccupiedTablesState(response.data.tables_activities)
+        this.props.handleMessage('good')
       })
-      .catch((error) => console.log(error))
+      .catch((error) => this.props.handleMessage('bad'))
   }
   componentWillMount () {
     this.getAllParties()
@@ -164,7 +164,7 @@ class Waitlist extends Component {
           token={this.props.token}
           matchingTablesArray={this.state.matchingTablesArray}
           updateMatchingTableState={this.updateMatchingTableState}
-
+          handleMessage={this.props.handleMessage}
         />
       )} />
     }
@@ -172,11 +172,10 @@ class Waitlist extends Component {
     let nextAvailableTables
     if (this.state.showingNextAvailableTables) {
       // this is being flipped to true before it has the updated state to feed
-      console.log('showingNextAvailableTables is TRUE... about to render some componentz')
-      // uncomment below when ready to feed props!
       nextAvailableTables = <Route to='/next_available_tables_for_party' render={() => (
         <NextAvailableTables
           nextAvailableTables={this.state.nextAvailableTables}
+          handleMessage={this.props.handleMessage}
         />
       )} />
     }
@@ -196,6 +195,7 @@ class Waitlist extends Component {
         updateMatchingTableState={this.updateMatchingTableState}
         updateOccupiedTablesState={this.updateOccupiedTablesState}
         filterOccupiedTablesToMatchParty={this.filterOccupiedTablesToMatchParty}
+        handleMessage={this.props.handleMessage}
         token={this.props.token}
       />)
     } else {

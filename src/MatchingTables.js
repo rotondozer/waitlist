@@ -19,6 +19,7 @@ class MatchingTables extends Component {
       max_seat={table.max_seat}
       min_seat={table.min_seat}
       key={index}
+      handleMessage={this.props.handleMessage}
     />)
 
     return (

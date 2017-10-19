@@ -63,10 +63,7 @@ class AllTables extends Component {
         'Authorization': 'Token token=' + this.props.token
       }
     })
-      .then((response) => {
-        console.log(response.data.tables)
-        self.updateState(response.data.tables)
-      })
+      .then((response) => self.updateState(response.data.tables))
       .catch((error) => this.props.handleMessage('error', 'error'))
   }
 
@@ -81,6 +78,7 @@ class AllTables extends Component {
       key={index}
       max_seat={table.max_seat}
       min_seat={table.min_seat}
+      handleMessage={this.props.handleMessage}
       onDeleteTable={this.deleteTable}
       onGetAllTables={this.getAllTables}
       token={this.props.token}
@@ -91,15 +89,15 @@ class AllTables extends Component {
     // ComponentWillMount gets called here
     // Render will finish execution with empty state
     // Realize state is updated
-    // Then re-render, casuing the UX bug
+    // Then re-render, casuing the display bug
     if (this.state.addTable) {
       return <Route push to='/add_tables' render={() => (
-        <AddTable user_id={this.props.user_id} token={this.props.token} />
+        <AddTable user_id={this.props.user_id} token={this.props.token} handleMessage={this.props.handleMessage}/>
       )}/>
     }
 
     let tablesOrMessage = this.renderTables()
-    // TODO figure out why this conditional is causing UX bug
+    // TODO figure out why this conditional is causing display bug
 
     if (this.state.tablesArray.length < 1) {
       tablesOrMessage = <Header as='h2' floated='left'>Dining Area has not been created</Header>

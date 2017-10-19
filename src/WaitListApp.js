@@ -37,6 +37,7 @@ class WaitListApp extends Component {
     this.setAuthInfo = this.setAuthInfo.bind(this)
     this.changeSignedInStatus = this.changeSignedInStatus.bind(this)
     this.handleMessage = this.handleMessage.bind(this)
+    this.closeMessage = this.closeMessage.bind(this)
   }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
@@ -58,9 +59,15 @@ class WaitListApp extends Component {
 
   handleMessage (type, content) {
     this.setState({
-      displayMessage: !(this.state.displayMessage),
+      displayMessage: true,
       displayMessageContent: content,
       displayMessageType: type
+    })
+  }
+
+  closeMessage () {
+    this.setState({
+      displayMessage: false
     })
   }
 
@@ -81,7 +88,11 @@ class WaitListApp extends Component {
 
     let displayMessage
     if (this.state.displayMessage) {
-      displayMessage = <div><h1>Type: {this.state.displayMessageType}</h1><h1>Content: {this.state.displayMessageContent}</h1></div>
+      displayMessage = <div>
+        <h4>Type: {this.state.displayMessageType}</h4>
+        <h4>Content: {this.state.displayMessageContent}</h4>
+        <button onClick={this.closeMessage}>Close</button>
+      </div>
     }
 
     return (
@@ -91,10 +102,10 @@ class WaitListApp extends Component {
           <Header as='h3' content={this.state.user} floated='right'/>
           {displayMessage}
           <Menu attached='top' tabular>
-            <Menu.Item as={Link} to='/' handleMessage={this.handleMessage} name='Home' active={activeItem === 'Home'} onClick={this.handleItemClick} />
-            <Menu.Item as={Link} to='/tables' handleMessage={this.handleMessage} name='Tables' active={activeItem === 'Tables'} onClick={this.handleItemClick} />
-            <Menu.Item as={Link} to='/waitlist' handleMessage={this.handleMessage} name='Waitlist' active={activeItem === 'Waitlist'} onClick={this.handleItemClick} />
-            <Menu.Item as={Link} to='/settings' handleMessage={this.handleMessage} name='Settings' active={activeItem === 'Settings'} onClick={this.handleItemClick} />
+            <Menu.Item as={Link} to='/' name='Home' active={activeItem === 'Home'} onClick={this.handleItemClick} />
+            <Menu.Item as={Link} to='/tables' name='Tables' active={activeItem === 'Tables'} onClick={this.handleItemClick} />
+            <Menu.Item as={Link} to='/waitlist' name='Waitlist' active={activeItem === 'Waitlist'} onClick={this.handleItemClick} />
+            <Menu.Item as={Link} to='/settings' name='Settings' active={activeItem === 'Settings'} onClick={this.handleItemClick} />
 
             <Menu.Menu position='right'>
               <Menu.Item>
@@ -107,7 +118,7 @@ class WaitListApp extends Component {
             {homeOrLogin}
 
             <Route path='/create_account' render={() => (
-              <Register handleMessage={this.handleMessage} setAuthInfo={this.setAuthInfo}/>
+              <Register handleMessage={this.handleMessage} setAuthInfo={this.setAuthInfo} handleMessage={this.handleMessage}/>
             )} />
             <Route path='/tables' render={() => (
               <Tables user_id={this.state.user_id} token={this.state.token} handleMessage={this.handleMessage}/>

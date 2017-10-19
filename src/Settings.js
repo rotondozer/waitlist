@@ -32,7 +32,7 @@ class Settings extends Component {
         'Authorization': 'Token token=' + self.props.token
       }
     })
-      .then((response) => console.log(response))
+      .then(this.props.handleMessage('good', 'good'))
       .then(self.props.setAuthInfo('Not Signed In','',''))
       .then(self.props.changeSignedInStatus(false))
       .catch((error) => console.log(error))

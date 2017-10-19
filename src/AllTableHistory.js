@@ -35,10 +35,10 @@ class AllTableHistory extends Component {
       }
     })
       .then((response) => {
-        console.log(response.data.tables_activities)
         self.updateState(response.data.tables_activities)
+        this.props.handleMessage('gooooood', 'goood')
       })
-      .catch((error) => console.log(error))
+      .catch((error) => this.props.handleMessage('bad', 'bad'))
   }
 
   render () {

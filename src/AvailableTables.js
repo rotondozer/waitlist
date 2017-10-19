@@ -34,10 +34,10 @@ class AvailableTables extends Component {
       }
     })
       .then((response) => {
-        console.log(response.data.tables_activities)
         self.updateState(response.data.tables_activities)
+        this.props.handleMessage('goooooood', 'goooood')
       })
-      .catch((error) => console.log(error))
+      .catch((error) => this.props.handleMessage('bad', 'bad, bad'))
   }
 
   render () {
@@ -48,7 +48,7 @@ class AvailableTables extends Component {
         key={index}
         max_seat={activity.table.max_seat}
         min_seat={activity.table.min_seat}
-
+        handleMessage={this.props.handleMessage}
         token={this.props.token}
       />)
     } else {

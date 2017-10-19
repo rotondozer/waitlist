@@ -48,6 +48,7 @@ class Table extends Component {
           table_id={this.props.table_id}
           max_seat={this.props.max_seat}
           min_seat={this.props.min_seat}
+          handleMessage={this.props.handleMessage}
           callback={this.updateTableState}
           onGetAllTables={this.props.onGetAllTables}
         />
@@ -58,6 +59,7 @@ class Table extends Component {
         <EnterTimeUp table_id={this.props.table_id}
           activity_id={this.state.activity_id}
           time_sat={this.state.time_sat}
+          handleMessage={this.props.handleMessage}
           user_id={this.props.user_id}
           token={this.props.token}
         />

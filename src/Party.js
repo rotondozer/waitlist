@@ -47,8 +47,11 @@ class Party extends Component {
         'Authorization': 'Token token=' + this.props.token
       }
     })
-      .then((response) => this.props.updateMatchingTableState(response.data.tables))
-      .catch((error) => console.log(error))
+      .then((response) => {
+        this.props.updateMatchingTableState(response.data.tables)
+        this.props.handleMessage('good', 'good')
+      })
+      .catch((error) => this.props.handleMessage('bad', 'bad'))
   }
 
   // *** `this.props` will refer to each instance of a party. ***
@@ -63,9 +66,12 @@ class Party extends Component {
         'Authorization': 'Token token=' + this.props.token
       }
     })
-      .then((response) => this.props.updateOccupiedTablesState(response.data.tables_activities))
+      .then((response) => {
+        this.props.updateOccupiedTablesState(response.data.tables_activities)
+        this.props.handleMessage('good', 'good')
+      })
       .then(() => this.props.filterOccupiedTablesToMatchParty())
-      .catch((error) => console.log(error))
+      .catch((error) => this.props.handleMessage('bad', 'bad'))
   }
 
   showSeatPartyForm () {
@@ -86,7 +92,8 @@ class Party extends Component {
           notes={this.props.notes}
           id={this.state.editPartyId}
           callback={this.updatePartyState}
-          onGetAllParties={this.props.onGetAllParties}/>
+          onGetAllParties={this.props.onGetAllParties}
+          handleMessage={this.props.handleMessage}/>
       )}/>
     }
 
@@ -96,6 +103,7 @@ class Party extends Component {
         user_id={this.props.user_id}
         token={this.props.token}
         party_id={this.props.party_id}
+        handleMessage={this.props.handleMessage}
       />
     }
 
@@ -131,7 +139,7 @@ class Party extends Component {
           {/* Pretty sure i don't need the link to */}
           <Button basic color='teal'
             onClick={(event) => this.showSeatPartyForm(event)}
-            as={Link} to='########'
+            as={Link} to='/seat_party'
             id={this.props.party_id}>Seat
           </Button>
           {seatPartyForm}

@@ -32,11 +32,11 @@ class Tables extends Component {
       <Router>
         <Grid divided relaxed='very'>
           <Grid.Row>
-            <Grid.Column computer={3} tablet={5} mobile={16}>
+            <Grid.Column computer={4} tablet={6} mobile={16}>
               <TablesVertMenu getActiveMenuItem={this.getActiveMenuItem}/>
             </Grid.Column>
 
-            <Grid.Column computer={10} tablet={8} mobile={16}>
+            <Grid.Column computer={12} tablet={10} mobile={16}>
               <Route path='/all_tables' render={() => (
                 <AllTables user_id={this.props.user_id} token={this.props.token} handleMessage={this.props.handleMessage}/>
               )} />
