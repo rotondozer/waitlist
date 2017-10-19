@@ -9,7 +9,9 @@ import {
   Menu,
   Segment,
   Container,
-  Header
+  Header,
+  Message,
+  Button
 } from 'semantic-ui-react'
 
 import Tables from './Tables'
@@ -58,6 +60,7 @@ class WaitListApp extends Component {
   }
 
   handleMessage (type, content) {
+    // TODO move all display data into one object
     this.setState({
       displayMessage: true,
       displayMessageContent: content,
@@ -88,11 +91,13 @@ class WaitListApp extends Component {
 
     let displayMessage
     if (this.state.displayMessage) {
-      displayMessage = <div>
-        <h4>Type: {this.state.displayMessageType}</h4>
-        <h4>Content: {this.state.displayMessageContent}</h4>
-        <button onClick={this.closeMessage}>Close</button>
-      </div>
+      displayMessage = <Message
+        color={this.state.displayMessageType} >
+        <Message.Header>Type: {this.state.displayMessageType}</Message.Header>
+        <Message.Header>Content: {this.state.displayMessageContent}</Message.Header>
+        {/* TODO consider onDismiss */}
+        <Button onClick={this.closeMessage}>Close</Button>
+      </Message>
     }
 
     return (

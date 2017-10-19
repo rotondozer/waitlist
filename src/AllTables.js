@@ -64,7 +64,7 @@ class AllTables extends Component {
       }
     })
       .then((response) => self.updateState(response.data.tables))
-      .catch((error) => this.props.handleMessage('error', 'error'))
+      .catch((error) => this.props.handleMessage('red', 'error'))
   }
 
   componentWillMount () {
