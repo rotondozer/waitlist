@@ -123,11 +123,8 @@ class Waitlist extends Component {
         'Authorization': 'Token token=' + this.props.token
       }
     })
-      .then((response) => {
-        self.updateState(response.data.parties)
-        this.props.handleMessage('good')
-      })
-      .catch((error) => this.props.handleMessage('bad'))
+      .then((response) => self.updateState(response.data.parties))
+      .catch((error) => this.props.handleMessage('red', 'something went wrong'))
   }
 
   getAllOccupiedTables () {
@@ -140,10 +137,7 @@ class Waitlist extends Component {
         'Authorization': 'Token token=' + this.props.token
       }
     })
-      .then((response) => {
-        this.updateOccupiedTablesState(response.data.tables_activities)
-        this.props.handleMessage('good')
-      })
+      .then((response) => this.updateOccupiedTablesState(response.data.tables_activities))
       .catch((error) => this.props.handleMessage('bad'))
   }
   componentWillMount () {

@@ -11,7 +11,7 @@ import axios from 'axios'
 
 import EditParty from './EditParty'
 import SeatPartyForm from './SeatPartyForm'
-import Table from './Table.js'
+import Table from '../tables/Table.js'
 import MatchingTables from './MatchingTables.js'
 
 class Party extends Component {
@@ -139,7 +139,7 @@ class Party extends Component {
           {/* Pretty sure i don't need the link to */}
           <Button basic color='teal'
             onClick={(event) => this.showSeatPartyForm(event)}
-            as={Link} to='/seat_party'
+            as={Link} to='waitlist/seat_party'
             id={this.props.party_id}>Seat
           </Button>
           {seatPartyForm}

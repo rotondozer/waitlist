@@ -49,8 +49,8 @@ class AllTables extends Component {
       }
     })
       .then(() => this.getAllTables())
-      .then((response) => console.log(response))
-      .catch((error) => this.props.handleMessage(error, error))
+      .then((response) => this.props.handleMessage('green', 'Table Removed From the Dining Area'))
+      .catch((error) => this.props.handleMessage('red', 'Unauthorized'))
   }
 
   getAllTables () {
@@ -64,7 +64,10 @@ class AllTables extends Component {
       }
     })
       .then((response) => self.updateState(response.data.tables))
-      .catch((error) => this.props.handleMessage('red', 'error'))
+      .catch((error) => {
+        console.log(error)
+        this.props.handleMessage('yellow', 'Login First')
+      })
   }
 
   componentWillMount () {

@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router'
+import {
+  Container,
+  Form,
+  Header
+} from 'semantic-ui-react'
 
 class AddParty extends Component {
   constructor (props) {
@@ -38,7 +43,7 @@ class AddParty extends Component {
         }
       }
     })
-      .then((response) => console.log(response))
+      .then((response) => this.props.handleMessage('green', 'Added ' + this.state.name + 'to the waitlist'))
       .then(() => this.setState({addedParty:true}))
       .catch((error) => console.log(error))
   }
@@ -57,23 +62,23 @@ class AddParty extends Component {
       return <Redirect push to='/waitlist' />
     }
     return (
-      <div>
-        <form onSubmit={this.createParty}>
-          <h1>Add a Party to the WaitList</h1>
+      <Container>
+        <Header as='h2' content='Add a Party to the WaitList' />
 
-          <input name='name' placeholder='name' onChange={this.handleChange} value={this.state.name}></input>
+        <Form onSubmit={this.createParty}>
+          <Form.Input name='name' placeholder='name' onChange={this.handleChange} value={this.state.name} />
 
-          <input name='size' placeholder='party size' onChange={this.handleChange} value={this.state.size}></input>
+          <Form.Input name='size' placeholder='party size' onChange={this.handleChange} value={this.state.size} />
 
-          <input name='estWait' placeholder='estimated wait' onChange={this.handleChange} value={this.state.estWait}></input>
+          <Form.Input name='estWait' placeholder='estimated wait' onChange={this.handleChange} value={this.state.estWait} />
 
-          <input name='timeIn' placeholder='time checked in' onChange={this.handleChange} value={this.state.timeIn}></input>
+          <Form.Input name='timeIn' placeholder='time checked in' onChange={this.handleChange} value={this.state.timeIn} />
 
-          <input name='notes' placeholder='notes' onChange={this.handleChange} value={this.state.notes}></input>
+          <Form.Input name='notes' placeholder='notes' onChange={this.handleChange} value={this.state.notes} />
 
-          <button type='submit'>Add Party</button>
-        </form>
-      </div>
+          <Form.Button basic color='teal' type='submit' content='Add Party' />
+        </Form>
+      </Container>
     )
   }
 }

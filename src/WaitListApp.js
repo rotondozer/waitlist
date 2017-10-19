@@ -14,14 +14,14 @@ import {
   Button
 } from 'semantic-ui-react'
 
-import Tables from './Tables'
-import Waitlist from './Waitlist'
-import Settings from './Settings'
-import AddParty from './AddParty'
-import AddTable from './AddTable'
-import Home from './Home'
-import Login from './Login'
-import Register from './Register'
+import Tables from './tables/Tables.js'
+import Waitlist from './waitlist/Waitlist.js'
+import Settings from './settings/Settings.js'
+import AddParty from './waitlist/AddParty'
+import AddTable from './tables/AddTable'
+import Home from './home/Home.js'
+import Login from './home/Login.js'
+import Register from './home/Register.js'
 
 class WaitListApp extends Component {
   constructor (props) {
@@ -92,11 +92,12 @@ class WaitListApp extends Component {
     let displayMessage
     if (this.state.displayMessage) {
       displayMessage = <Message
-        color={this.state.displayMessageType} >
-        <Message.Header>Type: {this.state.displayMessageType}</Message.Header>
-        <Message.Header>Content: {this.state.displayMessageContent}</Message.Header>
-        {/* TODO consider onDismiss */}
-        <Button onClick={this.closeMessage}>Close</Button>
+        compact
+        attached='top'
+        color={this.state.displayMessageType}
+        onDismiss={this.closeMessage} >
+        <Message.Header>{this.state.displayMessageContent}</Message.Header>
+        {/* <Button onClick={this.closeMessage}>Close</Button> */}
       </Message>
     }
 

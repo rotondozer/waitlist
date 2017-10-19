@@ -11,7 +11,7 @@ import {
 import Time from 'react-time-format'
 import axios from 'axios'
 
-import Table from './Table.js'
+import Table from '../tables/Table.js'
 // ** This Component needs to serve the same purpose as MatchingTables
 // ** Tables returned should be 'Matching Tables'
 // ** That are also unavailable

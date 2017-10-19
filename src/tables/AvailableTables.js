@@ -33,11 +33,8 @@ class AvailableTables extends Component {
         'Authorization': 'Token token=' + this.props.token
       }
     })
-      .then((response) => {
-        self.updateState(response.data.tables_activities)
-        this.props.handleMessage('goooooood', 'goooood')
-      })
-      .catch((error) => this.props.handleMessage('bad', 'bad, bad'))
+      .then((response) => self.updateState(response.data.tables_activities))
+      .catch((error) => this.props.handleMessage('yellow', 'Login first!'))
   }
 
   render () {

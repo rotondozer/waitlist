@@ -34,10 +34,7 @@ class AllTableHistory extends Component {
         'Authorization': 'Token token=' + this.props.token
       }
     })
-      .then((response) => {
-        self.updateState(response.data.tables_activities)
-        this.props.handleMessage('gooooood', 'goood')
-      })
+      .then((response) => self.updateState(response.data.tables_activities))
       .catch((error) => this.props.handleMessage('bad', 'bad'))
   }
 
@@ -53,6 +50,7 @@ class AllTableHistory extends Component {
       time_up={activity.time_up}
       user_id={this.props.user_id}
       token={this.props.token}
+      handleMessage={this.props.handleMessage}
     />)
     return (
       <Container>

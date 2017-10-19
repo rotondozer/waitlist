@@ -10,7 +10,7 @@ import {
 } from 'semantic-ui-react'
 import axios from 'axios'
 
-import Table from './Table.js'
+import Table from '../tables/Table.js'
 
 class MatchingTables extends Component {
   render () {

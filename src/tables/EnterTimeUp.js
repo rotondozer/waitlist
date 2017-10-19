@@ -3,7 +3,8 @@ import { Redirect } from 'react-router'
 import axios from 'axios'
 import {
   Table as TableUI,
-  Button
+  Button,
+  Input
 } from 'semantic-ui-react'
 import Time from 'react-time-format'
 
@@ -44,8 +45,8 @@ class EnterTimeUp extends Component {
         }
       }
     })
-      .then((response) => console.log(response.data))
-      .catch((error) => console.log(error))
+      .then((response) => this.props.handleMessage('green', ('Table ' + this.state.table_id + ' is now open.')))
+      .catch((error) => this.props.handleMessage('red', 'something went wrong'))
   }
 
   render () {
@@ -61,7 +62,7 @@ class EnterTimeUp extends Component {
         <TableUI.Cell><Time value={this.props.time_sat} format='hh:mm'/></TableUI.Cell>
         <TableUI.Cell>
           {/* TODO capture onChange within state, send that with submit form */}
-          <input placeholder='enter time up' onChange={(event) => this.handleInputChange(event)} value={this.state.time_up_input}></input>
+          <Input placeholder='enter time up' onChange={(event) => this.handleInputChange(event)} value={this.state.time_up_input}></Input>
         </TableUI.Cell>
 
       </TableUI.Row>
