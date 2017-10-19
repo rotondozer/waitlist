@@ -43,13 +43,13 @@ class Settings extends Component {
       <Container>
         <Grid centered>
           <Grid.Row>
-            <Grid.Column width={6}>
+            <Grid.Column mobile={12} tablet={8} computer={8}>
               <ChangePassword setAuthInfo={this.props.setAuthInfo} user_id={this.props.user_id} token={this.props.token}/>
             </Grid.Column>
           </Grid.Row>
 
           <Grid.Row>
-            <Grid.Column width={6}>
+            <Grid.Column mobile={12} tablet={8} computer={8}>
               {/* LOG OUT BUTTON */}
               <Button fluid
                 basic color='red'
