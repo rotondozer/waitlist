@@ -6,8 +6,6 @@ import {
   Button,
   Container
 } from 'semantic-ui-react'
-// ************ react-time
-import Time from 'react-time'
 import axios from 'axios'
 
 import EditParty from './EditParty'

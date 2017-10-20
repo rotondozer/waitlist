@@ -8,7 +8,6 @@ import {
   Segment,
   Header
 } from 'semantic-ui-react'
-import Time from 'react-time-format'
 import axios from 'axios'
 
 import Table from '../tables/Table.js'
@@ -24,7 +23,7 @@ class NextAvailableTables extends Component {
     const nextAvailableTables = this.props.nextAvailableTables.map((table, index) => <Table
       table_id={table.table_id}
 
-      max_seat={<Time value={table.time_sat} format='HH:mm'/>}
+      max_seat={table.time_sat}
       key={index}
     />)
 
