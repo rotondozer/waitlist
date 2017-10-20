@@ -45,11 +45,11 @@ class Login extends Component {
       .then((response) => {
         const user = response.data.user
         this.props.setAuthInfo(user.email, user.token, user.id)
-        this.props._addNotification('Login Success!', 'success')
+        this.props._addNotification('success', 'Login Success!')
       })
       .then(() => this.props.changeSignedInStatus(true))
       .then(() => this.onSuccessUpdateState())
-      .catch((error) => this.props._addNotification('Login Failure', 'error'))
+      .catch((error) => this.props._addNotification('error', 'Login Failure'))
 
   }
 

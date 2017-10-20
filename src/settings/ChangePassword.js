@@ -58,9 +58,9 @@ class ChangePassword extends Component {
         }
       }
     })
-      .then((response) => this.props.handleMessage('green', 'Password Updated!'))
+      .then((response) => this.props._addNotification('success', 'Password Updated!'))
       .then(this.onSuccessUpdateState)
-      .catch((error) => this.props.handleMessage('red', 'something went wrong'))
+      .catch((error) => this.props._addNotification('error', 'something went wrong'))
   }
 
 

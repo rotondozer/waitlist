@@ -35,9 +35,9 @@ class EditTable extends Component {
       }
     })
       .then(() => this.props.callback())
-      .then((response) => this.props.handleMessage('green', 'Table Updated'))
+      .then((response) => this.props._addNotification('success', 'Table Updated'))
       .then(this.props.onGetAllTables)
-      .catch((error) => this.props.handleMessage('yellow', 'Login first!'))
+      .catch((error) => this.props._addNotification('info', 'Login first!'))
   }
 
   handleChange (event) {

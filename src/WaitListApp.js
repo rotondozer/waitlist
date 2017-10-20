@@ -63,7 +63,7 @@ class WaitListApp extends Component {
     })
   }
 
-  _addNotification (message, level) {
+  _addNotification (level, message) {
     // event.preventDefault();
     this._notificationSystem.addNotification({
       message: message,
@@ -75,7 +75,7 @@ class WaitListApp extends Component {
     this._notificationSystem = this.refs.notificationSystem;
   }
 
-  // handleMessage (type, content) {
+  // _addNotification (type, content) {
   //   // TODO move all display data into one object
   //   this.setState({
   //     displayMessage: true,
@@ -122,7 +122,6 @@ class WaitListApp extends Component {
         <Container>
           <Header as='h1' content='Your Restaurant Name' floated='left' />
           <Header as='h3' content={this.state.user} floated='right'/>
-          <button onClick={this._addNotification}>Add notification</button>
           <NotificationSystem ref="notificationSystem" />
 
           {/* {displayMessage} */}
@@ -143,26 +142,26 @@ class WaitListApp extends Component {
             {homeOrLogin}
 
             <Route path='/create_account' render={() => (
-              <Register handleMessage={this.handleMessage} setAuthInfo={this.setAuthInfo} handleMessage={this.handleMessage}/>
+              <Register _addNotification={this._addNotification} setAuthInfo={this.setAuthInfo} _addNotification={this._addNotification}/>
             )} />
             <Route path='/tables' render={() => (
-              <Tables user_id={this.state.user_id} token={this.state.token} handleMessage={this.handleMessage}/>
+              <Tables user_id={this.state.user_id} token={this.state.token} _addNotification={this._addNotification}/>
             )} />
             <Route path='/waitlist' render={() => (
-              <Waitlist user_id={this.state.user_id} token={this.state.token} handleMessage={this.handleMessage}/>
+              <Waitlist user_id={this.state.user_id} token={this.state.token} _addNotification={this._addNotification}/>
             )} />
             <Route path='/settings' render={() => (
               <Settings changeSignedInStatus={this.changeSignedInStatus}
                 setAuthInfo={this.setAuthInfo}
                 user_id={this.state.user_id}
                 token={this.state.token}
-                handleMessage={this.handleMessage} />
+                _addNotification={this._addNotification} />
             )} />
             <Route path='/add_parties' render={() => (
-              <AddParty user_id={this.state.user_id} token={this.state.token} handleMessage={this.handleMessage}/>
+              <AddParty user_id={this.state.user_id} token={this.state.token} _addNotification={this._addNotification}/>
             )} />
             <Route path='/add_tables' render={() => (
-              <AddTable user_id={this.state.user_id} token={this.state.token} handleMessage={this.handleMessage}/>
+              <AddTable user_id={this.state.user_id} token={this.state.token} _addNotification={this._addNotification}/>
             )} />
           </Segment>
         </Container>

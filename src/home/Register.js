@@ -42,9 +42,9 @@ class Register extends Component {
         }
       }
     })
-      .then((response) => this.props.handleMessage('green', 'Account Created!'))
+      .then((response) => this.props._addNotification('success', 'Account Created!'))
       .then(this.changeHasAccountStatus)
-      .catch((error) => this.props.handleMessage('red', 'Something went wrong.'))
+      .catch((error) => this.props._addNotification('error', 'Something went wrong.'))
     this.setState({
       email: '',
       password: '',

@@ -35,7 +35,7 @@ class AllTableHistory extends Component {
       }
     })
       .then((response) => self.updateState(response.data.tables_activities))
-      .catch((error) => this.props.handleMessage('bad', 'bad'))
+      .catch((error) => this.props._addNotification('bad', 'bad'))
   }
 
   render () {
@@ -50,7 +50,7 @@ class AllTableHistory extends Component {
       time_up={activity.time_up}
       user_id={this.props.user_id}
       token={this.props.token}
-      handleMessage={this.props.handleMessage}
+      _addNotification={this.props._addNotification}
     />)
     return (
       <Container>

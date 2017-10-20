@@ -43,9 +43,9 @@ class AddParty extends Component {
         }
       }
     })
-      .then((response) => this.props.handleMessage('green', 'Added ' + this.state.name + ' to the waitlist'))
+      .then((response) => this.props._addNotification('success', 'Added ' + this.state.name + ' to the waitlist'))
       .then(() => this.setState({addedParty:true}))
-      .catch((error) => this.props.handleMessage('red', 'something went wrong.'))
+      .catch((error) => this.props._addNotification('error', 'something went wrong.'))
   }
 
   handleChange (event) {

@@ -49,8 +49,8 @@ class AllTables extends Component {
       }
     })
       .then(() => this.getAllTables())
-      .then((response) => this.props.handleMessage('green', 'Table Removed From the Dining Area'))
-      .catch((error) => this.props.handleMessage('red', 'Unauthorized'))
+      .then((response) => this.props._addNotification('success', 'Table Removed From the Dining Area'))
+      .catch((error) => this.props._addNotification('error', 'Unauthorized'))
   }
 
   getAllTables () {
@@ -66,7 +66,7 @@ class AllTables extends Component {
       .then((response) => self.updateState(response.data.tables))
       .catch((error) => {
         console.log(error)
-        this.props.handleMessage('yellow', 'Login First')
+        this.props._addNotification('info', 'Login First')
       })
   }
 
@@ -81,7 +81,7 @@ class AllTables extends Component {
       key={index}
       max_seat={table.max_seat}
       min_seat={table.min_seat}
-      handleMessage={this.props.handleMessage}
+      _addNotification={this.props._addNotification}
       onDeleteTable={this.deleteTable}
       onGetAllTables={this.getAllTables}
       token={this.props.token}
@@ -95,7 +95,7 @@ class AllTables extends Component {
     // Then re-render, casuing the display bug
     if (this.state.addTable) {
       return <Route push to='/add_tables' render={() => (
-        <AddTable user_id={this.props.user_id} token={this.props.token} handleMessage={this.props.handleMessage}/>
+        <AddTable user_id={this.props.user_id} token={this.props.token} _addNotification={this.props._addNotification}/>
       )}/>
     }
 

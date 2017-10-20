@@ -38,15 +38,15 @@ class Tables extends Component {
 
             <Grid.Column computer={12} tablet={10} mobile={16}>
               <Route path='/all_tables' render={() => (
-                <AllTables user_id={this.props.user_id} token={this.props.token} handleMessage={this.props.handleMessage}/>
+                <AllTables user_id={this.props.user_id} token={this.props.token} _addNotification={this.props._addNotification}/>
               )} />
 
               <Route path='/available_tables' render={() => (
-                <AvailableTables user_id={this.props.user_id} token={this.props.token} handleMessage={this.props.handleMessage}/>
+                <AvailableTables user_id={this.props.user_id} token={this.props.token} _addNotification={this.props._addNotification}/>
               )} />
 
               <Route path='/all_table_history' render={() => (
-                <AllTableHistory user_id={this.props.user_id} token={this.props.token} handleMessage={this.props.handleMessage}/>
+                <AllTableHistory user_id={this.props.user_id} token={this.props.token} _addNotification={this.props._addNotification}/>
               )} />
             </Grid.Column>
           </Grid.Row>

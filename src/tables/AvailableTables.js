@@ -34,7 +34,7 @@ class AvailableTables extends Component {
       }
     })
       .then((response) => self.updateState(response.data.tables_activities))
-      .catch((error) => this.props.handleMessage('yellow', 'Login first!'))
+      .catch((error) => this.props._addNotification('info', 'Login first!'))
   }
 
   render () {
@@ -45,7 +45,7 @@ class AvailableTables extends Component {
         key={index}
         max_seat={activity.table.max_seat}
         min_seat={activity.table.min_seat}
-        handleMessage={this.props.handleMessage}
+        _addNotification={this.props._addNotification}
         token={this.props.token}
       />)
     } else {

@@ -45,8 +45,8 @@ class SeatPartyForm extends Component {
         }
       }
     })
-      .then((response) => this.props.handleMessage('green', 'Sat at Table ' + this.state.table_id + ' at ' + this.state.time_sat + '. Now remove from Waitlist'))
-      .catch((error) => this.handleMessage('red', 'something went wrong'))
+      .then((response) => this.props._addNotification('success', 'Sat at Table ' + this.state.table_id + ' at ' + this.state.time_sat + '. Now remove from Waitlist'))
+      .catch((error) => this._addNotification('error', 'something went wrong'))
   }
 
   render () {

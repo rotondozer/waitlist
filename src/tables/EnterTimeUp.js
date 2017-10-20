@@ -44,8 +44,8 @@ class EnterTimeUp extends Component {
         }
       }
     })
-      .then((response) => this.props.handleMessage('green', ('Table ' + this.state.table_id + ' is now open.')))
-      .catch((error) => this.props.handleMessage('red', 'something went wrong'))
+      .then((response) => this.props._addNotification('success', ('Table ' + this.state.table_id + ' is now open.')))
+      .catch((error) => this.props._addNotification('error', 'something went wrong'))
   }
 
   render () {

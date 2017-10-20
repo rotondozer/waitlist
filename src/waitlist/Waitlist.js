@@ -108,8 +108,8 @@ class Waitlist extends Component {
       }
     })
       .then(() => this.getAllParties())
-      .then((response) => this.props.handleMessage('green', 'Party removed from the Waitlist'))
-      .catch((error) => this.props.handleMessage('red', 'something went wrong.'))
+      .then((response) => this.props._addNotification('success', 'Party removed from the Waitlist'))
+      .catch((error) => this.props._addNotification('error', 'something went wrong.'))
   }
 
   getAllParties () {
@@ -125,7 +125,7 @@ class Waitlist extends Component {
     })
       .then((response) => self.updateState(response.data.parties))
 
-      .catch((error) => this.props.handleMessage('red', 'something went wrong'))
+      .catch((error) => this.props._addNotification('error', 'something went wrong'))
   }
 
   getAllOccupiedTables () {
@@ -139,7 +139,7 @@ class Waitlist extends Component {
       }
     })
       .then((response) => this.updateOccupiedTablesState(response.data.tables_activities))
-      .catch((error) => this.props.handleMessage('bad'))
+      .catch((error) => this.props._addNotification('bad'))
   }
   componentWillMount () {
     this.getAllParties()
@@ -159,7 +159,7 @@ class Waitlist extends Component {
           token={this.props.token}
           matchingTablesArray={this.state.matchingTablesArray}
           updateMatchingTableState={this.updateMatchingTableState}
-          handleMessage={this.props.handleMessage}
+          _addNotification={this.props._addNotification}
         />
       )} />
     }
@@ -170,7 +170,7 @@ class Waitlist extends Component {
       nextAvailableTables = <Route to='/next_available_tables_for_party' render={() => (
         <NextAvailableTables
           nextAvailableTables={this.state.nextAvailableTables}
-          handleMessage={this.props.handleMessage}
+          _addNotification={this.props._addNotification}
         />
       )} />
     }
@@ -190,7 +190,7 @@ class Waitlist extends Component {
         updateMatchingTableState={this.updateMatchingTableState}
         updateOccupiedTablesState={this.updateOccupiedTablesState}
         filterOccupiedTablesToMatchParty={this.filterOccupiedTablesToMatchParty}
-        handleMessage={this.props.handleMessage}
+        _addNotification={this.props._addNotification}
         token={this.props.token}
       />)
     } else {

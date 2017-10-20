@@ -32,10 +32,10 @@ class Settings extends Component {
         'Authorization': 'Token token=' + self.props.token
       }
     })
-      .then(this.props.handleMessage('yellow', 'Signed Out'))
+      .then(this.props._addNotification('info', 'Signed Out'))
       .then(self.props.setAuthInfo('Not Signed In','',''))
       .then(self.props.changeSignedInStatus(false))
-      .catch((error) => this.props.handleMessage('red', 'Something went wrong.'))
+      .catch((error) => this.props._addNotification('error', 'Something went wrong.'))
   }
 
   render () {
@@ -44,7 +44,7 @@ class Settings extends Component {
         <Grid centered>
           <Grid.Row>
             <Grid.Column mobile={12} tablet={8} computer={8}>
-              <ChangePassword setAuthInfo={this.props.setAuthInfo} user_id={this.props.user_id} token={this.props.token} handleMessage={this.props.handleMessage}/>
+              <ChangePassword setAuthInfo={this.props.setAuthInfo} user_id={this.props.user_id} token={this.props.token} _addNotification={this.props._addNotification}/>
             </Grid.Column>
           </Grid.Row>
 
@@ -52,7 +52,7 @@ class Settings extends Component {
             <Grid.Column mobile={12} tablet={8} computer={8}>
               {/* LOG OUT BUTTON */}
               <Button fluid
-                basic color='red'
+                basic color='error'
                 type='button'
                 onClick={(event) => this.signOut(event)}
                 content='Logout'/>

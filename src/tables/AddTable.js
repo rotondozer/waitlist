@@ -40,9 +40,9 @@ class AddTable extends Component {
         }
       }
     })
-      .then((response) => this.props.handleMessage('green', 'Table Added to Dining Area'))
+      .then((response) => this.props._addNotification('success', 'Table Added to Dining Area'))
       .then(() => this.setState({addedTable:true}))
-      .catch((error) => this.props.handleMessage('red', 'Something went wrong'))
+      .catch((error) => this.props._addNotification('error', 'Something went wrong'))
   }
 
   handleChange (event) {

@@ -47,7 +47,7 @@ class Party extends Component {
       }
     })
       .then((response) => this.props.updateMatchingTableState(response.data.tables))
-      .catch((error) => this.props.handleMessage('red', 'something went wrong'))
+      .catch((error) => this.props._addNotification('error', 'something went wrong'))
   }
 
   // *** `this.props` will refer to each instance of a party. ***
@@ -64,7 +64,7 @@ class Party extends Component {
     })
       .then((response) => this.props.updateOccupiedTablesState(response.data.tables_activities))
       .then(() => this.props.filterOccupiedTablesToMatchParty())
-      .catch((error) => this.props.handleMessage('red', 'something went wrong'))
+      .catch((error) => this.props._addNotification('error', 'something went wrong'))
   }
 
   showSeatPartyForm () {
@@ -86,7 +86,7 @@ class Party extends Component {
           id={this.state.editPartyId}
           callback={this.updatePartyState}
           onGetAllParties={this.props.onGetAllParties}
-          handleMessage={this.props.handleMessage}/>
+          _addNotification={this.props._addNotification}/>
       )}/>
     }
 
@@ -96,7 +96,7 @@ class Party extends Component {
         user_id={this.props.user_id}
         token={this.props.token}
         party_id={this.props.party_id}
-        handleMessage={this.props.handleMessage}
+        _addNotification={this.props._addNotification}
       />
     }
 
