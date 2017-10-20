@@ -96,6 +96,7 @@ class Party extends Component {
         user_id={this.props.user_id}
         token={this.props.token}
         party_id={this.props.party_id}
+        name={this.props.name}
         _addNotification={this.props._addNotification}
       />
     }
