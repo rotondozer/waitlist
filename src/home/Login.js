@@ -45,11 +45,11 @@ class Login extends Component {
       .then((response) => {
         const user = response.data.user
         this.props.setAuthInfo(user.email, user.token, user.id)
-        this.props.handleMessage('green', 'Signed In!')
+        this.props._addNotification('Login Success!', 'success')
       })
       .then(() => this.props.changeSignedInStatus(true))
       .then(() => this.onSuccessUpdateState())
-      .catch((error) => this.props.handleMessage('red', 'Invalid username or password'))
+      .catch((error) => this.props._addNotification('Login Failure', 'error'))
 
   }
 
@@ -98,6 +98,8 @@ class Login extends Component {
                 <input placeholder='Password' type='password' onChange={(event) => this.setState({password: event.target.value})} value={this.state.password}></input>*/}
 
                 <Button color='teal' fluid size='large' type='submit'>Employee Login</Button>
+
+                {/* <NotificationContainer/> */}
               </Segment>
             </Form>
             <Message>

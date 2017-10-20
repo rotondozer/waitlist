@@ -13,6 +13,7 @@ import {
   Message,
   Button
 } from 'semantic-ui-react'
+import NotificationSystem from 'react-notification-system'
 
 import Tables from './tables/Tables.js'
 import Waitlist from './waitlist/Waitlist.js'
@@ -32,13 +33,16 @@ class WaitListApp extends Component {
       token: '',
       user_id: '',
       signed_in: false,
-      displayMessage: false,
-      displayMessageContent: '',
-      displayMessageType: '',
+      notificationSystem: null
+      // notificationMessage: '',
+      // notificationLevel: '',
+      // displayMessage: false,
+      // displayMessageContent: '',
+      // displayMessageType: '',
     }
     this.setAuthInfo = this.setAuthInfo.bind(this)
     this.changeSignedInStatus = this.changeSignedInStatus.bind(this)
-    this.handleMessage = this.handleMessage.bind(this)
+    this._addNotification = this._addNotification.bind(this)
     this.closeMessage = this.closeMessage.bind(this)
   }
 
@@ -59,14 +63,26 @@ class WaitListApp extends Component {
     })
   }
 
-  handleMessage (type, content) {
-    // TODO move all display data into one object
-    this.setState({
-      displayMessage: true,
-      displayMessageContent: content,
-      displayMessageType: type
-    })
+  _addNotification (message, level) {
+    // event.preventDefault();
+    this._notificationSystem.addNotification({
+      message: message,
+      level: level
+    });
   }
+
+  componentDidMount () {
+    this._notificationSystem = this.refs.notificationSystem;
+  }
+
+  // handleMessage (type, content) {
+  //   // TODO move all display data into one object
+  //   this.setState({
+  //     displayMessage: true,
+  //     displayMessageContent: content,
+  //     displayMessageType: type
+  //   })
+  // }
 
   closeMessage () {
     this.setState({
@@ -85,7 +101,8 @@ class WaitListApp extends Component {
       )}/>
     } else {
       homeOrLogin = <Route exact path='/' render={() => (
-        <Login setAuthInfo={this.setAuthInfo} changeSignedInStatus={this.changeSignedInStatus} handleMessage={this.handleMessage}/>
+        <Login setAuthInfo={this.setAuthInfo} changeSignedInStatus={this.changeSignedInStatus}
+        _addNotification={this._addNotification} />
       )}/>
     }
 
@@ -105,7 +122,10 @@ class WaitListApp extends Component {
         <Container>
           <Header as='h1' content='Your Restaurant Name' floated='left' />
           <Header as='h3' content={this.state.user} floated='right'/>
-          {displayMessage}
+          <button onClick={this._addNotification}>Add notification</button>
+          <NotificationSystem ref="notificationSystem" />
+
+          {/* {displayMessage} */}
           <Menu attached='top' tabular>
             <Menu.Item as={Link} to='/' name='Home' active={activeItem === 'Home'} onClick={this.handleItemClick} />
             <Menu.Item as={Link} to='/tables' name='Tables' active={activeItem === 'Tables'} onClick={this.handleItemClick} />
