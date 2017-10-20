@@ -92,7 +92,6 @@ class WaitListApp extends Component {
     let displayMessage
     if (this.state.displayMessage) {
       displayMessage = <Message
-        compact
         attached='top'
         color={this.state.displayMessageType}
         onDismiss={this.closeMessage} >

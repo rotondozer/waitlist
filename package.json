@@ -21,6 +21,8 @@
     "eslint": "^4.8.0",
     "eslint-plugin-react": "^7.4.0",
     "jquery": "^3.2.1",
+    "moment": "^2.19.1",
+    "react-time": "^4.3.0",
     "react-time-format": "0.0.5",
     "semantic-ui": "^2.2.13"
   }

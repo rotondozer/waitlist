@@ -124,6 +124,7 @@ class Waitlist extends Component {
       }
     })
       .then((response) => self.updateState(response.data.parties))
+
       .catch((error) => this.props.handleMessage('red', 'something went wrong'))
   }
 
