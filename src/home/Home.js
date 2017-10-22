@@ -16,10 +16,11 @@ class Home extends Component {
     return (
       <Grid columns={3} divided>
         <Grid.Row stretched>
+          {/* Reservations Column - this can be pulled out and made into components */}
           <Grid.Column>
             <Segment>
               <Header as='h2' content='Reservations' />
-              <List celled  className='resos'>
+              <List celled  relaxed='very'>
                 <List.Item>
                   <List.Content>
                     <List.Header className='reso-name'><Icon name='quote left' /> John</List.Header>
@@ -60,14 +61,24 @@ class Home extends Component {
               </List>
             </Segment>
           </Grid.Column>
+          {/* 86 Column */}
           <Grid.Column>
             <Segment>
               <Header as='h2' content='86' />
+              <List celled relaxed>
+                <List.Item><Icon name='minus circle' />Scallops</List.Item>
+                <List.Item><Icon name='minus circle' />Harpoon Summer</List.Item>
+                <List.Item><Icon name='minus circle' />Gruyère</List.Item>
+              </List>
             </Segment>
           </Grid.Column>
           <Grid.Column>
             <Segment>
               <Header as='h2' content='Additional Notes' />
+              <List celled relaxed>
+                <List.Item><Icon name='info circle' />Someone left their credit card at the bar last night. He'll be by to pick it up tonight</List.Item>
+                <List.Item><Icon name='info circle' />The walk-in door gasket is coming loose. Please make sure staff is closing it <em>tightly</em></List.Item>
+              </List>
             </Segment>
           </Grid.Column>
         </Grid.Row>
