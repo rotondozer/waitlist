@@ -17,7 +17,7 @@ class Waitlist extends Component {
   constructor (props) {
     super (props)
     this.state = {
-      partiesArray: [],
+      partiesArray: null,
       // TODO use this to store the party which the 'Match' button was clicked
       // event.target.id? same as deleteParty()
       activeParty: '',
@@ -176,7 +176,7 @@ class Waitlist extends Component {
     }
 
     let partiesOrMessage
-    if (this.state.partiesArray.length > 0) {
+    if (this.state.partiesArray) {
       partiesOrMessage = this.state.partiesArray.map((party, index) => <Party
         name={party.name}
         size={party.size}
