@@ -72,6 +72,7 @@ class Home extends Component {
               </List>
             </Segment>
           </Grid.Column>
+          {/* Additional Notes column */}
           <Grid.Column>
             <Segment>
               <Header as='h2' content='Additional Notes' />

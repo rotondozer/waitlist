@@ -11,7 +11,8 @@ import {
   Container,
   Header,
   Message,
-  Button
+  Button,
+  Icon
 } from 'semantic-ui-react'
 import NotificationSystem from 'react-notification-system'
 
@@ -120,16 +121,28 @@ class WaitListApp extends Component {
     return (
       <Router className='outer-frame'>
         <Container>
-          <Header as='h1' content='Your Restaurant Name' floated='left' />
-          <Header as='h3' content={this.state.user} floated='right'/>
+          <Header as='h1' content='WaitLess' floated='left' />
+          <Header as='h3' color='teal' content={this.state.user} floated='right'/>
           <NotificationSystem ref="notificationSystem" />
 
           {/* {displayMessage} */}
           <Menu attached='top' tabular>
-            <Menu.Item as={Link} to='/' name='Home' active={activeItem === 'Home'} onClick={this.handleItemClick} />
-            <Menu.Item as={Link} to='/tables' name='Tables' active={activeItem === 'Tables'} onClick={this.handleItemClick} />
-            <Menu.Item as={Link} to='/waitlist' name='Waitlist' active={activeItem === 'Waitlist'} onClick={this.handleItemClick} />
-            <Menu.Item as={Link} to='/settings' name='Settings' active={activeItem === 'Settings'} onClick={this.handleItemClick} />
+            <Menu.Item as={Link} to='/'
+              name='Home' active={activeItem === 'Home'} onClick={this.handleItemClick}>
+              <Icon name='home' />Home
+            </Menu.Item>
+            <Menu.Item as={Link} to='/tables'
+              name='Tables' active={activeItem === 'Tables'} onClick={this.handleItemClick}>
+              <Icon name='food' />Tables
+            </Menu.Item>
+            <Menu.Item as={Link} to='/waitlist'
+              name='Waitlist' active={activeItem === 'Waitlist'} onClick={this.handleItemClick}>
+              <Icon name='users' />Waitlist
+            </Menu.Item>
+            <Menu.Item as={Link} to='/settings'
+              name='Settings' active={activeItem === 'Settings'} onClick={this.handleItemClick}>
+              <Icon name='setting' />Settings
+            </Menu.Item>
 
             {/* <Menu.Menu position='right'>
               <Menu.Item>
@@ -138,7 +151,7 @@ class WaitListApp extends Component {
             </Menu.Menu> */}
           </Menu>
 
-          <Segment attached='bottom'>
+          <Segment attached='bottom' className='main'>
             {homeOrLogin}
 
             <Route path='/create_account' render={() => (

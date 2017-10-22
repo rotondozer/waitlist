@@ -52,7 +52,7 @@ class Settings extends Component {
             <Grid.Column mobile={12} tablet={8} computer={8}>
               {/* LOG OUT BUTTON */}
               <Button fluid
-                basic color='error'
+                basic color='red'
                 type='button'
                 onClick={(event) => this.signOut(event)}
                 content='Logout'/>

@@ -23,6 +23,11 @@ class SeatPartyForm extends Component {
     this.setState({
       [event.target.name]: event.target.value
     })
+    debugger
+  }
+
+  dropdownSelect (event, data) {
+    this.setState({ table_id: data.value })
   }
 
   updateAvailableTableState (availableTables) {
@@ -77,6 +82,7 @@ class SeatPartyForm extends Component {
     const availableTableNums = this.state.availableTablesArray.map((table, index) => {
       let tableObj = {}
       tableObj['key'] = index
+      tableObj['value'] = table.table_id
       tableObj['text'] = table.table_id
       return tableObj
     })
@@ -87,10 +93,20 @@ class SeatPartyForm extends Component {
         {/* <Form.Input placeholder='table number'
           name='table_id'
           onChange={(event) => this.handleInputChange(event)} value={this.state.table_id} /> */}
-        <Dropdown placeholder='Available Tables' search selection options={availableTableNums} />
-        <Form.Input placeholder='time sat'
-          name='time_sat'
-          onChange={(event) => this.handleInputChange(event)} value={this.state.time_sat} />
+          <Dropdown
+            placeholder='Available Tables'
+            search
+            selection
+            name='table_id'
+            onChange={(event, data) => this.dropdownSelect(event, data)}
+            options={availableTableNums} />
+
+        {/* <Form.Field width={1}> */}
+          <Form.Input placeholder='time sat'
+            name='time_sat'
+            onChange={(event) => this.handleInputChange(event)} value={this.state.time_sat} />
+        {/* </Form.Field> */}
+
         <Form.Button content='Seat'/>
         {/* </Form.Group> */}
       </Form>
