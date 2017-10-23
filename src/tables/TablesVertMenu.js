@@ -37,7 +37,7 @@ class TablesVertMenu extends Component {
 
         <Menu.Item as={Link} to='/available_tables' name='AvailableTables' active={activeItem === 'AvailableTables'} onClick={this.handleItemClick}>
           <Label>0</Label>
-          Avaialable
+          Available
         </Menu.Item>
 
         <Menu.Item as={Link} to='/all_table_history' name='AllTableHistory' active={activeItem === 'AllTableHistory'} onClick={this.handleItemClick}>

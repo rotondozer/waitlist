@@ -65,8 +65,14 @@ class Table extends Component {
         />
       )}/>
     }
-    let time_sat, time_up
+    let time_sat, time_up, editButton, deleteButton
     if (this.props.history) {
+      editButton = <TableUI.Cell>
+        {/* <Button basic color='yellow' onClick={(event) => this.setState({editTable:true, editTableId:event.target.id})} id={this.props.table_id}>Edit</Button> */}
+      </TableUI.Cell>
+      deleteButton = <TableUI.Cell>
+        <Button basic color='red' onClick={(event) => this.props.deleteTableActivity(event, this.props.activity_id)} id={this.props.table_id}>Delete</Button>
+      </TableUI.Cell>
       time_sat = <TableUI.Cell>{this.props.time_sat}</TableUI.Cell>
       if (this.props.time_up === null) {
         // Each button contains props unique to that tables_activity
@@ -84,6 +90,13 @@ class Table extends Component {
       } else {
         time_up = <TableUI.Cell>{this.props.time_up}</TableUI.Cell>
       }
+    } else { //if not history time
+      editButton = <TableUI.Cell>
+        <Button basic color='yellow' onClick={(event) => this.setState({editTable:true, editTableId:event.target.id})} id={this.props.table_id}>Edit</Button>
+      </TableUI.Cell>
+      deleteButton = <TableUI.Cell>
+        <Button basic color='red' onClick={(event) => this.props.onDeleteTable(event)} id={this.props.table_id}>Delete</Button>
+      </TableUI.Cell>
     }
 
     // TODO ? Add same conditional for party/part_id
@@ -93,12 +106,8 @@ class Table extends Component {
         <TableUI.Cell>{this.props.table_id}</TableUI.Cell>
         <TableUI.Cell>{this.props.max_seat}</TableUI.Cell>
         <TableUI.Cell>{this.props.min_seat}</TableUI.Cell>
-        <TableUI.Cell>
-          <Button basic color='yellow' onClick={(event) => this.setState({editTable:true, editTableId:event.target.id})} id={this.props.table_id}>Edit</Button>
-        </TableUI.Cell>
-        <TableUI.Cell>
-          <Button basic color='red' onClick={(event) => this.props.onDeleteTable(event)} id={this.props.table_id}>Delete</Button>
-        </TableUI.Cell>
+        {editButton}
+        {deleteButton}
         {time_sat}
         {time_up}
       </TableUI.Row>

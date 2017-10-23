@@ -16,6 +16,8 @@ class AllTableHistory extends Component {
     this.state = {
       allTableHistoryArray: []
     }
+    this.deleteTableActivity = this.deleteTableActivity.bind(this)
+    this.getAllTableHistory = this.getAllTableHistory.bind(this)
   }
 
   updateState (data) {
@@ -24,7 +26,23 @@ class AllTableHistory extends Component {
     })
   }
 
-  componentWillMount () {
+  deleteTableActivity (event, tableActivity) {
+    event.preventDefault()
+    // const tableId = event.target.id
+    axios({
+      url: `http://localhost:4741/tables_activities/${tableActivity}`,
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': 'Token token=' + this.props.token
+      }
+    })
+      .then(() => this.getAllTableHistory())
+      .then(() => this.props._addNotification('success', 'Table Removed From History'))
+      .catch((error) => this.props._addNotification('error', 'Unauthorized'))
+  }
+
+  getAllTableHistory () {
     const self = this
     axios({
       url: `http://localhost:4741/users/${this.props.user_id}/tables_activities`,
@@ -36,6 +54,10 @@ class AllTableHistory extends Component {
     })
       .then((response) => self.updateState(response.data.tables_activities))
       .catch((error) => this.props._addNotification('error', 'something went wrong'))
+  }
+
+  componentWillMount () {
+    this.getAllTableHistory()
   }
 
   render () {
@@ -51,6 +73,7 @@ class AllTableHistory extends Component {
       user_id={this.props.user_id}
       token={this.props.token}
       _addNotification={this.props._addNotification}
+      deleteTableActivity={this.deleteTableActivity}
     />)
     return (
       <Container>

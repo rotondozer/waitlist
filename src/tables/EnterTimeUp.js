@@ -56,12 +56,11 @@ class EnterTimeUp extends Component {
         <TableUI.Cell>{'  '}</TableUI.Cell>
         <TableUI.Cell>{'  '}</TableUI.Cell>
         <TableUI.Cell>
-          <Button basic color='yellow' onClick={(event) => this.submitTimeUp(event)}>Submit</Button>
+          <Button basic color='teal' onClick={(event) => this.submitTimeUp(event)}>Enter</Button>
         </TableUI.Cell>
-        <TableUI.Cell>delete</TableUI.Cell>
+        <TableUI.Cell>{'  '}</TableUI.Cell>
         <TableUI.Cell>{this.props.time_sat}</TableUI.Cell>
         <TableUI.Cell>
-          {/* TODO capture onChange within state, send that with submit form */}
           <Input placeholder='enter time up' onChange={(event) => this.handleInputChange(event)} value={this.state.time_up_input}></Input>
         </TableUI.Cell>
 
