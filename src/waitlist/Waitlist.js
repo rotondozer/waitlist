@@ -100,7 +100,7 @@ class Waitlist extends Component {
     const partyId = event.target.id
     event.preventDefault()
     axios({
-      url: `${baseUrl}/parties/${partyId}`,
+      url: `${baseUrl}/users/${this.props.user_id}/parties/${partyId}`,
       method: 'DELETE',
       headers: {
         'content-type': 'application/json',
@@ -113,10 +113,11 @@ class Waitlist extends Component {
   }
 
   getAllParties () {
+    debugger
     const baseUrl = 'http://localhost:4741'
     const self = this
     axios({
-      url: baseUrl + '/parties',
+      url: `${baseUrl}/users/${self.props.user_id}/parties`,
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -131,7 +132,7 @@ class Waitlist extends Component {
   getAllOccupiedTables () {
     // event.preventDefault()
     axios({
-      url: 'http://localhost:4741/tables_activities_all_occupied',
+      url: `http://localhost:4741/users/${this.props.user_id}/tables_activities_all_occupied`,
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -139,7 +140,7 @@ class Waitlist extends Component {
       }
     })
       .then((response) => this.updateOccupiedTablesState(response.data.tables_activities))
-      .catch((error) => this.props._addNotification('bad'))
+      .catch((error) => this.props._addNotification('error', 'something went wrong.'))
   }
   componentWillMount () {
     this.getAllParties()

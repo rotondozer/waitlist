@@ -67,7 +67,7 @@ class Home extends Component {
               <Header as='h2' content='86' />
               <List celled relaxed>
                 <List.Item><Icon name='minus circle' />Scallops</List.Item>
-                <List.Item><Icon name='minus circle' />Harpoon Summer</List.Item>
+                <List.Item><Icon name='minus circle' />Harpoon Summer Ale</List.Item>
                 <List.Item><Icon name='minus circle' />Gruyère</List.Item>
               </List>
             </Segment>
