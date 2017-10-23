@@ -28,7 +28,7 @@ class EnterTimeUp extends Component {
   submitTimeUp (event) {
     event.preventDefault()
     axios({
-      url: `https://waitlist-api.herokuapp.com/tables_activities/${this.state.activity_id}`,
+      url: `http://localhost:4741/tables_activities/${this.state.activity_id}`,
       method: 'PATCH',
       headers: {
         'content-type': 'application/json',

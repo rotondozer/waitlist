@@ -41,7 +41,7 @@ class AllTables extends Component {
     event.preventDefault()
     const tableId = event.target.id
     axios({
-      url: `https://waitlist-api.herokuapp.com/tables/${tableId}`,
+      url: `http://localhost:4741/tables/${tableId}`,
       method: 'DELETE',
       headers: {
         'content-type': 'application/json',
@@ -56,7 +56,7 @@ class AllTables extends Component {
   getAllTables () {
     const self = this
     axios({
-      url: `https://waitlist-api.herokuapp.com/users/${this.props.user_id}/tables`,
+      url: `http://localhost:4741/users/${this.props.user_id}/tables`,
       method: 'GET',
       headers: {
         'content-type': 'application/json',

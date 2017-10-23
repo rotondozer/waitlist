@@ -26,7 +26,7 @@ class Login extends Component {
 
   handleSubmit (event) {
     event.preventDefault()
-    const apiBaseUrl = 'https://waitlist-api.herokuapp.com'
+    const apiBaseUrl = 'http://localhost:4741'
     const self = this
 
     axios({
