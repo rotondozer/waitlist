@@ -38,7 +38,7 @@ class SeatPartyForm extends Component {
   componentWillMount () {
     const self = this
     axios({
-      url: `http://localhost:4741/users/${this.props.user_id}/tables_activities_all_available`,
+      url: `http://localhost:4741/${this.props.user_id}/tables_activities_all_available`,
       method: 'GET',
       headers: {
         'content-type': 'application/json',

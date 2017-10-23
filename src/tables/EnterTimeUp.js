@@ -14,6 +14,7 @@ class EnterTimeUp extends Component {
       activity_id: this.props.activity_id,
       table_id: this.props.table_id,
       time_sat: this.props.time_sat,
+      // party_id: this.props.party_id,
       time_up: ''
     }
   }
@@ -27,7 +28,7 @@ class EnterTimeUp extends Component {
   submitTimeUp (event) {
     event.preventDefault()
     axios({
-      url: `http://localhost:4741/users/${this.props.user_id}/tables_activities/${this.state.activity_id}`,
+      url: `http://localhost:4741/tables_activities/${this.state.activity_id}`,
       method: 'PATCH',
       headers: {
         'content-type': 'application/json',
@@ -38,9 +39,9 @@ class EnterTimeUp extends Component {
           table_id: this.state.table_id,
           time_sat: this.state.time_sat,
           // time_up is coming from the input field updating state
-          time_up: this.state.time_up,
+          time_up: this.state.time_up
           // What about party_id?
-          user_id: this.props.user_id
+          // party_id: this.state.party_id
         }
       }
     })
