@@ -38,7 +38,7 @@ class SeatPartyForm extends Component {
   componentWillMount () {
     const self = this
     axios({
-      url: 'http://localhost:4741/tables_activities_all_available',
+      url: `http://localhost:4741/users/${this.props.user_id}/tables_activities_all_available`,
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -57,7 +57,7 @@ class SeatPartyForm extends Component {
     const time_sat = this.state.time_sat
     event.preventDefault()
     axios({
-      url: 'http://localhost:4741/tables_activities',
+      url: `http://localhost:4741/users/${this.props.user_id}/tables_activities`,
       method: 'POST',
       headers: {
         'content-type': 'application/json',

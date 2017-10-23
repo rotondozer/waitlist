@@ -24,7 +24,7 @@ class EditParty extends Component {
   editParty (event) {
     event.preventDefault()
     axios({
-      url: 'http://localhost:4741/parties/' + this.props.id,
+      url: `http://localhost:4741/parties/${this.props.id}`,
       method: 'PATCH',
       headers: {
         'content-type': 'application/json',
@@ -38,7 +38,7 @@ class EditParty extends Component {
           est_wait: this.state.estWait,
           notes: this.state.notes,
           // TODO: pass user_id down from container component
-          user_id: 1
+          user_id: this.props.user_id
         }
       }
     })

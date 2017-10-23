@@ -25,7 +25,7 @@ class AddParty extends Component {
   createParty (event) {
     event.preventDefault()
     axios({
-      url: 'http://localhost:4741/parties',
+      url: `http://localhost:4741/users/${this.props.user_id}/parties`,
       method: 'POST',
       headers: {
         'content-type': 'application/json',

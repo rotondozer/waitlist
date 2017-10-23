@@ -27,7 +27,7 @@ class Tables extends Component {
   }
 
   render () {
-
+    // has user_id in props
     return (
       <Router>
         <Grid divided relaxed='very'>

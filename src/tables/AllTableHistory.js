@@ -27,7 +27,7 @@ class AllTableHistory extends Component {
   componentWillMount () {
     const self = this
     axios({
-      url: 'http://localhost:4741/tables_activities',
+      url: `http://localhost:4741/users/${this.props.user_id}/tables_activities`,
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -35,7 +35,7 @@ class AllTableHistory extends Component {
       }
     })
       .then((response) => self.updateState(response.data.tables_activities))
-      .catch((error) => this.props._addNotification('bad', 'bad'))
+      .catch((error) => this.props._addNotification('error', 'something went wrong'))
   }
 
   render () {

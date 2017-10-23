@@ -41,6 +41,7 @@ class Table extends Component {
 
   render () {
     if (this.state.editTable) {
+      // not getting user_id in props...
       return <Route push to='/edit_tables' render={() => (
         <EditTable user_id={this.props.user_id}
           token={this.props.token}

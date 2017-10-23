@@ -100,7 +100,7 @@ class Waitlist extends Component {
     const partyId = event.target.id
     event.preventDefault()
     axios({
-      url: `${baseUrl}/users/${this.props.user_id}/parties/${partyId}`,
+      url: `${baseUrl}/parties/${partyId}`,
       method: 'DELETE',
       headers: {
         'content-type': 'application/json',
@@ -113,7 +113,6 @@ class Waitlist extends Component {
   }
 
   getAllParties () {
-    debugger
     const baseUrl = 'http://localhost:4741'
     const self = this
     axios({
@@ -132,7 +131,7 @@ class Waitlist extends Component {
   getAllOccupiedTables () {
     // event.preventDefault()
     axios({
-      url: `http://localhost:4741/users/${this.props.user_id}/tables_activities_all_occupied`,
+      url: `http://localhost:4741/${this.props.user_id}/tables_activities_all_occupied`,
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -148,6 +147,7 @@ class Waitlist extends Component {
   }
 
   render () {
+
     if (this.state.addParty) {
       return <Redirect push to="/add_parties" />
     }
@@ -192,6 +192,7 @@ class Waitlist extends Component {
         updateOccupiedTablesState={this.updateOccupiedTablesState}
         filterOccupiedTablesToMatchParty={this.filterOccupiedTablesToMatchParty}
         _addNotification={this.props._addNotification}
+        user_id={this.props.user_id}
         token={this.props.token}
       />)
     } else {

@@ -27,7 +27,7 @@ class EnterTimeUp extends Component {
   submitTimeUp (event) {
     event.preventDefault()
     axios({
-      url: 'http://localhost:4741/tables_activities/' + this.state.activity_id,
+      url: `http://localhost:4741/users/${this.props.user_id}/tables_activities/${this.state.activity_id}`,
       method: 'PATCH',
       headers: {
         'content-type': 'application/json',

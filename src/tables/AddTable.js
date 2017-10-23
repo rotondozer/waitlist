@@ -26,7 +26,7 @@ class AddTable extends Component {
   createTable (event) {
     event.preventDefault()
     axios({
-      url: 'http://localhost:4741/tables',
+      url: `http://localhost:4741/users/${this.props.user_id}/tables`,
       method: 'POST',
       headers: {
         'content-type': 'application/json',

@@ -13,7 +13,7 @@ class AvailableTables extends Component {
   constructor (props) {
     super (props)
     this.state = {
-      availableTablesArray: []
+      availableTablesArray: null
     }
   }
 
@@ -26,7 +26,7 @@ class AvailableTables extends Component {
   componentWillMount () {
     const self = this
     axios({
-      url: 'http://localhost:4741/tables_activities_all_available',
+      url: `http://localhost:4741/${this.props.user_id}/tables_activities_all_available`,
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -39,7 +39,7 @@ class AvailableTables extends Component {
 
   render () {
     let body
-    if (this.state.availableTablesArray.length > 0) {
+    if (this.state.availableTablesArray) {
       body = this.state.availableTablesArray.map((activity, index) => <Table
         table_id={activity.table_id}
         key={index}
