@@ -27,7 +27,7 @@ class AllTableHistory extends Component {
   componentWillMount () {
     const self = this
     axios({
-      url: `http://localhost:4741/users/${this.props.user_id}/tables_activities`,
+      url: `https://waitlist-api.herokuapp.com/users/${this.props.user_id}/tables_activities`,
       method: 'GET',
       headers: {
         'content-type': 'application/json',

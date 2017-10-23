@@ -26,7 +26,7 @@ class AddTable extends Component {
   createTable (event) {
     event.preventDefault()
     axios({
-      url: `http://localhost:4741/users/${this.props.user_id}/tables`,
+      url: `https://waitlist-api.herokuapp.com/users/${this.props.user_id}/tables`,
       method: 'POST',
       headers: {
         'content-type': 'application/json',

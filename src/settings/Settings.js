@@ -22,7 +22,7 @@ class Settings extends Component {
 
   signOut (event) {
     event.preventDefault()
-    const apiBaseUrl = 'http://localhost:4741'
+    const apiBaseUrl = 'https://waitlist-api.herokuapp.com'
     const self = this
     axios({
       url: apiBaseUrl + '/sign-out/' + self.props.user_id,

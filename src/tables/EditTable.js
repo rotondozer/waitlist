@@ -20,7 +20,7 @@ class EditTable extends Component {
   editTable (event) {
     event.preventDefault()
     axios({
-      url: `http://localhost:4741/tables/${this.props.table_id}`,
+      url: `https://waitlist-api.herokuapp.com/tables/${this.props.table_id}`,
       method: 'PATCH',
       headers: {
         'content-type': 'application/json',
