@@ -73,7 +73,7 @@ class SeatPartyForm extends Component {
       }
     })
       .then((response) => this.props._addNotification('success', `${name} was seated at Table ${table} at ${time_sat}.`))
-      .then(() => this.props.getAllParties())
+      .then(() => this.props.showSeatPartyForm())
       .catch((error) => this.props._addNotification('error', 'something went wrong'))
   }
 

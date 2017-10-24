@@ -99,6 +99,7 @@ class Party extends Component {
         name={this.props.name}
         getAllParties={this.props.onGetAllParties}
         _addNotification={this.props._addNotification}
+        showSeatPartyForm={this.showSeatPartyForm}
       />
     }
 
