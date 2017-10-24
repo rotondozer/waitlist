@@ -96,7 +96,7 @@ class Waitlist extends Component {
   }
 
   deleteParty (event) {
-    const baseUrl = 'http://localhost:4741'
+    const baseUrl = 'https://waitlist-api.herokuapp.com'
     const partyId = event.target.id
     event.preventDefault()
     axios({
@@ -113,7 +113,7 @@ class Waitlist extends Component {
   }
 
   getAllParties () {
-    const baseUrl = 'http://localhost:4741'
+    const baseUrl = 'https://waitlist-api.herokuapp.com'
     const self = this
     axios({
       url: `${baseUrl}/users/${self.props.user_id}/parties`,
@@ -131,7 +131,7 @@ class Waitlist extends Component {
   getAllOccupiedTables () {
     // event.preventDefault()
     axios({
-      url: `http://localhost:4741/${this.props.user_id}/tables_activities_all_occupied`,
+      url: `https://waitlist-api.herokuapp.com/${this.props.user_id}/tables_activities_all_occupied`,
       method: 'GET',
       headers: {
         'content-type': 'application/json',

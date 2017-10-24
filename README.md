@@ -44,5 +44,5 @@ My database structure took a few ERDs to get right. That was a bit time consumin
 As this project evolves, I aim to take advantages of all the routes I have set up for accessing and calculating useful information for a restaurant host. This version is in its simplest functionality. As I progressed through my initial version of this app, I became more aware of how I would plan modularity and disperse the responsibilities of components. There is much more to React I want to take advantage of.
 
 ### API
-Deployed: http://localhost:4741
+Deployed: https://waitlist-api.herokuapp.com
 Repository: https://github.com/rotondozer/waitlist-api

@@ -26,7 +26,7 @@ class Register extends Component {
 
   handleSubmit (event) {
     event.preventDefault()
-    const apiBaseUrl = 'http://localhost:4741'
+    const apiBaseUrl = 'https://waitlist-api.herokuapp.com'
     const self = this
     axios({
       url: apiBaseUrl + '/sign-up',

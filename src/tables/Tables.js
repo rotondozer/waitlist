@@ -36,7 +36,7 @@ class Tables extends Component {
   //   event.preventDefault()
   //   const tableId = event.target.id
   //   axios({
-  //     url: `http://localhost:4741/tables/${tableId}`,
+  //     url: `https://waitlist-api.herokuapp.com/tables/${tableId}`,
   //     method: 'DELETE',
   //     headers: {
   //       'content-type': 'application/json',

@@ -39,7 +39,7 @@ class Party extends Component {
     event.preventDefault()
 
     axios({
-      url: `http://localhost:4741/${this.props.user_id}/tables/${this.props.size}/match`,
+      url: `https://waitlist-api.herokuapp.com/${this.props.user_id}/tables/${this.props.size}/match`,
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -55,7 +55,7 @@ class Party extends Component {
   getAllOccupiedTables (event) {
     event.preventDefault()
     axios({
-      url: `http://localhost:4741/${this.props.user_id}/tables_activities_all_occupied`,
+      url: `https://waitlist-api.herokuapp.com/${this.props.user_id}/tables_activities_all_occupied`,
       method: 'GET',
       headers: {
         'content-type': 'application/json',
