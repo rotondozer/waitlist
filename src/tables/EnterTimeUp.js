@@ -46,6 +46,7 @@ class EnterTimeUp extends Component {
       }
     })
       .then((response) => this.props._addNotification('success', ('Table ' + this.state.table_id + ' is now open.')))
+      .then(() => this.props.enterTimeUpOff())
       .catch((error) => this.props._addNotification('error', 'something went wrong'))
   }
 

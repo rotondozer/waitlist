@@ -100,10 +100,6 @@ class AllTableHistory extends Component {
           </TableUI.Body>
         </TableUI>
       </Container>
-      // <div>
-      //   <h1>ALL TABLE HISTORY</h1>
-      //   {allTableHistory}
-      // </div>
     )
   }
 }

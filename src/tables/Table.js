@@ -20,6 +20,7 @@ class Table extends Component {
     }
     this.updateTableState = this.updateTableState.bind(this)
     this.enterTimeUpSwitch = this.enterTimeUpSwitch.bind(this)
+    this.enterTimeUpOff = this.enterTimeUpOff.bind(this)
   }
 
   updateTableState () {
@@ -36,6 +37,12 @@ class Table extends Component {
       editTableId: event.target.getAttribute('table_id'),
       time_sat: event.target.getAttribute('time_sat'),
       activity_id: event.target.getAttribute('activity_id')
+    })
+  }
+
+  enterTimeUpOff () {
+    this.setState({
+      enterTimeUp: false
     })
   }
 
@@ -62,6 +69,7 @@ class Table extends Component {
           _addNotification={this.props._addNotification}
           user_id={this.props.user_id}
           token={this.props.token}
+          enterTimeUpOff={this.enterTimeUpOff}
         />
       )}/>
     }
