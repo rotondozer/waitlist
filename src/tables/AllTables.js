@@ -18,6 +18,7 @@ class AllTables extends Component {
     this.state = {
       // This state needs to be passed in as props, not updated on the spot
       tablesArray: []
+
     }
     this.getAllTables = this.getAllTables.bind(this)
     this.handleOnClick = this.handleOnClick.bind(this)
@@ -103,9 +104,9 @@ class AllTables extends Component {
     let tablesOrMessage = this.renderTables()
     // TODO figure out why this conditional is causing display bug
 
-    if (this.state.tablesArray.length < 1) {
-      tablesOrMessage = <Header as='h2' floated='left'>Dining Area has not been created</Header>
-    }
+    // if (this.state.tablesArray.length < 1) {
+    //   tablesOrMessage = <Header as='h2' floated='left'>Dining Area has not been created</Header>
+    // }
 
     return (
       <Container textAlign='center'>

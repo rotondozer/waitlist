@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { Grid } from 'semantic-ui-react'
 import {
   BrowserRouter as Router,
-  Route,
-  Redirect
+  Route
 } from 'react-router-dom'
+import axios from 'axios'
 
 import AllTables from './AllTables.js'
 import AvailableTables from './AvailableTables.js'
@@ -25,6 +25,28 @@ class Tables extends Component {
       menuItem: activeMenuItem
     })
   }
+
+  updateState (data) {
+    this.setState({
+      tablesArray: data
+    })
+  }
+
+  // deleteTable (event) {
+  //   event.preventDefault()
+  //   const tableId = event.target.id
+  //   axios({
+  //     url: `http://localhost:4741/tables/${tableId}`,
+  //     method: 'DELETE',
+  //     headers: {
+  //       'content-type': 'application/json',
+  //       'Authorization': 'Token token=' + this.props.token
+  //     }
+  //   })
+  //     .then(() => this.getAllTables())
+  //     .then((response) => this.props._addNotification('success', 'Table Removed From the Dining Area'))
+  //     .catch((error) => this.props._addNotification('error', 'Unauthorized'))
+  // }
 
   render () {
     // has user_id in props
