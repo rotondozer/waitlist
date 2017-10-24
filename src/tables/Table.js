@@ -70,10 +70,12 @@ class Table extends Component {
           user_id={this.props.user_id}
           token={this.props.token}
           enterTimeUpOff={this.enterTimeUpOff}
+          getAllTableHistory={this.props.getAllTableHistory}
         />
       )}/>
     }
     let time_sat, time_up, editButton, deleteButton
+    // If table component is being rendered from Tables History
     if (this.props.history) {
       editButton = <TableUI.Cell>
         {/* <Button basic color='yellow' onClick={(event) => this.setState({editTable:true, editTableId:event.target.id})} id={this.props.table_id}>Edit</Button> */}

@@ -74,6 +74,7 @@ class AllTableHistory extends Component {
       token={this.props.token}
       _addNotification={this.props._addNotification}
       deleteTableActivity={this.deleteTableActivity}
+      getAllTableHistory={this.getAllTableHistory}
     />)
     return (
       <Container>
