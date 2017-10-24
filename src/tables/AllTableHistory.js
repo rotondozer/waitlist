@@ -30,7 +30,7 @@ class AllTableHistory extends Component {
     event.preventDefault()
     // const tableId = event.target.id
     axios({
-      url: `https://waitlist-api.herokuapp.com/tables_activities/${tableActivity}`,
+      url: `http://localhost:4741/tables_activities/${tableActivity}`,
       method: 'DELETE',
       headers: {
         'content-type': 'application/json',
@@ -45,7 +45,7 @@ class AllTableHistory extends Component {
   getAllTableHistory () {
     const self = this
     axios({
-      url: `https://waitlist-api.herokuapp.com/users/${this.props.user_id}/tables_activities`,
+      url: `http://localhost:4741/users/${this.props.user_id}/tables_activities`,
       method: 'GET',
       headers: {
         'content-type': 'application/json',
