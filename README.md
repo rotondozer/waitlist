@@ -5,7 +5,7 @@ by Nick Rotondo
 An app for a restaurant host to organize and prioritize guests on a waitlist and tables in the restaurant. This app also aims to track and calculate data to pertaining to wait times and turnover rate to provide a better customer experience and a deeper understanding of your restaurant's turnover efficiency.
 
 ### Use
-No installation necessary. Just head to https://waitlist-client.herokuapp.com create an account and begin use. *Note that all user actions require authentication, so you will not be able to use the app without signing in.*
+Sign in using [username: admin, password: admin] at https://waitlist-client.herokuapp.com to use this app with pre-seeded Tables and Table History logs. From here, you can play around with adding parties to the waitlist, seating them, checking the availability of tables, etc. without having to create a new database (i.e. create a new restaurant example). *Note that all user actions require authentication, and all resources are user-owned, so you will not be able to use the app without signing in.*
 
 ### Technologies
 **ReactJS**
