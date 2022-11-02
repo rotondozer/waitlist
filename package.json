@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.16.2",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-notification-system": "^0.2.16",
@@ -23,6 +23,6 @@
     "eslint-plugin-react": "^7.4.0",
     "jquery": "^3.2.1",
     "moment": "^2.19.1",
-    "semantic-ui": "^2.2.13"
+    "semantic-ui": "^2.5.0"
   }
 }
